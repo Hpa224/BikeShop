@@ -8,5 +8,6 @@ namespace BikeShop.Models
 {
     internal class Class1
     {
+        //Test line
     }
 }
