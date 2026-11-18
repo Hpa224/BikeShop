@@ -83,6 +83,7 @@
       <DependentUpon>frmReceipt.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ValidationHelper.cs" />
+    <Compile Include="Models\Class1.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\SalesOrder.cs" />
