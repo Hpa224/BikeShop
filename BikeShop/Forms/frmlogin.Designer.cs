@@ -41,6 +41,7 @@
             lblNamePassword.AutoSize = true;
             lblNamePassword.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblNamePassword.Location = new Point(292, 65);
+            lblNamePassword.Margin = new Padding(4, 0, 4, 0);
             lblNamePassword.Name = "lblNamePassword";
             lblNamePassword.Size = new Size(216, 23);
             lblNamePassword.TabIndex = 0;
@@ -51,6 +52,7 @@
             lblPassword.AutoSize = true;
             lblPassword.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblPassword.Location = new Point(357, 155);
+            lblPassword.Margin = new Padding(4, 0, 4, 0);
             lblPassword.Name = "lblPassword";
             lblPassword.Size = new Size(86, 23);
             lblPassword.TabIndex = 1;
@@ -60,6 +62,7 @@
             // txtNamePassword
             // 
             txtNamePassword.Location = new Point(261, 91);
+            txtNamePassword.Margin = new Padding(4, 3, 4, 3);
             txtNamePassword.Name = "txtNamePassword";
             txtNamePassword.Size = new Size(278, 23);
             txtNamePassword.TabIndex = 2;
@@ -67,6 +70,7 @@
             // txtPassword
             // 
             txtPassword.Location = new Point(261, 181);
+            txtPassword.Margin = new Padding(4, 3, 4, 3);
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(278, 23);
             txtPassword.TabIndex = 3;
@@ -79,6 +83,7 @@
             btnLogin.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnLogin.ForeColor = Color.White;
             btnLogin.Location = new Point(467, 378);
+            btnLogin.Margin = new Padding(4, 3, 4, 3);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(145, 60);
             btnLogin.TabIndex = 4;
@@ -94,6 +99,7 @@
             btnBack.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnBack.ForeColor = Color.White;
             btnBack.Location = new Point(197, 378);
+            btnBack.Margin = new Padding(4, 3, 4, 3);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(145, 60);
             btnBack.TabIndex = 5;
@@ -112,6 +118,7 @@
             Controls.Add(lblPassword);
             Controls.Add(lblNamePassword);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(4, 3, 4, 3);
             Name = "frmlogin";
             Text = "Log in Page";
             Load += frmlogin_Load;
