@@ -1,6 +1,5 @@
 - Form size is the default 816, 489. Auto size is false. and format border style is fixed single. We can change these later if need be.
-- To test only your specific form add this line to the Program.cs file
-- Comment out the original one.
+- To test only your specific form add this line to the Program.cs file and comment out the original one.
 ```csharp
 Application.Run(new formNameHere());
 ```
