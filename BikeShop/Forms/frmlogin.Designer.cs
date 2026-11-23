@@ -123,6 +123,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(4, 3, 4, 3);
             Name = "frmlogin";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Log in Page";
             Load += frmlogin_Load;
             ResumeLayout(false);
