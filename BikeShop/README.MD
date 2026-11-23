@@ -1,4 +1,5 @@
 - To test only your specific form add this line to the Program.cs file
+- Comment out the original one.
 ```csharp
 Application.Run(new frmlogin());
 ```
