@@ -63,6 +63,7 @@
             // 
             txtNamePassword.Location = new Point(261, 91);
             txtNamePassword.Margin = new Padding(4, 3, 4, 3);
+            txtNamePassword.MaxLength = 50;
             txtNamePassword.Name = "txtNamePassword";
             txtNamePassword.Size = new Size(278, 23);
             txtNamePassword.TabIndex = 2;
@@ -71,6 +72,7 @@
             // 
             txtPassword.Location = new Point(261, 181);
             txtPassword.Margin = new Padding(4, 3, 4, 3);
+            txtPassword.MaxLength = 128;
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(278, 23);
             txtPassword.TabIndex = 3;
@@ -103,8 +105,9 @@
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(145, 60);
             btnBack.TabIndex = 5;
-            btnBack.Text = "Back";
+            btnBack.Text = "Exit";
             btnBack.UseVisualStyleBackColor = false;
+            btnBack.Click += btnBack_Click;
             // 
             // frmlogin
             // 

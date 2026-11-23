@@ -47,6 +47,8 @@ namespace BikeShop.Forms
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Login button selected.");
+
             if (string.IsNullOrWhiteSpace(txtNamePassword.Text))
             {
                 MessageBox.Show("Please enter your username.");
@@ -58,6 +60,11 @@ namespace BikeShop.Forms
                 MessageBox.Show("Please enter your password.");
                 return;
             }
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
