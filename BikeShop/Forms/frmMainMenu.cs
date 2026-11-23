@@ -52,12 +52,18 @@ namespace BikeShop.Forms
 
         private void btnCustomers_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(this, "Customers selected.");
+            using (var customers = new frmCustomerMaintenance())
+            {
+                customers.ShowDialog(this);
+            }
         }
 
         private void btnNewSale_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(this, "New Sale selected.");
+            using (var newSale = new frmNewSale())
+            {
+                newSale.ShowDialog(this);
+            }
         }
 
         private void btnExit_Click(object sender, EventArgs e)
