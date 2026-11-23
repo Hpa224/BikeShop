@@ -47,17 +47,17 @@ namespace BikeShop.Forms
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Login button selected.");
+            MessageBox.Show(this, "Login button selected.");
 
             if (string.IsNullOrWhiteSpace(txtNamePassword.Text))
             {
-                MessageBox.Show("Please enter your username.");
+                MessageBox.Show(this, "Please enter your username.");
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(txtPassword.Text))
             {
-                MessageBox.Show("Please enter your password.");
+                MessageBox.Show(this, "Please enter your password.");
                 return;
             }
         }

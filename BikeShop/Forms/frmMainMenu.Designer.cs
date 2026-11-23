@@ -135,6 +135,7 @@
             Controls.Add(btnInventory);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "frmMainMenu";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Main Menu";
             Load += frmMainMenu_Load;
             ResumeLayout(false);
