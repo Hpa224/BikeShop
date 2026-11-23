@@ -11,5 +11,3 @@ Application.Run(new formNameHere());
 ![Class code](BikeShop/Images/class_code.png)
 - lines 15-21 and 29-35 gives the buttons the rounded edges. Use your buttons' names where necessary.
 - 26-27 changes the windows border to the dark blue color we had in our power point.
-
-New line
