@@ -37,27 +37,27 @@ namespace BikeShop.Forms
 
         private void button4_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Error selected.");
+            MessageBox.Show(this, "Error selected.");
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Reports selected.");
+            MessageBox.Show(this, "Reports selected.");
         }
 
         private void btnInventory_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Inventory selected.");
+            MessageBox.Show(this, "Inventory selected.");
         }
 
         private void btnCustomers_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Customers selected.");
+            MessageBox.Show(this, "Customers selected.");
         }
 
         private void btnNewSale_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("New Sale selected.");
+            MessageBox.Show(this, "New Sale selected.");
         }
 
         private void btnExit_Click(object sender, EventArgs e)

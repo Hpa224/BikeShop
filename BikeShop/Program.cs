@@ -14,7 +14,7 @@ namespace BikeShop
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-//             Application.Run(new frmlogin());
+             //Application.Run(new frmlogin());
             Application.Run(new frmMainMenu());
 
         }
