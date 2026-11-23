@@ -2,7 +2,7 @@
 - To test only your specific form add this line to the Program.cs file
 - Comment out the original one.
 ```csharp
-Application.Run(new frmlogin());
+Application.Run(new formNameHere());
 ```
 - Font should be calibri
 - The red color for buttons is 192,0,0
