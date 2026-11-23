@@ -61,20 +61,22 @@
             // 
             // txtNamePassword
             // 
+            txtNamePassword.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtNamePassword.Location = new Point(261, 91);
             txtNamePassword.Margin = new Padding(4, 3, 4, 3);
             txtNamePassword.MaxLength = 50;
             txtNamePassword.Name = "txtNamePassword";
-            txtNamePassword.Size = new Size(278, 23);
+            txtNamePassword.Size = new Size(278, 22);
             txtNamePassword.TabIndex = 2;
             // 
             // txtPassword
             // 
+            txtPassword.Font = new Font("Calibri", 9F);
             txtPassword.Location = new Point(261, 181);
             txtPassword.Margin = new Padding(4, 3, 4, 3);
             txtPassword.MaxLength = 128;
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(278, 23);
+            txtPassword.Size = new Size(278, 22);
             txtPassword.TabIndex = 3;
             // 
             // btnLogin
