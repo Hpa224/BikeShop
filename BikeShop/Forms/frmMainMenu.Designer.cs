@@ -28,79 +28,98 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
-            button5 = new Button();
+            btnInventory = new Button();
+            btnCustomers = new Button();
+            btnNewSale = new Button();
+            btnError = new Button();
+            btnReports = new Button();
+            btnExit = new Button();
             SuspendLayout();
             // 
-            // button1
+            // btnInventory
             // 
-            button1.BackColor = Color.FromArgb(242, 242, 242);
-            button1.Font = new Font("Calibri", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.ForeColor = Color.FromArgb(31, 78, 121);
-            button1.Location = new Point(12, 63);
-            button1.Name = "button1";
-            button1.Size = new Size(234, 115);
-            button1.TabIndex = 0;
-            button1.Text = "Inventory";
-            button1.TextAlign = ContentAlignment.TopCenter;
-            button1.UseVisualStyleBackColor = false;
+            btnInventory.BackColor = Color.FromArgb(242, 242, 242);
+            btnInventory.Font = new Font("Calibri", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnInventory.ForeColor = Color.FromArgb(31, 78, 121);
+            btnInventory.Location = new Point(12, 63);
+            btnInventory.Name = "btnInventory";
+            btnInventory.Size = new Size(234, 115);
+            btnInventory.TabIndex = 0;
+            btnInventory.Text = "Inventory";
+            btnInventory.TextAlign = ContentAlignment.TopCenter;
+            btnInventory.UseVisualStyleBackColor = false;
+            btnInventory.Click += btnInventory_Click;
             // 
-            // button2
+            // btnCustomers
             // 
-            button2.BackColor = Color.FromArgb(242, 242, 242);
-            button2.Font = new Font("Calibri", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button2.ForeColor = Color.FromArgb(31, 78, 121);
-            button2.Location = new Point(283, 63);
-            button2.Name = "button2";
-            button2.Size = new Size(234, 115);
-            button2.TabIndex = 1;
-            button2.Text = "Customers";
-            button2.TextAlign = ContentAlignment.TopCenter;
-            button2.UseVisualStyleBackColor = false;
+            btnCustomers.BackColor = Color.FromArgb(242, 242, 242);
+            btnCustomers.Font = new Font("Calibri", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCustomers.ForeColor = Color.FromArgb(31, 78, 121);
+            btnCustomers.Location = new Point(283, 63);
+            btnCustomers.Name = "btnCustomers";
+            btnCustomers.Size = new Size(234, 115);
+            btnCustomers.TabIndex = 1;
+            btnCustomers.Text = "Customers";
+            btnCustomers.TextAlign = ContentAlignment.TopCenter;
+            btnCustomers.UseVisualStyleBackColor = false;
+            btnCustomers.Click += btnCustomers_Click;
             // 
-            // button3
+            // btnNewSale
             // 
-            button3.BackColor = Color.FromArgb(242, 242, 242);
-            button3.Font = new Font("Calibri", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button3.ForeColor = Color.FromArgb(31, 78, 121);
-            button3.Location = new Point(554, 63);
-            button3.Name = "button3";
-            button3.Size = new Size(234, 115);
-            button3.TabIndex = 2;
-            button3.Text = "New Sale";
-            button3.TextAlign = ContentAlignment.TopCenter;
-            button3.UseVisualStyleBackColor = false;
+            btnNewSale.BackColor = Color.FromArgb(242, 242, 242);
+            btnNewSale.Font = new Font("Calibri", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnNewSale.ForeColor = Color.FromArgb(31, 78, 121);
+            btnNewSale.Location = new Point(554, 63);
+            btnNewSale.Name = "btnNewSale";
+            btnNewSale.Size = new Size(234, 115);
+            btnNewSale.TabIndex = 2;
+            btnNewSale.Text = "New Sale";
+            btnNewSale.TextAlign = ContentAlignment.TopCenter;
+            btnNewSale.UseVisualStyleBackColor = false;
+            btnNewSale.Click += btnNewSale_Click;
             // 
-            // button4
+            // btnError
             // 
-            button4.BackColor = Color.FromArgb(242, 242, 242);
-            button4.Font = new Font("Calibri", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button4.ForeColor = Color.FromArgb(31, 78, 121);
-            button4.Location = new Point(154, 210);
-            button4.Name = "button4";
-            button4.Size = new Size(234, 115);
-            button4.TabIndex = 3;
-            button4.Text = "Error";
-            button4.TextAlign = ContentAlignment.TopCenter;
-            button4.UseVisualStyleBackColor = false;
-            button4.Click += button4_Click;
+            btnError.BackColor = Color.FromArgb(242, 242, 242);
+            btnError.Font = new Font("Calibri", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnError.ForeColor = Color.FromArgb(31, 78, 121);
+            btnError.Location = new Point(154, 210);
+            btnError.Name = "btnError";
+            btnError.Size = new Size(234, 115);
+            btnError.TabIndex = 3;
+            btnError.Text = "Error";
+            btnError.TextAlign = ContentAlignment.TopCenter;
+            btnError.UseVisualStyleBackColor = false;
+            btnError.Click += button4_Click;
             // 
-            // button5
+            // btnReports
             // 
-            button5.BackColor = Color.FromArgb(242, 242, 242);
-            button5.Font = new Font("Calibri", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button5.ForeColor = Color.FromArgb(31, 78, 121);
-            button5.Location = new Point(420, 210);
-            button5.Name = "button5";
-            button5.Size = new Size(234, 115);
-            button5.TabIndex = 4;
-            button5.Text = "Reports";
-            button5.TextAlign = ContentAlignment.TopCenter;
-            button5.UseVisualStyleBackColor = false;
-            button5.Click += button5_Click;
+            btnReports.BackColor = Color.FromArgb(242, 242, 242);
+            btnReports.Font = new Font("Calibri", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnReports.ForeColor = Color.FromArgb(31, 78, 121);
+            btnReports.Location = new Point(420, 210);
+            btnReports.Name = "btnReports";
+            btnReports.Size = new Size(234, 115);
+            btnReports.TabIndex = 4;
+            btnReports.Text = "Reports";
+            btnReports.TextAlign = ContentAlignment.TopCenter;
+            btnReports.UseVisualStyleBackColor = false;
+            btnReports.Click += button5_Click;
+            // 
+            // btnExit
+            // 
+            btnExit.BackColor = Color.FromArgb(127, 127, 127);
+            btnExit.FlatAppearance.BorderSize = 0;
+            btnExit.FlatStyle = FlatStyle.Flat;
+            btnExit.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnExit.ForeColor = Color.White;
+            btnExit.Location = new Point(643, 393);
+            btnExit.Name = "btnExit";
+            btnExit.Size = new Size(145, 45);
+            btnExit.TabIndex = 5;
+            btnExit.Text = "Exit";
+            btnExit.UseVisualStyleBackColor = false;
+            btnExit.Click += btnExit_Click;
             // 
             // frmMainMenu
             // 
@@ -108,11 +127,12 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(800, 450);
-            Controls.Add(button5);
-            Controls.Add(button4);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(btnExit);
+            Controls.Add(btnReports);
+            Controls.Add(btnError);
+            Controls.Add(btnNewSale);
+            Controls.Add(btnCustomers);
+            Controls.Add(btnInventory);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "frmMainMenu";
             Text = "Main Menu";
@@ -122,10 +142,11 @@
 
         #endregion
 
-        private Button button1;
-        private Button button2;
-        private Button button3;
-        private Button button4;
-        private Button button5;
+        private Button btnInventory;
+        private Button btnCustomers;
+        private Button btnNewSale;
+        private Button btnError;
+        private Button btnReports;
+        private Button btnExit;
     }
 }
