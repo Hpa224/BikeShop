@@ -27,11 +27,11 @@ namespace BikeShop.Forms
             FormCaptionTextColor = Color.White;
 
             btnLogin.Region = System.Drawing.Region.FromHrgn(
-                CreateRoundRectRgn(0, 0, btnLogin.Width, btnLogin.Height, 20, 20)
+                CreateRoundRectRgn(0, 0, btnLogin.Width, btnLogin.Height, 15, 15)
             );
 
             btnBack.Region = System.Drawing.Region.FromHrgn(
-                CreateRoundRectRgn(0, 0, btnBack.Width, btnBack.Height, 20, 20)
+                CreateRoundRectRgn(0, 0, btnBack.Width, btnBack.Height, 15, 15)
             );
         }
 
