@@ -1,6 +1,7 @@
--To test only your specific form add this line to the Program.cs file
-	Application.Run(new "form name here"());
-
+- To test only your specific form add this line to the Program.cs file
+```csharp
+Application.Run(new frmlogin());
+```
 - Font should be calibri
 - The red color for buttons is 192,0,0
 - The green color for buttons is 46, 125, 60
