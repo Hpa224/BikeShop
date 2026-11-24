@@ -57,7 +57,37 @@ namespace BikeShop.Helpers
             new Product { ProductID = 935, ProductNumber = "PD-M282",    Name = "LL Mountain Pedal",         ListPrice = 40.49m },
         };
 
-        public static List<SalesOrder> Orders { get; } = new List<SalesOrder>();
+        public static List<SalesOrder> Orders { get; } = CreateSampleOrders();
+
+        private static List<SalesOrder> CreateSampleOrders()
+        {
+            // A few past sales so Purchases / Purchase History have something to show
+            var orders = new List<SalesOrder>();
+            orders.Add(MakeOrder(71944, 4, -12, (705, "HL-U509-R", "Sport-100 Helmet, Red", 1, 34.99m),
+                                                (870, "WB-H098", "Water Bottle - 30 oz.", 2, 4.99m)));
+            orders.Add(MakeOrder(71945, 4, -5, (775, "BK-M68B-38", "Mountain-200 Black, 38", 1, 2294.99m)));
+            orders.Add(MakeOrder(71946, 1, -2, (680, "FR-R92B-58", "HL Road Frame - Black, 58", 2, 1431.50m)));
+            return orders;
+        }
+
+        private static SalesOrder MakeOrder(int id, int customerID, int daysAgo,
+            params (int productID, string number, string name, short qty, decimal price)[] lines)
+        {
+            var order = new SalesOrder
+            {
+                SalesOrderID = id,
+                Customer = Customers.First(c => c.CustomerID == customerID),
+                OrderDate = DateTime.Today.AddDays(daysAgo),
+                DueDate = DateTime.Today.AddDays(daysAgo + 7)
+            };
+            int lineNumber = 1;
+            foreach (var l in lines)
+            {
+                order.Details.Add(new SalesOrderDetail { SalesOrderID = id, SalesOrderDetailID = lineNumber++,
+                    ProductID = l.productID, ProductNumber = l.number, ProductName = l.name, OrderQty = l.qty, UnitPrice = l.price });
+            }
+            return order;
+        }
 
         /// <summary>Order numbers increase in sequence (SO71947, SO71948, ...).</summary>
         public static int PeekNextOrderID() => nextOrderID;

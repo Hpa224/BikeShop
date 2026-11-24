@@ -41,18 +41,17 @@ namespace BikeShop.Forms
             FormCaptionBackColor = Color.FromArgb(31, 78, 121);
             FormCaptionTextColor = Color.White;
 
-            foreach (Button button in new[] { btnPrint, btnSave, btnClose })
-            {
-                button.Region = System.Drawing.Region.FromHrgn(
-                    CreateRoundRectRgn(0, 0, button.Width, button.Height, 15, 15)
-                );
-            }
+            btnPrint.Region = System.Drawing.Region.FromHrgn(
+                CreateRoundRectRgn(0, 0, btnPrint.Width, btnPrint.Height, 15, 15)
+            );
 
-            colQty.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            colUnitPrice.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            colUnitPrice.DefaultCellStyle.Format = "c";
-            colLineTotal.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            colLineTotal.DefaultCellStyle.Format = "c";
+            btnSave.Region = System.Drawing.Region.FromHrgn(
+                CreateRoundRectRgn(0, 0, btnSave.Width, btnSave.Height, 15, 15)
+            );
+
+            btnClose.Region = System.Drawing.Region.FromHrgn(
+                CreateRoundRectRgn(0, 0, btnClose.Width, btnClose.Height, 15, 15)
+            );
 
             this.order = order;
         }
@@ -89,7 +88,7 @@ namespace BikeShop.Forms
         private string BuildReceiptText()
         {
             var sb = new StringBuilder();
-            sb.AppendLine("BIKE SHOP");
+            sb.AppendLine("BIKE STORE");
             sb.AppendLine("Sales Receipt / Invoice");
             sb.AppendLine(new string('=', 72));
             sb.AppendLine($"Order #:    {order.SalesOrderNumber}");

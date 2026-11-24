@@ -81,6 +81,36 @@ namespace BikeShop.Helpers
             return true;
         }
 
+        /// <summary>For NumericUpDown controls (e.g. a quantity spinner).</summary>
+        public static bool IsWithinRange(NumericUpDown number, string name, decimal min, decimal max)
+        {
+            if (number.Value < min || number.Value > max)
+            {
+                ShowError(number, $"{name} must be between {min} and {max}.");
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// For values typed somewhere other than a text box (e.g. a grid cell).
+        /// The focus goes back to the control passed in.
+        /// </summary>
+        public static bool IsInt32WithinRange(string? text, string name, int min, int max, Control control)
+        {
+            if (!int.TryParse(text, out int number))
+            {
+                ShowError(control, $"{name} must be a whole number.");
+                return false;
+            }
+            if (number < min || number > max)
+            {
+                ShowError(control, $"{name} must be between {min} and {max}.");
+                return false;
+            }
+            return true;
+        }
+
         // ---------- Dates ----------
 
         public static bool IsDateWithinRange(DateTimePicker picker, string name, DateTime min, DateTime max)
@@ -104,6 +134,11 @@ namespace BikeShop.Helpers
                 return false;
             }
             return true;
+        }
+
+        public static bool IsValidPhone(MaskedTextBox mask, string name)
+        {
+            return IsMaskCompleted(mask, name);
         }
 
         // ---------- Clearing the screen ----------

@@ -11,10 +11,6 @@ using BikeShop.Models;
 
 namespace BikeShop.Forms
 {
-    /// <summary>
-    /// Customer maintenance: search, add, update and delete customers and their
-    /// main address. Data comes from SampleData until BikeStore.mdf is connected.
-    /// </summary>
     public partial class frmCustomerMaintenance : Form
     {
         [System.Runtime.InteropServices.DllImport("gdi32.dll")]
@@ -36,20 +32,40 @@ namespace BikeShop.Forms
             FormCaptionBackColor = Color.FromArgb(31, 78, 121);
             FormCaptionTextColor = Color.White;
 
-            foreach (Button button in new[] { btnFind, btnShowAll, btnAdd, btnSave, btnDelete,
-                                              btnClear, btnPurchaseHistory, btnBack })
-            {
-                button.Region = System.Drawing.Region.FromHrgn(
-                    CreateRoundRectRgn(0, 0, button.Width, button.Height, 15, 15)
-                );
-            }
+            btnFind.Region = System.Drawing.Region.FromHrgn(
+                CreateRoundRectRgn(0, 0, btnFind.Width, btnFind.Height, 15, 15)
+            );
+
+            btnAdd.Region = System.Drawing.Region.FromHrgn(
+                CreateRoundRectRgn(0, 0, btnAdd.Width, btnAdd.Height, 15, 15)
+            );
+
+            btnSave.Region = System.Drawing.Region.FromHrgn(
+                CreateRoundRectRgn(0, 0, btnSave.Width, btnSave.Height, 15, 15)
+            );
+
+            btnDelete.Region = System.Drawing.Region.FromHrgn(
+                CreateRoundRectRgn(0, 0, btnDelete.Width, btnDelete.Height, 15, 15)
+            );
+
+            btnClear.Region = System.Drawing.Region.FromHrgn(
+                CreateRoundRectRgn(0, 0, btnClear.Width, btnClear.Height, 15, 15)
+            );
+
+            btnPurchaseHistory.Region = System.Drawing.Region.FromHrgn(
+                CreateRoundRectRgn(0, 0, btnPurchaseHistory.Width, btnPurchaseHistory.Height, 15, 15)
+            );
+
+            btnBack.Region = System.Drawing.Region.FromHrgn(
+                CreateRoundRectRgn(0, 0, btnBack.Width, btnBack.Height, 15, 15)
+            );
         }
 
         private void frmCustomerMaintenance_Load(object sender, EventArgs e)
         {
             ValidationHelper.Title = "Customer Entry Error";
             LoadCustomerGrid(SampleData.Customers);
-            ClearForm();
+            ClearScreen();
         }
 
         // ---------------- Grid ----------------
@@ -60,7 +76,8 @@ namespace BikeShop.Forms
             dgvCustomers.Rows.Clear();
             foreach (Customer c in customers.OrderBy(c => c.LastName).ThenBy(c => c.FirstName))
             {
-                int row = dgvCustomers.Rows.Add(c.CustomerID, c.FullName, c.CompanyName, c.Phone, c.EmailAddress);
+                int purchases = SampleData.Orders.Count(o => o.CustomerID == c.CustomerID);
+                int row = dgvCustomers.Rows.Add(c.CustomerID, c.FullName, c.Phone ?? "", c.EmailAddress ?? "", purchases);
                 dgvCustomers.Rows[row].Tag = c;
             }
             dgvCustomers.ClearSelection();
@@ -77,59 +94,64 @@ namespace BikeShop.Forms
 
         private void DisplayCustomer(Customer c)
         {
-            cboTitle.SelectedIndex = cboTitle.FindStringExact(c.Title ?? "");
             txtFirstName.Text = c.FirstName;
-            txtMiddleName.Text = c.MiddleName;
             txtLastName.Text = c.LastName;
-            txtSuffix.Text = c.Suffix;
-            txtCompanyName.Text = c.CompanyName;
-            txtEmail.Text = c.EmailAddress;
             mskPhone.Text = c.Phone;
+            txtMiddleName.Text = c.MiddleName;
+            cboTitle.SelectedIndex = cboTitle.FindStringExact(c.Title ?? "");
+            txtSuffix.Text = c.Suffix;
+            txtEmail.Text = c.EmailAddress;
+            txtCompanyName.Text = c.CompanyName;
 
             cboAddressType.SelectedIndex = cboAddressType.FindStringExact(c.Address.AddressType);
             txtAddressLine1.Text = c.Address.AddressLine1;
             txtAddressLine2.Text = c.Address.AddressLine2;
+            cboCountryRegion.SelectedIndex = cboCountryRegion.FindStringExact(c.Address.CountryRegion);
             txtCity.Text = c.Address.City;
             txtStateProvince.Text = c.Address.StateProvince;
             mskPostalCode.Text = c.Address.PostalCode;
-            cboCountryRegion.SelectedIndex = cboCountryRegion.FindStringExact(c.Address.CountryRegion);
         }
 
-        // ---------------- Search ----------------
+        // ---------------- Buttons ----------------
 
+        /// <summary>
+        /// Finds customers that match whatever is typed in First Name, Last Name,
+        /// Phone or Email (partial matches).
+        /// </summary>
         private void btnFind_Click(object sender, EventArgs e)
         {
-            if (!ValidationHelper.IsPresent(txtSearch, "Search text")) return;
+            string first = txtFirstName.Text.Trim();
+            string last = txtLastName.Text.Trim();
+            string email = txtEmail.Text.Trim();
+            string phone = mskPhone.MaskCompleted ? mskPhone.Text : "";
 
-            string text = txtSearch.Text.Trim();
+            if (first == "" && last == "" && email == "" && phone == "")
+            {
+                // Nothing to search on: show everyone
+                LoadCustomerGrid(SampleData.Customers);
+                MessageBox.Show(this, "Type part of a first name, last name, email or a full phone number, then click Find.",
+                    "Find Customer");
+                txtFirstName.Focus();
+                return;
+            }
+
             var matches = SampleData.Customers.Where(c =>
-                    c.FirstName.Contains(text, StringComparison.OrdinalIgnoreCase) ||
-                    c.LastName.Contains(text, StringComparison.OrdinalIgnoreCase) ||
-                    (c.CompanyName ?? "").Contains(text, StringComparison.OrdinalIgnoreCase) ||
-                    (c.EmailAddress ?? "").Contains(text, StringComparison.OrdinalIgnoreCase) ||
-                    (c.Phone ?? "").Contains(text))
+                    (first == "" || c.FirstName.Contains(first, StringComparison.OrdinalIgnoreCase)) &&
+                    (last == "" || c.LastName.Contains(last, StringComparison.OrdinalIgnoreCase)) &&
+                    (email == "" || (c.EmailAddress ?? "").Contains(email, StringComparison.OrdinalIgnoreCase)) &&
+                    (phone == "" || c.Phone == phone))
                 .ToList();
 
             if (matches.Count == 0)
             {
-                MessageBox.Show(this, $"No customers found matching \"{text}\".", "Find Customer",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtSearch.Focus();
+                MessageBox.Show(this, "No customers match what you entered.", "Find Customer");
+                txtFirstName.Focus();
                 return;
             }
 
             LoadCustomerGrid(matches);
-            ClearForm();
+            dgvCustomers.Rows[0].Selected = true;
         }
-
-        private void btnShowAll_Click(object sender, EventArgs e)
-        {
-            txtSearch.Clear();
-            LoadCustomerGrid(SampleData.Customers);
-            ClearForm();
-        }
-
-        // ---------------- Add / Save / Delete ----------------
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -140,8 +162,7 @@ namespace BikeShop.Forms
             PutCustomerData(customer);
             SampleData.Customers.Add(customer);
 
-            MessageBox.Show(this, $"Customer {customer.FullName} was added (ID {customer.CustomerID}).",
-                "Customer Added", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(this, $"Customer {customer.FullName} was added (ID {customer.CustomerID}).", "Customer Added");
             LoadCustomerGrid(SampleData.Customers);
             SelectCustomerRow(customer);
         }
@@ -151,15 +172,13 @@ namespace BikeShop.Forms
             if (selectedCustomer == null)
             {
                 MessageBox.Show(this, "Select a customer in the list before saving changes.\n" +
-                    "To create a new customer, fill in the fields and click Add.", "Save Customer",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    "To create a new customer, fill in the fields and click Add.", "Save Customer");
                 return;
             }
             if (!IsValidData()) return;
 
             PutCustomerData(selectedCustomer);
-            MessageBox.Show(this, $"Changes to {selectedCustomer.FullName} were saved.", "Customer Saved",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(this, $"Changes to {selectedCustomer.FullName} were saved.", "Customer Saved");
 
             Customer saved = selectedCustomer;
             LoadCustomerGrid(SampleData.Customers);
@@ -170,39 +189,36 @@ namespace BikeShop.Forms
         {
             if (selectedCustomer == null)
             {
-                MessageBox.Show(this, "Select a customer in the list to delete.", "Delete Customer",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(this, "Select a customer in the list to delete.", "Delete Customer");
                 return;
             }
 
             if (SampleData.Orders.Any(o => o.CustomerID == selectedCustomer.CustomerID))
             {
-                MessageBox.Show(this, $"{selectedCustomer.FullName} has sales orders and cannot be deleted.",
-                    "Delete Customer", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(this, $"{selectedCustomer.FullName} has purchases and cannot be deleted.", "Delete Customer");
                 return;
             }
 
-            DialogResult answer = MessageBox.Show(this,
-                $"Delete customer {selectedCustomer.FullName}?", "Confirm Delete",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            DialogResult answer = MessageBox.Show(this, $"Delete customer {selectedCustomer.FullName}?",
+                "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
             if (answer != DialogResult.Yes) return;
 
             SampleData.Customers.Remove(selectedCustomer);
             LoadCustomerGrid(SampleData.Customers);
-            ClearForm();
+            ClearScreen();
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            ClearForm();
+            LoadCustomerGrid(SampleData.Customers);
+            ClearScreen();
         }
 
         private void btnPurchaseHistory_Click(object sender, EventArgs e)
         {
             if (selectedCustomer == null)
             {
-                MessageBox.Show(this, "Select a customer to view purchase history.", "Purchase History",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(this, "Select a customer to view purchase history.", "Purchase History");
                 return;
             }
 
@@ -210,8 +226,7 @@ namespace BikeShop.Forms
                                           .OrderByDescending(o => o.OrderDate).ToList();
             if (orders.Count == 0)
             {
-                MessageBox.Show(this, $"{selectedCustomer.FullName} has no purchases yet.", "Purchase History",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(this, $"{selectedCustomer.FullName} has no purchases yet.", "Purchase History");
                 return;
             }
 
@@ -222,8 +237,7 @@ namespace BikeShop.Forms
             }
             sb.AppendLine();
             sb.AppendLine($"Total purchases: {orders.Sum(o => o.TotalDue):c}");
-            MessageBox.Show(this, sb.ToString(), $"Purchase History – {selectedCustomer.FullName}",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(this, sb.ToString(), $"Purchase History - {selectedCustomer.FullName}");
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -231,23 +245,23 @@ namespace BikeShop.Forms
             Close();
         }
 
-        // ---------------- Helpers ----------------
+        // ---------------- Validation ----------------
 
         private bool IsValidData()
         {
             return
                 ValidationHelper.IsPresent(txtFirstName, "First Name") &&
                 ValidationHelper.IsPresent(txtLastName, "Last Name") &&
+                ValidationHelper.IsValidPhone(mskPhone, "Phone") &&
                 ValidationHelper.IsPresent(txtEmail, "Email") &&
                 ValidationHelper.IsValidEmail(txtEmail, "Email") &&
-                ValidationHelper.IsMaskCompleted(mskPhone, "Phone") &&
+                IsUniqueEmail() &&
                 ValidationHelper.IsSelected(cboAddressType, "Address Type") &&
-                ValidationHelper.IsPresent(txtAddressLine1, "Address 1") &&
-                ValidationHelper.IsPresent(txtCity, "City") &&
-                ValidationHelper.IsPresent(txtStateProvince, "State/Province") &&
-                ValidationHelper.IsMaskCompleted(mskPostalCode, "Postal Code") &&
+                ValidationHelper.IsPresent(txtAddressLine1, "Address") &&
                 ValidationHelper.IsSelected(cboCountryRegion, "Country") &&
-                IsUniqueEmail();
+                ValidationHelper.IsPresent(txtCity, "City") &&
+                ValidationHelper.IsPresent(txtStateProvince, "State") &&
+                ValidationHelper.IsMaskCompleted(mskPostalCode, "Zip Code");
         }
 
         private bool IsUniqueEmail()
@@ -257,32 +271,33 @@ namespace BikeShop.Forms
                 string.Equals(c.EmailAddress, email, StringComparison.OrdinalIgnoreCase));
             if (taken)
             {
-                MessageBox.Show(this, "Another customer already uses this email address.",
-                    ValidationHelper.Title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(this, "Another customer already uses this email address.", ValidationHelper.Title);
                 txtEmail.Focus();
                 return false;
             }
             return true;
         }
 
+        // ---------------- Helpers ----------------
+
         private void PutCustomerData(Customer c)
         {
-            c.Title = cboTitle.SelectedIndex == -1 ? null : cboTitle.Text;
             c.FirstName = txtFirstName.Text.Trim();
-            c.MiddleName = NullIfBlank(txtMiddleName.Text);
             c.LastName = txtLastName.Text.Trim();
-            c.Suffix = NullIfBlank(txtSuffix.Text);
-            c.CompanyName = NullIfBlank(txtCompanyName.Text);
-            c.EmailAddress = txtEmail.Text.Trim();
             c.Phone = mskPhone.Text;
+            c.MiddleName = NullIfBlank(txtMiddleName.Text);
+            c.Title = cboTitle.SelectedIndex == -1 ? null : cboTitle.Text;
+            c.Suffix = NullIfBlank(txtSuffix.Text);
+            c.EmailAddress = txtEmail.Text.Trim();
+            c.CompanyName = NullIfBlank(txtCompanyName.Text);
 
             c.Address.AddressType = cboAddressType.Text;
             c.Address.AddressLine1 = txtAddressLine1.Text.Trim();
             c.Address.AddressLine2 = NullIfBlank(txtAddressLine2.Text);
+            c.Address.CountryRegion = cboCountryRegion.Text;
             c.Address.City = txtCity.Text.Trim();
             c.Address.StateProvince = txtStateProvince.Text.Trim();
             c.Address.PostalCode = mskPostalCode.Text;
-            c.Address.CountryRegion = cboCountryRegion.Text;
         }
 
         private static string? NullIfBlank(string text) =>
@@ -301,10 +316,9 @@ namespace BikeShop.Forms
             }
         }
 
-        private void ClearForm()
+        private void ClearScreen()
         {
-            ValidationHelper.ClearControls(grpCustomer.Controls);
-            ValidationHelper.ClearControls(grpAddress.Controls);
+            ValidationHelper.ClearControls(Controls);
             cboAddressType.SelectedIndex = 0;      // Main Office
             cboCountryRegion.SelectedIndex = 0;    // United States
             selectedCustomer = null;

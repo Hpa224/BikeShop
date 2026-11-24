@@ -28,465 +28,359 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lblSearch = new Label();
-            txtSearch = new TextBox();
-            btnFind = new Button();
-            btnShowAll = new Button();
-            dgvCustomers = new DataGridView();
-            colCustomerID = new DataGridViewTextBoxColumn();
-            colName = new DataGridViewTextBoxColumn();
-            colCompany = new DataGridViewTextBoxColumn();
-            colPhone = new DataGridViewTextBoxColumn();
-            colEmail = new DataGridViewTextBoxColumn();
-            grpCustomer = new GroupBox();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            lblFirstName = new Label();
+            txtFirstName = new TextBox();
+            lblLastName = new Label();
+            txtLastName = new TextBox();
+            lblPhone = new Label();
+            mskPhone = new MaskedTextBox();
+            lblMiddleName = new Label();
+            txtMiddleName = new TextBox();
             lblTitle = new Label();
             cboTitle = new ComboBox();
             lblSuffix = new Label();
             txtSuffix = new TextBox();
-            lblFirstName = new Label();
-            txtFirstName = new TextBox();
-            lblMiddleName = new Label();
-            txtMiddleName = new TextBox();
-            lblLastName = new Label();
-            txtLastName = new TextBox();
-            lblCompanyName = new Label();
-            txtCompanyName = new TextBox();
             lblEmail = new Label();
             txtEmail = new TextBox();
-            lblPhone = new Label();
-            mskPhone = new MaskedTextBox();
-            grpAddress = new GroupBox();
+            lblCompanyName = new Label();
+            txtCompanyName = new TextBox();
             lblAddressType = new Label();
             cboAddressType = new ComboBox();
             lblAddressLine1 = new Label();
             txtAddressLine1 = new TextBox();
             lblAddressLine2 = new Label();
             txtAddressLine2 = new TextBox();
+            lblCountryRegion = new Label();
+            cboCountryRegion = new ComboBox();
             lblCity = new Label();
             txtCity = new TextBox();
             lblStateProvince = new Label();
             txtStateProvince = new TextBox();
             lblPostalCode = new Label();
             mskPostalCode = new MaskedTextBox();
-            lblCountryRegion = new Label();
-            cboCountryRegion = new ComboBox();
+            btnFind = new Button();
             btnAdd = new Button();
             btnSave = new Button();
             btnDelete = new Button();
             btnClear = new Button();
+            dgvCustomers = new DataGridView();
+            colCustomerID = new DataGridViewTextBoxColumn();
+            colName = new DataGridViewTextBoxColumn();
+            colPhone = new DataGridViewTextBoxColumn();
+            colEmail = new DataGridViewTextBoxColumn();
+            colPurchases = new DataGridViewTextBoxColumn();
             btnPurchaseHistory = new Button();
             btnBack = new Button();
-            grpCustomer.SuspendLayout();
-            grpAddress.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCustomers).BeginInit();
             SuspendLayout();
             // 
-            // lblSearch
+            // lblFirstName
             // 
-            lblSearch.AutoSize = true;
-            lblSearch.Location = new Point(15, 17);
-            lblSearch.Name = "lblSearch";
-            lblSearch.Text = "Search:";
-            lblSearch.TabIndex = 0;
+            lblFirstName.AutoSize = true;
+            lblFirstName.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblFirstName.Location = new Point(12, 13);
+            lblFirstName.Name = "lblFirstName";
+            lblFirstName.TabIndex = 0;
+            lblFirstName.Text = "First Name:";
             // 
-            // txtSearch
+            // txtFirstName
             // 
-            txtSearch.Location = new Point(80, 14);
-            txtSearch.MaxLength = 50;
-            txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(300, 25);
-            txtSearch.TabIndex = 1;
+            txtFirstName.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtFirstName.Location = new Point(115, 12);
+            txtFirstName.MaxLength = 50;
+            txtFirstName.Name = "txtFirstName";
+            txtFirstName.Size = new Size(150, 22);
+            txtFirstName.TabIndex = 1;
             // 
-            // btnFind
+            // lblLastName
             // 
-            btnFind.BackColor = Color.FromArgb(46, 125, 60);
-            btnFind.FlatAppearance.BorderSize = 0;
-            btnFind.FlatStyle = FlatStyle.Flat;
-            btnFind.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnFind.ForeColor = Color.White;
-            btnFind.Location = new Point(390, 10);
-            btnFind.Name = "btnFind";
-            btnFind.Size = new Size(100, 32);
-            btnFind.Text = "Find";
-            btnFind.UseVisualStyleBackColor = false;
-            btnFind.TabIndex = 2;
-            btnFind.Click += btnFind_Click;
+            lblLastName.AutoSize = true;
+            lblLastName.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblLastName.Location = new Point(278, 13);
+            lblLastName.Name = "lblLastName";
+            lblLastName.TabIndex = 2;
+            lblLastName.Text = "Last Name:";
             // 
-            // btnShowAll
+            // txtLastName
             // 
-            btnShowAll.BackColor = Color.FromArgb(31, 78, 121);
-            btnShowAll.FlatAppearance.BorderSize = 0;
-            btnShowAll.FlatStyle = FlatStyle.Flat;
-            btnShowAll.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnShowAll.ForeColor = Color.White;
-            btnShowAll.Location = new Point(500, 10);
-            btnShowAll.Name = "btnShowAll";
-            btnShowAll.Size = new Size(100, 32);
-            btnShowAll.Text = "Show All";
-            btnShowAll.UseVisualStyleBackColor = false;
-            btnShowAll.TabIndex = 3;
-            btnShowAll.Click += btnShowAll_Click;
+            txtLastName.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtLastName.Location = new Point(393, 12);
+            txtLastName.MaxLength = 50;
+            txtLastName.Name = "txtLastName";
+            txtLastName.Size = new Size(150, 22);
+            txtLastName.TabIndex = 3;
             // 
-            // dgvCustomers
+            // lblPhone
             // 
-            dgvCustomers.AllowUserToAddRows = false;
-            dgvCustomers.AllowUserToDeleteRows = false;
-            dgvCustomers.AllowUserToResizeRows = false;
-            dgvCustomers.BackgroundColor = SystemColors.Window;
-            dgvCustomers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvCustomers.Location = new Point(15, 50);
-            dgvCustomers.MultiSelect = false;
-            dgvCustomers.Name = "dgvCustomers";
-            dgvCustomers.ReadOnly = true;
-            dgvCustomers.RowHeadersVisible = false;
-            dgvCustomers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvCustomers.Size = new Size(770, 110);
-            dgvCustomers.TabIndex = 4;
-            dgvCustomers.Columns.AddRange(new DataGridViewColumn[] { colCustomerID, colName, colCompany, colPhone, colEmail });
-            dgvCustomers.SelectionChanged += dgvCustomers_SelectionChanged;
+            lblPhone.AutoSize = true;
+            lblPhone.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblPhone.Location = new Point(552, 13);
+            lblPhone.Name = "lblPhone";
+            lblPhone.TabIndex = 4;
+            lblPhone.Text = "Phone:";
             // 
-            // colCustomerID
+            // mskPhone
             // 
-            colCustomerID.HeaderText = "ID";
-            colCustomerID.Name = "colCustomerID";
-            colCustomerID.ReadOnly = true;
-            colCustomerID.Width = 55;
+            mskPhone.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            mskPhone.Location = new Point(660, 12);
+            mskPhone.Mask = "000-000-0000";
+            mskPhone.Name = "mskPhone";
+            mskPhone.Size = new Size(110, 22);
+            mskPhone.TabIndex = 5;
             // 
-            // colName
+            // lblMiddleName
             // 
-            colName.HeaderText = "Name";
-            colName.Name = "colName";
-            colName.ReadOnly = true;
-            colName.Width = 170;
+            lblMiddleName.AutoSize = true;
+            lblMiddleName.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblMiddleName.Location = new Point(12, 41);
+            lblMiddleName.Name = "lblMiddleName";
+            lblMiddleName.TabIndex = 6;
+            lblMiddleName.Text = "Middle Name:";
             // 
-            // colCompany
+            // txtMiddleName
             // 
-            colCompany.HeaderText = "Company";
-            colCompany.Name = "colCompany";
-            colCompany.ReadOnly = true;
-            colCompany.Width = 190;
-            // 
-            // colPhone
-            // 
-            colPhone.HeaderText = "Phone";
-            colPhone.Name = "colPhone";
-            colPhone.ReadOnly = true;
-            colPhone.Width = 115;
-            // 
-            // colEmail
-            // 
-            colEmail.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            colEmail.HeaderText = "Email";
-            colEmail.Name = "colEmail";
-            colEmail.ReadOnly = true;
-            // 
-            // grpCustomer
-            // 
-            grpCustomer.Controls.Add(mskPhone);
-            grpCustomer.Controls.Add(lblPhone);
-            grpCustomer.Controls.Add(txtEmail);
-            grpCustomer.Controls.Add(lblEmail);
-            grpCustomer.Controls.Add(txtCompanyName);
-            grpCustomer.Controls.Add(lblCompanyName);
-            grpCustomer.Controls.Add(txtLastName);
-            grpCustomer.Controls.Add(lblLastName);
-            grpCustomer.Controls.Add(txtMiddleName);
-            grpCustomer.Controls.Add(lblMiddleName);
-            grpCustomer.Controls.Add(txtFirstName);
-            grpCustomer.Controls.Add(lblFirstName);
-            grpCustomer.Controls.Add(txtSuffix);
-            grpCustomer.Controls.Add(lblSuffix);
-            grpCustomer.Controls.Add(cboTitle);
-            grpCustomer.Controls.Add(lblTitle);
-            grpCustomer.Location = new Point(15, 166);
-            grpCustomer.Name = "grpCustomer";
-            grpCustomer.Size = new Size(380, 228);
-            grpCustomer.TabStop = false;
-            grpCustomer.Text = "Customer Information";
-            grpCustomer.TabIndex = 5;
+            txtMiddleName.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtMiddleName.Location = new Point(115, 40);
+            txtMiddleName.MaxLength = 50;
+            txtMiddleName.Name = "txtMiddleName";
+            txtMiddleName.Size = new Size(150, 22);
+            txtMiddleName.TabIndex = 7;
             // 
             // lblTitle
             // 
             lblTitle.AutoSize = true;
-            lblTitle.Location = new Point(10, 27);
+            lblTitle.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTitle.Location = new Point(278, 41);
             lblTitle.Name = "lblTitle";
+            lblTitle.TabIndex = 8;
             lblTitle.Text = "Title:";
-            lblTitle.TabIndex = 6;
             // 
             // cboTitle
             // 
             cboTitle.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboTitle.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cboTitle.FormattingEnabled = true;
-            cboTitle.Location = new Point(110, 24);
+            cboTitle.Location = new Point(393, 40);
             cboTitle.Name = "cboTitle";
-            cboTitle.Size = new Size(80, 26);
-            cboTitle.TabIndex = 7;
+            cboTitle.Size = new Size(80, 22);
+            cboTitle.TabIndex = 9;
             cboTitle.Items.AddRange(new object[] { "Mr.", "Ms.", "Mrs.", "Dr." });
             // 
             // lblSuffix
             // 
             lblSuffix.AutoSize = true;
-            lblSuffix.Location = new Point(205, 27);
+            lblSuffix.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblSuffix.Location = new Point(552, 41);
             lblSuffix.Name = "lblSuffix";
+            lblSuffix.TabIndex = 10;
             lblSuffix.Text = "Suffix:";
-            lblSuffix.TabIndex = 8;
             // 
             // txtSuffix
             // 
-            txtSuffix.Location = new Point(260, 24);
+            txtSuffix.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtSuffix.Location = new Point(660, 40);
             txtSuffix.MaxLength = 10;
             txtSuffix.Name = "txtSuffix";
-            txtSuffix.Size = new Size(105, 25);
-            txtSuffix.TabIndex = 9;
-            // 
-            // lblFirstName
-            // 
-            lblFirstName.AutoSize = true;
-            lblFirstName.Location = new Point(10, 55);
-            lblFirstName.Name = "lblFirstName";
-            lblFirstName.Text = "First Name:";
-            lblFirstName.TabIndex = 10;
-            // 
-            // txtFirstName
-            // 
-            txtFirstName.Location = new Point(110, 52);
-            txtFirstName.MaxLength = 50;
-            txtFirstName.Name = "txtFirstName";
-            txtFirstName.Size = new Size(255, 25);
-            txtFirstName.TabIndex = 11;
-            // 
-            // lblMiddleName
-            // 
-            lblMiddleName.AutoSize = true;
-            lblMiddleName.Location = new Point(10, 83);
-            lblMiddleName.Name = "lblMiddleName";
-            lblMiddleName.Text = "Middle Name:";
-            lblMiddleName.TabIndex = 12;
-            // 
-            // txtMiddleName
-            // 
-            txtMiddleName.Location = new Point(110, 80);
-            txtMiddleName.MaxLength = 50;
-            txtMiddleName.Name = "txtMiddleName";
-            txtMiddleName.Size = new Size(255, 25);
-            txtMiddleName.TabIndex = 13;
-            // 
-            // lblLastName
-            // 
-            lblLastName.AutoSize = true;
-            lblLastName.Location = new Point(10, 111);
-            lblLastName.Name = "lblLastName";
-            lblLastName.Text = "Last Name:";
-            lblLastName.TabIndex = 14;
-            // 
-            // txtLastName
-            // 
-            txtLastName.Location = new Point(110, 108);
-            txtLastName.MaxLength = 50;
-            txtLastName.Name = "txtLastName";
-            txtLastName.Size = new Size(255, 25);
-            txtLastName.TabIndex = 15;
-            // 
-            // lblCompanyName
-            // 
-            lblCompanyName.AutoSize = true;
-            lblCompanyName.Location = new Point(10, 139);
-            lblCompanyName.Name = "lblCompanyName";
-            lblCompanyName.Text = "Company:";
-            lblCompanyName.TabIndex = 16;
-            // 
-            // txtCompanyName
-            // 
-            txtCompanyName.Location = new Point(110, 136);
-            txtCompanyName.MaxLength = 128;
-            txtCompanyName.Name = "txtCompanyName";
-            txtCompanyName.Size = new Size(255, 25);
-            txtCompanyName.TabIndex = 17;
+            txtSuffix.Size = new Size(80, 22);
+            txtSuffix.TabIndex = 11;
             // 
             // lblEmail
             // 
             lblEmail.AutoSize = true;
-            lblEmail.Location = new Point(10, 167);
+            lblEmail.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblEmail.Location = new Point(12, 69);
             lblEmail.Name = "lblEmail";
+            lblEmail.TabIndex = 12;
             lblEmail.Text = "Email:";
-            lblEmail.TabIndex = 18;
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(110, 164);
+            txtEmail.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtEmail.Location = new Point(115, 68);
             txtEmail.MaxLength = 50;
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(255, 25);
-            txtEmail.TabIndex = 19;
+            txtEmail.Size = new Size(150, 22);
+            txtEmail.TabIndex = 13;
             // 
-            // lblPhone
+            // lblCompanyName
             // 
-            lblPhone.AutoSize = true;
-            lblPhone.Location = new Point(10, 195);
-            lblPhone.Name = "lblPhone";
-            lblPhone.Text = "Phone:";
-            lblPhone.TabIndex = 20;
+            lblCompanyName.AutoSize = true;
+            lblCompanyName.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCompanyName.Location = new Point(278, 69);
+            lblCompanyName.Name = "lblCompanyName";
+            lblCompanyName.TabIndex = 14;
+            lblCompanyName.Text = "Company:";
             // 
-            // mskPhone
+            // txtCompanyName
             // 
-            mskPhone.Location = new Point(110, 192);
-            mskPhone.Mask = "000-000-0000";
-            mskPhone.Name = "mskPhone";
-            mskPhone.Size = new Size(120, 25);
-            mskPhone.TabIndex = 21;
-            // 
-            // grpAddress
-            // 
-            grpAddress.Controls.Add(cboCountryRegion);
-            grpAddress.Controls.Add(lblCountryRegion);
-            grpAddress.Controls.Add(mskPostalCode);
-            grpAddress.Controls.Add(lblPostalCode);
-            grpAddress.Controls.Add(txtStateProvince);
-            grpAddress.Controls.Add(lblStateProvince);
-            grpAddress.Controls.Add(txtCity);
-            grpAddress.Controls.Add(lblCity);
-            grpAddress.Controls.Add(txtAddressLine2);
-            grpAddress.Controls.Add(lblAddressLine2);
-            grpAddress.Controls.Add(txtAddressLine1);
-            grpAddress.Controls.Add(lblAddressLine1);
-            grpAddress.Controls.Add(cboAddressType);
-            grpAddress.Controls.Add(lblAddressType);
-            grpAddress.Location = new Point(405, 166);
-            grpAddress.Name = "grpAddress";
-            grpAddress.Size = new Size(380, 228);
-            grpAddress.TabStop = false;
-            grpAddress.Text = "Address";
-            grpAddress.TabIndex = 22;
+            txtCompanyName.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtCompanyName.Location = new Point(393, 68);
+            txtCompanyName.MaxLength = 128;
+            txtCompanyName.Name = "txtCompanyName";
+            txtCompanyName.Size = new Size(150, 22);
+            txtCompanyName.TabIndex = 15;
             // 
             // lblAddressType
             // 
             lblAddressType.AutoSize = true;
-            lblAddressType.Location = new Point(10, 27);
+            lblAddressType.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblAddressType.Location = new Point(552, 69);
             lblAddressType.Name = "lblAddressType";
-            lblAddressType.Text = "Address Type:";
-            lblAddressType.TabIndex = 23;
+            lblAddressType.TabIndex = 16;
+            lblAddressType.Text = "Addr. Type:";
             // 
             // cboAddressType
             // 
             cboAddressType.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboAddressType.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cboAddressType.FormattingEnabled = true;
-            cboAddressType.Location = new Point(115, 24);
+            cboAddressType.Location = new Point(660, 68);
             cboAddressType.Name = "cboAddressType";
-            cboAddressType.Size = new Size(150, 26);
-            cboAddressType.TabIndex = 24;
+            cboAddressType.Size = new Size(128, 22);
+            cboAddressType.TabIndex = 17;
             cboAddressType.Items.AddRange(new object[] { "Main Office", "Shipping", "Home" });
             // 
             // lblAddressLine1
             // 
             lblAddressLine1.AutoSize = true;
-            lblAddressLine1.Location = new Point(10, 55);
+            lblAddressLine1.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblAddressLine1.Location = new Point(12, 97);
             lblAddressLine1.Name = "lblAddressLine1";
-            lblAddressLine1.Text = "Address 1:";
-            lblAddressLine1.TabIndex = 25;
+            lblAddressLine1.TabIndex = 18;
+            lblAddressLine1.Text = "Address:";
             // 
             // txtAddressLine1
             // 
-            txtAddressLine1.Location = new Point(115, 52);
+            txtAddressLine1.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtAddressLine1.Location = new Point(115, 96);
             txtAddressLine1.MaxLength = 60;
             txtAddressLine1.Name = "txtAddressLine1";
-            txtAddressLine1.Size = new Size(250, 25);
-            txtAddressLine1.TabIndex = 26;
+            txtAddressLine1.Size = new Size(150, 22);
+            txtAddressLine1.TabIndex = 19;
             // 
             // lblAddressLine2
             // 
             lblAddressLine2.AutoSize = true;
-            lblAddressLine2.Location = new Point(10, 83);
+            lblAddressLine2.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblAddressLine2.Location = new Point(278, 97);
             lblAddressLine2.Name = "lblAddressLine2";
+            lblAddressLine2.TabIndex = 20;
             lblAddressLine2.Text = "Address 2:";
-            lblAddressLine2.TabIndex = 27;
             // 
             // txtAddressLine2
             // 
-            txtAddressLine2.Location = new Point(115, 80);
+            txtAddressLine2.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtAddressLine2.Location = new Point(393, 96);
             txtAddressLine2.MaxLength = 60;
             txtAddressLine2.Name = "txtAddressLine2";
-            txtAddressLine2.Size = new Size(250, 25);
-            txtAddressLine2.TabIndex = 28;
-            // 
-            // lblCity
-            // 
-            lblCity.AutoSize = true;
-            lblCity.Location = new Point(10, 111);
-            lblCity.Name = "lblCity";
-            lblCity.Text = "City:";
-            lblCity.TabIndex = 29;
-            // 
-            // txtCity
-            // 
-            txtCity.Location = new Point(115, 108);
-            txtCity.MaxLength = 30;
-            txtCity.Name = "txtCity";
-            txtCity.Size = new Size(250, 25);
-            txtCity.TabIndex = 30;
-            // 
-            // lblStateProvince
-            // 
-            lblStateProvince.AutoSize = true;
-            lblStateProvince.Location = new Point(10, 139);
-            lblStateProvince.Name = "lblStateProvince";
-            lblStateProvince.Text = "State/Province:";
-            lblStateProvince.TabIndex = 31;
-            // 
-            // txtStateProvince
-            // 
-            txtStateProvince.Location = new Point(115, 136);
-            txtStateProvince.MaxLength = 50;
-            txtStateProvince.Name = "txtStateProvince";
-            txtStateProvince.Size = new Size(250, 25);
-            txtStateProvince.TabIndex = 32;
-            // 
-            // lblPostalCode
-            // 
-            lblPostalCode.AutoSize = true;
-            lblPostalCode.Location = new Point(10, 167);
-            lblPostalCode.Name = "lblPostalCode";
-            lblPostalCode.Text = "Postal Code:";
-            lblPostalCode.TabIndex = 33;
-            // 
-            // mskPostalCode
-            // 
-            mskPostalCode.Location = new Point(115, 164);
-            mskPostalCode.Mask = "00000";
-            mskPostalCode.Name = "mskPostalCode";
-            mskPostalCode.Size = new Size(80, 25);
-            mskPostalCode.TabIndex = 34;
+            txtAddressLine2.Size = new Size(150, 22);
+            txtAddressLine2.TabIndex = 21;
             // 
             // lblCountryRegion
             // 
             lblCountryRegion.AutoSize = true;
-            lblCountryRegion.Location = new Point(10, 195);
+            lblCountryRegion.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCountryRegion.Location = new Point(552, 97);
             lblCountryRegion.Name = "lblCountryRegion";
+            lblCountryRegion.TabIndex = 22;
             lblCountryRegion.Text = "Country:";
-            lblCountryRegion.TabIndex = 35;
             // 
             // cboCountryRegion
             // 
             cboCountryRegion.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboCountryRegion.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cboCountryRegion.FormattingEnabled = true;
-            cboCountryRegion.Location = new Point(115, 192);
+            cboCountryRegion.Location = new Point(660, 96);
             cboCountryRegion.Name = "cboCountryRegion";
-            cboCountryRegion.Size = new Size(180, 26);
-            cboCountryRegion.TabIndex = 36;
+            cboCountryRegion.Size = new Size(128, 22);
+            cboCountryRegion.TabIndex = 23;
             cboCountryRegion.Items.AddRange(new object[] { "United States", "Canada", "United Kingdom" });
+            // 
+            // lblCity
+            // 
+            lblCity.AutoSize = true;
+            lblCity.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCity.Location = new Point(12, 125);
+            lblCity.Name = "lblCity";
+            lblCity.TabIndex = 24;
+            lblCity.Text = "City:";
+            // 
+            // txtCity
+            // 
+            txtCity.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtCity.Location = new Point(115, 124);
+            txtCity.MaxLength = 30;
+            txtCity.Name = "txtCity";
+            txtCity.Size = new Size(150, 22);
+            txtCity.TabIndex = 25;
+            // 
+            // lblStateProvince
+            // 
+            lblStateProvince.AutoSize = true;
+            lblStateProvince.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblStateProvince.Location = new Point(278, 125);
+            lblStateProvince.Name = "lblStateProvince";
+            lblStateProvince.TabIndex = 26;
+            lblStateProvince.Text = "State:";
+            // 
+            // txtStateProvince
+            // 
+            txtStateProvince.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtStateProvince.Location = new Point(393, 124);
+            txtStateProvince.MaxLength = 50;
+            txtStateProvince.Name = "txtStateProvince";
+            txtStateProvince.Size = new Size(150, 22);
+            txtStateProvince.TabIndex = 27;
+            // 
+            // lblPostalCode
+            // 
+            lblPostalCode.AutoSize = true;
+            lblPostalCode.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblPostalCode.Location = new Point(552, 125);
+            lblPostalCode.Name = "lblPostalCode";
+            lblPostalCode.TabIndex = 28;
+            lblPostalCode.Text = "Zip Code:";
+            // 
+            // mskPostalCode
+            // 
+            mskPostalCode.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            mskPostalCode.Location = new Point(660, 124);
+            mskPostalCode.Mask = "00000";
+            mskPostalCode.Name = "mskPostalCode";
+            mskPostalCode.Size = new Size(70, 22);
+            mskPostalCode.TabIndex = 29;
+            // 
+            // btnFind
+            // 
+            btnFind.BackColor = Color.FromArgb(31, 78, 121);
+            btnFind.FlatAppearance.BorderSize = 0;
+            btnFind.FlatStyle = FlatStyle.Flat;
+            btnFind.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnFind.ForeColor = Color.White;
+            btnFind.Location = new Point(12, 158);
+            btnFind.Name = "btnFind";
+            btnFind.Size = new Size(90, 32);
+            btnFind.TabIndex = 30;
+            btnFind.Text = "Find";
+            btnFind.UseVisualStyleBackColor = false;
+            btnFind.Click += btnFind_Click;
             // 
             // btnAdd
             // 
-            btnAdd.BackColor = Color.FromArgb(46, 125, 60);
+            btnAdd.BackColor = Color.FromArgb(31, 78, 121);
             btnAdd.FlatAppearance.BorderSize = 0;
             btnAdd.FlatStyle = FlatStyle.Flat;
             btnAdd.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAdd.ForeColor = Color.White;
-            btnAdd.Location = new Point(15, 402);
+            btnAdd.Location = new Point(112, 158);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(100, 40);
+            btnAdd.Size = new Size(90, 32);
+            btnAdd.TabIndex = 31;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = false;
-            btnAdd.TabIndex = 37;
             btnAdd.Click += btnAdd_Click;
             // 
             // btnSave
@@ -496,12 +390,12 @@
             btnSave.FlatStyle = FlatStyle.Flat;
             btnSave.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSave.ForeColor = Color.White;
-            btnSave.Location = new Point(125, 402);
+            btnSave.Location = new Point(212, 158);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(100, 40);
+            btnSave.Size = new Size(90, 32);
+            btnSave.TabIndex = 32;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = false;
-            btnSave.TabIndex = 38;
             btnSave.Click += btnSave_Click;
             // 
             // btnDelete
@@ -511,28 +405,103 @@
             btnDelete.FlatStyle = FlatStyle.Flat;
             btnDelete.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnDelete.ForeColor = Color.White;
-            btnDelete.Location = new Point(235, 402);
+            btnDelete.Location = new Point(312, 158);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(100, 40);
+            btnDelete.Size = new Size(90, 32);
+            btnDelete.TabIndex = 33;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = false;
-            btnDelete.TabIndex = 39;
             btnDelete.Click += btnDelete_Click;
             // 
             // btnClear
             // 
-            btnClear.BackColor = Color.FromArgb(31, 78, 121);
+            btnClear.BackColor = Color.FromArgb(127, 127, 127);
             btnClear.FlatAppearance.BorderSize = 0;
             btnClear.FlatStyle = FlatStyle.Flat;
             btnClear.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnClear.ForeColor = Color.White;
-            btnClear.Location = new Point(345, 402);
+            btnClear.Location = new Point(412, 158);
             btnClear.Name = "btnClear";
-            btnClear.Size = new Size(100, 40);
+            btnClear.Size = new Size(90, 32);
+            btnClear.TabIndex = 34;
             btnClear.Text = "Clear";
             btnClear.UseVisualStyleBackColor = false;
-            btnClear.TabIndex = 40;
             btnClear.Click += btnClear_Click;
+            // 
+            // dgvCustomers
+            // 
+            dgvCustomers.AllowUserToAddRows = false;
+            dgvCustomers.AllowUserToDeleteRows = false;
+            dgvCustomers.AllowUserToResizeRows = false;
+            dgvCustomers.BackgroundColor = Color.White;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle1.Font = new Font("Calibri", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle1.SelectionForeColor = Color.White;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvCustomers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dgvCustomers.ColumnHeadersHeight = 26;
+            dgvCustomers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.White;
+            dataGridViewCellStyle2.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(189, 215, 238);
+            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvCustomers.DefaultCellStyle = dataGridViewCellStyle2;
+            dgvCustomers.EnableHeadersVisualStyles = false;
+            dgvCustomers.GridColor = Color.FromArgb(217, 217, 217);
+            dgvCustomers.Location = new Point(12, 200);
+            dgvCustomers.MultiSelect = false;
+            dgvCustomers.Name = "dgvCustomers";
+            dgvCustomers.ReadOnly = true;
+            dgvCustomers.RowHeadersVisible = false;
+            dgvCustomers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvCustomers.Size = new Size(776, 180);
+            dgvCustomers.TabIndex = 35;
+            dgvCustomers.Columns.AddRange(new DataGridViewColumn[] { colCustomerID, colName, colPhone, colEmail, colPurchases });
+            dgvCustomers.SelectionChanged += dgvCustomers_SelectionChanged;
+            // 
+            // colCustomerID
+            // 
+            colCustomerID.HeaderText = "ID";
+            colCustomerID.Name = "colCustomerID";
+            colCustomerID.ReadOnly = true;
+            colCustomerID.Width = 60;
+            // 
+            // colName
+            // 
+            colName.HeaderText = "Name";
+            colName.Name = "colName";
+            colName.ReadOnly = true;
+            colName.Width = 210;
+            // 
+            // colPhone
+            // 
+            colPhone.HeaderText = "Phone";
+            colPhone.Name = "colPhone";
+            colPhone.ReadOnly = true;
+            colPhone.Width = 130;
+            // 
+            // colEmail
+            // 
+            colEmail.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colEmail.HeaderText = "Email";
+            colEmail.Name = "colEmail";
+            colEmail.ReadOnly = true;
+            // 
+            // colPurchases
+            // 
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "";
+            colPurchases.DefaultCellStyle = dataGridViewCellStyle3;
+            colPurchases.HeaderText = "Purchases";
+            colPurchases.Name = "colPurchases";
+            colPurchases.ReadOnly = true;
+            colPurchases.Width = 90;
             // 
             // btnPurchaseHistory
             // 
@@ -541,112 +510,126 @@
             btnPurchaseHistory.FlatStyle = FlatStyle.Flat;
             btnPurchaseHistory.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnPurchaseHistory.ForeColor = Color.White;
-            btnPurchaseHistory.Location = new Point(455, 402);
+            btnPurchaseHistory.Location = new Point(12, 393);
             btnPurchaseHistory.Name = "btnPurchaseHistory";
-            btnPurchaseHistory.Size = new Size(170, 40);
-            btnPurchaseHistory.Text = "Purchase History";
+            btnPurchaseHistory.Size = new Size(200, 45);
+            btnPurchaseHistory.TabIndex = 36;
+            btnPurchaseHistory.Text = "View Purchase History";
             btnPurchaseHistory.UseVisualStyleBackColor = false;
-            btnPurchaseHistory.TabIndex = 41;
             btnPurchaseHistory.Click += btnPurchaseHistory_Click;
             // 
             // btnBack
             // 
-            btnBack.BackColor = Color.FromArgb(192, 0, 0);
+            btnBack.BackColor = Color.FromArgb(127, 127, 127);
             btnBack.FlatAppearance.BorderSize = 0;
             btnBack.FlatStyle = FlatStyle.Flat;
-            btnBack.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnBack.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnBack.ForeColor = Color.White;
-            btnBack.Location = new Point(685, 402);
+            btnBack.Location = new Point(643, 393);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(100, 40);
+            btnBack.Size = new Size(145, 45);
+            btnBack.TabIndex = 37;
             btnBack.Text = "Back";
             btnBack.UseVisualStyleBackColor = false;
-            btnBack.TabIndex = 42;
             btnBack.Click += btnBack_Click;
             // 
             // frmCustomerMaintenance
             // 
-            AutoScaleDimensions = new SizeF(96F, 96F);
-            AutoScaleMode = AutoScaleMode.Dpi;
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(800, 450);
             Controls.Add(btnBack);
             Controls.Add(btnPurchaseHistory);
+            Controls.Add(dgvCustomers);
             Controls.Add(btnClear);
             Controls.Add(btnDelete);
             Controls.Add(btnSave);
             Controls.Add(btnAdd);
-            Controls.Add(grpAddress);
-            Controls.Add(grpCustomer);
-            Controls.Add(dgvCustomers);
-            Controls.Add(btnShowAll);
             Controls.Add(btnFind);
-            Controls.Add(txtSearch);
-            Controls.Add(lblSearch);
-            AcceptButton = btnFind;
-            Font = new Font("Calibri", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Controls.Add(mskPostalCode);
+            Controls.Add(lblPostalCode);
+            Controls.Add(txtStateProvince);
+            Controls.Add(lblStateProvince);
+            Controls.Add(txtCity);
+            Controls.Add(lblCity);
+            Controls.Add(cboCountryRegion);
+            Controls.Add(lblCountryRegion);
+            Controls.Add(txtAddressLine2);
+            Controls.Add(lblAddressLine2);
+            Controls.Add(txtAddressLine1);
+            Controls.Add(lblAddressLine1);
+            Controls.Add(cboAddressType);
+            Controls.Add(lblAddressType);
+            Controls.Add(txtCompanyName);
+            Controls.Add(lblCompanyName);
+            Controls.Add(txtEmail);
+            Controls.Add(lblEmail);
+            Controls.Add(txtSuffix);
+            Controls.Add(lblSuffix);
+            Controls.Add(cboTitle);
+            Controls.Add(lblTitle);
+            Controls.Add(txtMiddleName);
+            Controls.Add(lblMiddleName);
+            Controls.Add(mskPhone);
+            Controls.Add(lblPhone);
+            Controls.Add(txtLastName);
+            Controls.Add(lblLastName);
+            Controls.Add(txtFirstName);
+            Controls.Add(lblFirstName);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            MaximizeBox = false;
             Name = "frmCustomerMaintenance";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Customers";
             Load += frmCustomerMaintenance_Load;
             ((System.ComponentModel.ISupportInitialize)dgvCustomers).EndInit();
-            grpCustomer.ResumeLayout(false);
-            grpCustomer.PerformLayout();
-            grpAddress.ResumeLayout(false);
-            grpAddress.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Label lblSearch;
-        private TextBox txtSearch;
-        private Button btnFind;
-        private Button btnShowAll;
-        private DataGridView dgvCustomers;
-        private DataGridViewTextBoxColumn colCustomerID;
-        private DataGridViewTextBoxColumn colName;
-        private DataGridViewTextBoxColumn colCompany;
-        private DataGridViewTextBoxColumn colPhone;
-        private DataGridViewTextBoxColumn colEmail;
-        private GroupBox grpCustomer;
+        private Label lblFirstName;
+        private TextBox txtFirstName;
+        private Label lblLastName;
+        private TextBox txtLastName;
+        private Label lblPhone;
+        private MaskedTextBox mskPhone;
+        private Label lblMiddleName;
+        private TextBox txtMiddleName;
         private Label lblTitle;
         private ComboBox cboTitle;
         private Label lblSuffix;
         private TextBox txtSuffix;
-        private Label lblFirstName;
-        private TextBox txtFirstName;
-        private Label lblMiddleName;
-        private TextBox txtMiddleName;
-        private Label lblLastName;
-        private TextBox txtLastName;
-        private Label lblCompanyName;
-        private TextBox txtCompanyName;
         private Label lblEmail;
         private TextBox txtEmail;
-        private Label lblPhone;
-        private MaskedTextBox mskPhone;
-        private GroupBox grpAddress;
+        private Label lblCompanyName;
+        private TextBox txtCompanyName;
         private Label lblAddressType;
         private ComboBox cboAddressType;
         private Label lblAddressLine1;
         private TextBox txtAddressLine1;
         private Label lblAddressLine2;
         private TextBox txtAddressLine2;
+        private Label lblCountryRegion;
+        private ComboBox cboCountryRegion;
         private Label lblCity;
         private TextBox txtCity;
         private Label lblStateProvince;
         private TextBox txtStateProvince;
         private Label lblPostalCode;
         private MaskedTextBox mskPostalCode;
-        private Label lblCountryRegion;
-        private ComboBox cboCountryRegion;
+        private Button btnFind;
         private Button btnAdd;
         private Button btnSave;
         private Button btnDelete;
         private Button btnClear;
+        private DataGridView dgvCustomers;
+        private DataGridViewTextBoxColumn colCustomerID;
+        private DataGridViewTextBoxColumn colName;
+        private DataGridViewTextBoxColumn colPhone;
+        private DataGridViewTextBoxColumn colEmail;
+        private DataGridViewTextBoxColumn colPurchases;
         private Button btnPurchaseHistory;
         private Button btnBack;
     }

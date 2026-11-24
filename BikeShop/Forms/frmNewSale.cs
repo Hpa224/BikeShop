@@ -11,10 +11,6 @@ using BikeShop.Models;
 
 namespace BikeShop.Forms
 {
-    /// <summary>
-    /// New Sale (shopping cart): select a customer, search products by partial
-    /// name, add quantities to the cart, then complete the sale and show the receipt.
-    /// </summary>
     public partial class frmNewSale : Form
     {
         [System.Runtime.InteropServices.DllImport("gdi32.dll")]
@@ -27,7 +23,7 @@ namespace BikeShop.Forms
             int nHeightEllipse
         );
 
-        private SalesOrder order = new SalesOrder();
+        private readonly ShoppingCart cart = new ShoppingCart();
 
         public frmNewSale()
         {
@@ -35,56 +31,61 @@ namespace BikeShop.Forms
             FormCaptionBackColor = Color.FromArgb(31, 78, 121);
             FormCaptionTextColor = Color.White;
 
-            foreach (Button button in new[] { btnSearch, btnAddToCart, btnUpdateQty, btnRemove,
-                                              btnCompleteSale, btnCancel, btnBack })
-            {
-                button.Region = System.Drawing.Region.FromHrgn(
-                    CreateRoundRectRgn(0, 0, button.Width, button.Height, 15, 15)
-                );
-            }
+            btnSearch.Region = System.Drawing.Region.FromHrgn(
+                CreateRoundRectRgn(0, 0, btnSearch.Width, btnSearch.Height, 15, 15)
+            );
 
-            // Number columns line up on the right and show as money
-            colPrice.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            colPrice.DefaultCellStyle.Format = "N2";
-            colCartQty.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            colCartUnitPrice.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            colCartUnitPrice.DefaultCellStyle.Format = "N2";
-            colCartLineTotal.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            colCartLineTotal.DefaultCellStyle.Format = "N2";
+            btnAddToCart.Region = System.Drawing.Region.FromHrgn(
+                CreateRoundRectRgn(0, 0, btnAddToCart.Width, btnAddToCart.Height, 15, 15)
+            );
+
+            btnUpdateQty.Region = System.Drawing.Region.FromHrgn(
+                CreateRoundRectRgn(0, 0, btnUpdateQty.Width, btnUpdateQty.Height, 15, 15)
+            );
+
+            btnRemove.Region = System.Drawing.Region.FromHrgn(
+                CreateRoundRectRgn(0, 0, btnRemove.Width, btnRemove.Height, 15, 15)
+            );
+
+            btnCompleteSale.Region = System.Drawing.Region.FromHrgn(
+                CreateRoundRectRgn(0, 0, btnCompleteSale.Width, btnCompleteSale.Height, 15, 15)
+            );
+
+            btnCancel.Region = System.Drawing.Region.FromHrgn(
+                CreateRoundRectRgn(0, 0, btnCancel.Width, btnCancel.Height, 15, 15)
+            );
+
+            btnBack.Region = System.Drawing.Region.FromHrgn(
+                CreateRoundRectRgn(0, 0, btnBack.Width, btnBack.Height, 15, 15)
+            );
         }
 
         private void frmNewSale_Load(object sender, EventArgs e)
         {
             ValidationHelper.Title = "Sale Entry Error";
-            LoadCustomers();
 
-            // Sales are entered for today or a few days back, never in the future
-            dtpOrderDate.Value = DateTime.Today;
-            dtpOrderDate.MaxDate = DateTime.Today;
-            dtpOrderDate.MinDate = DateTime.Today.AddDays(-30);
-
-            StartNewOrder();
-        }
-
-        private void LoadCustomers()
-        {
-            cboCustomer.Items.Clear();
             foreach (Customer c in SampleData.Customers.OrderBy(c => c.LastName).ThenBy(c => c.FirstName))
             {
                 cboCustomer.Items.Add(c);
             }
+
+            // Sales are entered for today or up to 30 days back, never in the future
+            dtpOrderDate.Value = DateTime.Today;
+            dtpOrderDate.MaxDate = DateTime.Today;
+            dtpOrderDate.MinDate = DateTime.Today.AddDays(-30);
+
+            StartNewSale();
         }
 
-        private void StartNewOrder()
+        private void StartNewSale()
         {
-            order = new SalesOrder { SalesOrderID = SampleData.PeekNextOrderID() };
-            txtOrderNumber.Text = $"{order.SalesOrderNumber}";
+            cart.Clear();
+            txtOrderNumber.Text = $"SO{SampleData.PeekNextOrderID()} (auto)";
             cboCustomer.SelectedIndex = -1;
             dtpOrderDate.Value = DateTime.Today;
             txtProductSearch.Clear();
             dgvProducts.Rows.Clear();
-            txtQuantity.Text = "1";
-            txtCartQuantity.Clear();
+            nudQuantity.Value = 1;
             RefreshCart();
             cboCustomer.Focus();
         }
@@ -99,8 +100,7 @@ namespace BikeShop.Forms
             dgvProducts.Rows.Clear();
             if (matches.Count == 0)
             {
-                MessageBox.Show(this, $"No products found matching \"{txtProductSearch.Text.Trim()}\".",
-                    "Find Product", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(this, $"No products found matching \"{txtProductSearch.Text.Trim()}\".", "Find Product");
                 txtProductSearch.Focus();
                 return;
             }
@@ -111,8 +111,7 @@ namespace BikeShop.Forms
                 dgvProducts.Rows[row].Tag = p;
             }
             dgvProducts.Rows[0].Selected = true;
-            txtQuantity.Focus();
-            txtQuantity.SelectAll();
+            nudQuantity.Focus();
         }
 
         private void dgvProducts_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -124,142 +123,112 @@ namespace BikeShop.Forms
         {
             if (dgvProducts.SelectedRows.Count == 0 || dgvProducts.SelectedRows[0].Tag is not Product product)
             {
-                MessageBox.Show(this, "Search for a product and select it in the list first.",
-                    ValidationHelper.Title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(this, "Search for a product and select it in the list first.", ValidationHelper.Title);
                 txtProductSearch.Focus();
                 return;
             }
-            if (!IsValidQuantity(txtQuantity)) return;
+            if (!ValidationHelper.IsWithinRange(nudQuantity, "Quantity", CartItem.MinQuantity, CartItem.MaxQuantity)) return;
 
-            short quantity = Convert.ToInt16(txtQuantity.Text);
-            SalesOrderDetail? line = order.Details.FirstOrDefault(d => d.ProductID == product.ProductID);
-
-            if (line == null)
+            int quantity = (int)nudQuantity.Value;
+            CartItem? existing = cart.Find(product.ProductID);
+            if (existing != null && existing.Quantity + quantity > CartItem.MaxQuantity)
             {
-                order.Details.Add(new SalesOrderDetail
-                {
-                    ProductID = product.ProductID,
-                    ProductNumber = product.ProductNumber,
-                    ProductName = product.Name,
-                    OrderQty = quantity,
-                    UnitPrice = product.ListPrice
-                });
-            }
-            else
-            {
-                // Same product added again: combine the quantities
-                int newQty = line.OrderQty + quantity;
-                if (newQty > SalesOrderDetail.MaxQuantity)
-                {
-                    MessageBox.Show(this, $"The cart already has {line.OrderQty} of this product. " +
-                        $"The total quantity cannot be more than {SalesOrderDetail.MaxQuantity}.",
-                        ValidationHelper.Title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    txtQuantity.Focus();
-                    return;
-                }
-                line.OrderQty = (short)newQty;
+                MessageBox.Show(this, $"The cart already has {existing.Quantity} of this product. " +
+                    $"The total quantity cannot be more than {CartItem.MaxQuantity}.", ValidationHelper.Title);
+                nudQuantity.Focus();
+                return;
             }
 
+            cart.Add(product, quantity);
             RefreshCart(product.ProductID);
-            txtQuantity.Text = "1";
+            nudQuantity.Value = 1;
         }
 
         // ---------------- Cart ----------------
 
-        private void dgvCart_SelectionChanged(object sender, EventArgs e)
-        {
-            if (SelectedCartLine() is SalesOrderDetail line)
-            {
-                txtCartQuantity.Text = line.OrderQty.ToString();
-            }
-        }
-
         private void btnUpdateQty_Click(object sender, EventArgs e)
         {
-            if (SelectedCartLine() is not SalesOrderDetail line)
+            if (dgvCart.SelectedRows.Count == 0 || dgvCart.SelectedRows[0].Tag is not CartItem item)
             {
-                MessageBox.Show(this, "Select an item in the cart to change its quantity.",
-                    ValidationHelper.Title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(this, "Select an item in the cart and change its Qty first.", ValidationHelper.Title);
                 return;
             }
-            if (!IsValidQuantity(txtCartQuantity)) return;
 
-            line.OrderQty = Convert.ToInt16(txtCartQuantity.Text);
-            RefreshCart(line.ProductID);
+            dgvCart.EndEdit();
+            object? value = dgvCart.SelectedRows[0].Cells[colCartQty.Index].Value;
+            if (!ValidationHelper.IsInt32WithinRange(value?.ToString(), "Quantity",
+                    CartItem.MinQuantity, CartItem.MaxQuantity, dgvCart))
+            {
+                dgvCart.CurrentCell = dgvCart.SelectedRows[0].Cells[colCartQty.Index];
+                return;
+            }
+
+            cart.UpdateQuantity(item.Product.ProductID, Convert.ToInt32(value));
+            RefreshCart(item.Product.ProductID);
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            if (SelectedCartLine() is not SalesOrderDetail line)
+            if (dgvCart.SelectedRows.Count == 0 || dgvCart.SelectedRows[0].Tag is not CartItem item)
             {
-                MessageBox.Show(this, "Select an item in the cart to remove.",
-                    ValidationHelper.Title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(this, "Select an item in the cart to remove.", ValidationHelper.Title);
                 return;
             }
 
-            order.Details.Remove(line);
-            txtCartQuantity.Clear();
+            cart.Remove(item.Product.ProductID);
             RefreshCart();
         }
 
-        private SalesOrderDetail? SelectedCartLine() =>
-            dgvCart.SelectedRows.Count == 0 ? null : dgvCart.SelectedRows[0].Tag as SalesOrderDetail;
-
-        /// <summary>Redraws the cart and recalculates subtotal, tax and total.</summary>
+        /// <summary>Redraws the cart and the subtotal, tax and total after every change.</summary>
         private void RefreshCart(int? selectProductID = null)
         {
             dgvCart.Rows.Clear();
-            foreach (SalesOrderDetail d in order.Details)
+            foreach (CartItem item in cart.Items)
             {
-                int row = dgvCart.Rows.Add(d.ProductNumber, d.ProductName, d.OrderQty, d.UnitPrice, d.LineTotal);
-                dgvCart.Rows[row].Tag = d;
-                if (d.ProductID == selectProductID) dgvCart.Rows[row].Selected = true;
+                int row = dgvCart.Rows.Add(item.Product.ProductNumber, item.Product.Name,
+                                           item.Quantity, item.UnitPrice, item.LineTotal);
+                dgvCart.Rows[row].Tag = item;
+                if (item.Product.ProductID == selectProductID) dgvCart.Rows[row].Selected = true;
             }
             if (selectProductID == null) dgvCart.ClearSelection();
 
-            lblSubtotalValue.Text = order.SubTotal.ToString("c");
-            lblTaxValue.Text = order.TaxAmt.ToString("c");
-            lblTotalValue.Text = order.TotalDue.ToString("c");
+            txtSubtotal.Text = cart.Subtotal.ToString("c");
+            txtTax.Text = cart.Tax.ToString("c");
+            txtTotal.Text = cart.Total.ToString("c");
         }
 
-        // ---------------- Complete / Cancel ----------------
+        // ---------------- Complete / Cancel / Back ----------------
 
         private void btnCompleteSale_Click(object sender, EventArgs e)
         {
-            if (!IsValidOrder()) return;
+            if (!IsValidData()) return;
 
-            order.Customer = (Customer)cboCustomer.SelectedItem!;
-            order.OrderDate = dtpOrderDate.Value.Date;
-            order.DueDate = order.OrderDate.AddDays(7);
-            order.SalesOrderID = SampleData.GetNextOrderID();   // order numbers increase in sequence
-            for (int i = 0; i < order.Details.Count; i++)
-            {
-                order.Details[i].SalesOrderID = order.SalesOrderID;
-                order.Details[i].SalesOrderDetailID = i + 1;
-            }
+            cart.Customer = (Customer)cboCustomer.SelectedItem!;
+            // Order numbers increase in sequence
+            SalesOrder order = SalesOrder.CreateFromCart(cart, SampleData.GetNextOrderID(), dtpOrderDate.Value);
             SampleData.Orders.Add(order);
 
             using (var receipt = new frmReceipt(order))
             {
                 receipt.ShowDialog(this);
             }
-            StartNewOrder();
+            StartNewSale();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            if (order.Details.Count > 0)
+            if (!cart.IsEmpty)
             {
-                DialogResult answer = MessageBox.Show(this, "Cancel this sale and empty the cart?",
-                    "Cancel Sale", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                DialogResult answer = MessageBox.Show(this, "Cancel this sale and empty the cart?", "Cancel Sale",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                 if (answer != DialogResult.Yes) return;
             }
-            StartNewOrder();
+            StartNewSale();
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            if (order.Details.Count > 0)
+            if (!cart.IsEmpty)
             {
                 DialogResult answer = MessageBox.Show(this, "The cart has items that have not been sold. Leave anyway?",
                     "New Sale", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
@@ -270,25 +239,16 @@ namespace BikeShop.Forms
 
         // ---------------- Validation ----------------
 
-        private bool IsValidQuantity(TextBox textBox)
-        {
-            return
-                ValidationHelper.IsPresent(textBox, "Quantity") &&
-                ValidationHelper.IsInt32(textBox, "Quantity") &&
-                ValidationHelper.IsWithinRange(textBox, "Quantity",
-                    SalesOrderDetail.MinQuantity, SalesOrderDetail.MaxQuantity);
-        }
-
-        private bool IsValidOrder()
+        private bool IsValidData()
         {
             if (!ValidationHelper.IsSelected(cboCustomer, "customer")) return false;
-            if (!ValidationHelper.IsDateWithinRange(dtpOrderDate, "Order date",
+            if (!ValidationHelper.IsDateWithinRange(dtpOrderDate, "Date",
                     DateTime.Today.AddDays(-30), DateTime.Today)) return false;
 
-            if (order.Details.Count == 0)
+            if (cart.IsEmpty)
             {
                 MessageBox.Show(this, "The cart is empty. Add at least one product before completing the sale.",
-                    ValidationHelper.Title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    ValidationHelper.Title);
                 txtProductSearch.Focus();
                 return false;
             }
