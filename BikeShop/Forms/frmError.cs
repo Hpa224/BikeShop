@@ -102,7 +102,7 @@ namespace BikeShop.Forms
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show(this, "Refresh button selected.");
         }
     }
 }
