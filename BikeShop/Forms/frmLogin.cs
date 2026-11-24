@@ -10,8 +10,7 @@ namespace BikeShop.Forms
 {
     public partial class frmlogin : Form
     {
-        [System.Runtime.InteropServices.DllImport("gdi32.dll")]
-        private static extern IntPtr CreateRoundRectRgn(
+        [System.Runtime.InteropServices.DllImport("gdi32.dll")]private static extern IntPtr CreateRoundRectRgn(
             int nLeftRect,
             int nTopRect,
             int nRightRect,
