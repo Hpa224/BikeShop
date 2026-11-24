@@ -20,7 +20,7 @@ namespace BikeShop
             //Application.Run(new frmReport());
             //Application.Run(new frmCustomerMaintenance());
             //Application.Run(new frmReceipt());
-            Application.Run(new frmNewSale());
+            //Application.Run(new frmNewSale());
         }
     }
 }

@@ -137,10 +137,12 @@
             // 
             txtSearch.Font = new Font("Calibri", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtSearch.Location = new Point(86, 50);
+            txtSearch.MaxLength = 4000;
             txtSearch.Name = "txtSearch";
             txtSearch.Size = new Size(187, 31);
             txtSearch.TabIndex = 1;
             txtSearch.Text = "Message or error ID...";
+            txtSearch.TextChanged += txtSearch_TextChanged;
             // 
             // lblSearch
             // 

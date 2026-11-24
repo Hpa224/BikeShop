@@ -341,7 +341,7 @@
             Controls.Add(lblDate);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "frmReport";
-            Text = "frmReport";
+            Text = "Report";
             Load += frmReport_Load;
             ((System.ComponentModel.ISupportInitialize)dgvSalesReport).EndInit();
             pnlTotalSales.ResumeLayout(false);
