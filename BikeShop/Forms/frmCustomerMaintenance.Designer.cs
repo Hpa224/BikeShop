@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             lblFirstName = new Label();
             txtFirstName = new TextBox();
             lblLastName = new Label();
@@ -83,6 +83,7 @@
             lblFirstName.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblFirstName.Location = new Point(12, 13);
             lblFirstName.Name = "lblFirstName";
+            lblFirstName.Size = new Size(79, 18);
             lblFirstName.TabIndex = 0;
             lblFirstName.Text = "First Name:";
             // 
@@ -101,6 +102,7 @@
             lblLastName.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblLastName.Location = new Point(278, 13);
             lblLastName.Name = "lblLastName";
+            lblLastName.Size = new Size(76, 18);
             lblLastName.TabIndex = 2;
             lblLastName.Text = "Last Name:";
             // 
@@ -119,6 +121,7 @@
             lblPhone.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblPhone.Location = new Point(552, 13);
             lblPhone.Name = "lblPhone";
+            lblPhone.Size = new Size(52, 18);
             lblPhone.TabIndex = 4;
             lblPhone.Text = "Phone:";
             // 
@@ -137,6 +140,7 @@
             lblMiddleName.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblMiddleName.Location = new Point(12, 41);
             lblMiddleName.Name = "lblMiddleName";
+            lblMiddleName.Size = new Size(97, 18);
             lblMiddleName.TabIndex = 6;
             lblMiddleName.Text = "Middle Name:";
             // 
@@ -155,6 +159,7 @@
             lblTitle.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTitle.Location = new Point(278, 41);
             lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(40, 18);
             lblTitle.TabIndex = 8;
             lblTitle.Text = "Title:";
             // 
@@ -163,11 +168,11 @@
             cboTitle.DropDownStyle = ComboBoxStyle.DropDownList;
             cboTitle.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cboTitle.FormattingEnabled = true;
+            cboTitle.Items.AddRange(new object[] { "Mr.", "Ms.", "Mrs.", "Dr." });
             cboTitle.Location = new Point(393, 40);
             cboTitle.Name = "cboTitle";
             cboTitle.Size = new Size(80, 22);
             cboTitle.TabIndex = 9;
-            cboTitle.Items.AddRange(new object[] { "Mr.", "Ms.", "Mrs.", "Dr." });
             // 
             // lblSuffix
             // 
@@ -175,6 +180,7 @@
             lblSuffix.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblSuffix.Location = new Point(552, 41);
             lblSuffix.Name = "lblSuffix";
+            lblSuffix.Size = new Size(47, 18);
             lblSuffix.TabIndex = 10;
             lblSuffix.Text = "Suffix:";
             // 
@@ -193,6 +199,7 @@
             lblEmail.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblEmail.Location = new Point(12, 69);
             lblEmail.Name = "lblEmail";
+            lblEmail.Size = new Size(46, 18);
             lblEmail.TabIndex = 12;
             lblEmail.Text = "Email:";
             // 
@@ -211,6 +218,7 @@
             lblCompanyName.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblCompanyName.Location = new Point(278, 69);
             lblCompanyName.Name = "lblCompanyName";
+            lblCompanyName.Size = new Size(70, 18);
             lblCompanyName.TabIndex = 14;
             lblCompanyName.Text = "Company:";
             // 
@@ -229,6 +237,7 @@
             lblAddressType.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblAddressType.Location = new Point(552, 69);
             lblAddressType.Name = "lblAddressType";
+            lblAddressType.Size = new Size(78, 18);
             lblAddressType.TabIndex = 16;
             lblAddressType.Text = "Addr. Type:";
             // 
@@ -237,11 +246,11 @@
             cboAddressType.DropDownStyle = ComboBoxStyle.DropDownList;
             cboAddressType.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cboAddressType.FormattingEnabled = true;
+            cboAddressType.Items.AddRange(new object[] { "Main Office", "Shipping", "Home" });
             cboAddressType.Location = new Point(660, 68);
             cboAddressType.Name = "cboAddressType";
             cboAddressType.Size = new Size(128, 22);
             cboAddressType.TabIndex = 17;
-            cboAddressType.Items.AddRange(new object[] { "Main Office", "Shipping", "Home" });
             // 
             // lblAddressLine1
             // 
@@ -249,6 +258,7 @@
             lblAddressLine1.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblAddressLine1.Location = new Point(12, 97);
             lblAddressLine1.Name = "lblAddressLine1";
+            lblAddressLine1.Size = new Size(62, 18);
             lblAddressLine1.TabIndex = 18;
             lblAddressLine1.Text = "Address:";
             // 
@@ -267,6 +277,7 @@
             lblAddressLine2.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblAddressLine2.Location = new Point(278, 97);
             lblAddressLine2.Name = "lblAddressLine2";
+            lblAddressLine2.Size = new Size(72, 18);
             lblAddressLine2.TabIndex = 20;
             lblAddressLine2.Text = "Address 2:";
             // 
@@ -285,6 +296,7 @@
             lblCountryRegion.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblCountryRegion.Location = new Point(552, 97);
             lblCountryRegion.Name = "lblCountryRegion";
+            lblCountryRegion.Size = new Size(61, 18);
             lblCountryRegion.TabIndex = 22;
             lblCountryRegion.Text = "Country:";
             // 
@@ -293,11 +305,11 @@
             cboCountryRegion.DropDownStyle = ComboBoxStyle.DropDownList;
             cboCountryRegion.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cboCountryRegion.FormattingEnabled = true;
+            cboCountryRegion.Items.AddRange(new object[] { "United States", "Canada", "United Kingdom" });
             cboCountryRegion.Location = new Point(660, 96);
             cboCountryRegion.Name = "cboCountryRegion";
             cboCountryRegion.Size = new Size(128, 22);
             cboCountryRegion.TabIndex = 23;
-            cboCountryRegion.Items.AddRange(new object[] { "United States", "Canada", "United Kingdom" });
             // 
             // lblCity
             // 
@@ -305,6 +317,7 @@
             lblCity.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblCity.Location = new Point(12, 125);
             lblCity.Name = "lblCity";
+            lblCity.Size = new Size(36, 18);
             lblCity.TabIndex = 24;
             lblCity.Text = "City:";
             // 
@@ -323,6 +336,7 @@
             lblStateProvince.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblStateProvince.Location = new Point(278, 125);
             lblStateProvince.Name = "lblStateProvince";
+            lblStateProvince.Size = new Size(44, 18);
             lblStateProvince.TabIndex = 26;
             lblStateProvince.Text = "State:";
             // 
@@ -341,6 +355,7 @@
             lblPostalCode.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblPostalCode.Location = new Point(552, 125);
             lblPostalCode.Name = "lblPostalCode";
+            lblPostalCode.Size = new Size(66, 18);
             lblPostalCode.TabIndex = 28;
             lblPostalCode.Text = "Zip Code:";
             // 
@@ -444,14 +459,15 @@
             dgvCustomers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvCustomers.ColumnHeadersHeight = 26;
             dgvCustomers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.White;
-            dataGridViewCellStyle2.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(189, 215, 238);
-            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgvCustomers.DefaultCellStyle = dataGridViewCellStyle2;
+            dgvCustomers.Columns.AddRange(new DataGridViewColumn[] { colCustomerID, colName, colPhone, colEmail, colPurchases });
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(189, 215, 238);
+            dataGridViewCellStyle3.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvCustomers.DefaultCellStyle = dataGridViewCellStyle3;
             dgvCustomers.EnableHeadersVisualStyles = false;
             dgvCustomers.GridColor = Color.FromArgb(217, 217, 217);
             dgvCustomers.Location = new Point(12, 200);
@@ -462,7 +478,6 @@
             dgvCustomers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvCustomers.Size = new Size(776, 180);
             dgvCustomers.TabIndex = 35;
-            dgvCustomers.Columns.AddRange(new DataGridViewColumn[] { colCustomerID, colName, colPhone, colEmail, colPurchases });
             dgvCustomers.SelectionChanged += dgvCustomers_SelectionChanged;
             // 
             // colCustomerID
@@ -495,9 +510,8 @@
             // 
             // colPurchases
             // 
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "";
-            colPurchases.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleRight;
+            colPurchases.DefaultCellStyle = dataGridViewCellStyle2;
             colPurchases.HeaderText = "Purchases";
             colPurchases.Name = "colPurchases";
             colPurchases.ReadOnly = true;
@@ -579,7 +593,7 @@
             Controls.Add(lblFirstName);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "frmCustomerMaintenance";
-            StartPosition = FormStartPosition.CenterScreen;
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Customers";
             Load += frmCustomerMaintenance_Load;
             ((System.ComponentModel.ISupportInitialize)dgvCustomers).EndInit();

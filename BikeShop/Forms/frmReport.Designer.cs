@@ -341,6 +341,7 @@
             Controls.Add(lblDate);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "frmReport";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Report";
             Load += frmReport_Load;
             ((System.ComponentModel.ISupportInitialize)dgvSalesReport).EndInit();

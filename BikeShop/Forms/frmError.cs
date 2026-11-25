@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace BikeShop.Forms
 {
-    public partial class Error : Form
+    public partial class frmError : Form
     {
         [System.Runtime.InteropServices.DllImport("gdi32.dll")]
         private static extern IntPtr CreateRoundRectRgn(
@@ -19,7 +19,7 @@ namespace BikeShop.Forms
             int nWidthEllipse,
             int nHeightEllipse
         );
-        public Error()
+        public frmError()
         {
             InitializeComponent();
             FormCaptionBackColor = Color.FromArgb(31, 78, 121);

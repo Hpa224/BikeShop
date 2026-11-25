@@ -241,6 +241,7 @@
             Controls.Add(lblLine);
             Controls.Add(lblLogId);
             Name = "frmErrorDetails";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Error Details";
             Load += frmErrorDetails_Load;
             ResumeLayout(false);

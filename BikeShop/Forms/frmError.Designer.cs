@@ -1,6 +1,6 @@
 ﻿namespace BikeShop.Forms
 {
-    partial class Error
+    partial class frmError
     {
         /// <summary>
         /// Required designer variable.
@@ -273,7 +273,7 @@
             btnRefresh.UseVisualStyleBackColor = false;
             btnRefresh.Click += btnRefresh_Click;
             // 
-            // Error
+            // frmError
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -294,7 +294,8 @@
             Controls.Add(txtSearch);
             Controls.Add(lblSearch);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Name = "Error";
+            Name = "frmError";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Error";
             Load += frmError_Load;
             ((System.ComponentModel.ISupportInitialize)dgvErrorLogs).EndInit();

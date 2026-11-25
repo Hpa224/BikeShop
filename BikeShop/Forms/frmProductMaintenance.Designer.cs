@@ -37,6 +37,11 @@
             cboType = new ComboBox();
             lblSeverity = new Label();
             dgvInventory = new DataGridView();
+            colProductID = new DataGridViewTextBoxColumn();
+            colName = new DataGridViewTextBoxColumn();
+            colProductNumber = new DataGridViewTextBoxColumn();
+            colCategory = new DataGridViewTextBoxColumn();
+            colPrice = new DataGridViewTextBoxColumn();
             btnDelete = new Button();
             btnUpdate = new Button();
             btnAdd = new Button();
@@ -53,11 +58,6 @@
             lblType = new Label();
             lvlBikeDetails = new Label();
             btnBack = new Button();
-            colProductID = new DataGridViewTextBoxColumn();
-            colName = new DataGridViewTextBoxColumn();
-            colProductNumber = new DataGridViewTextBoxColumn();
-            colCategory = new DataGridViewTextBoxColumn();
-            colPrice = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dgvInventory).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -153,6 +153,49 @@
             dgvInventory.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvInventory.Size = new Size(469, 208);
             dgvInventory.TabIndex = 36;
+            // 
+            // colProductID
+            // 
+            colProductID.DataPropertyName = "ProductId";
+            colProductID.HeaderText = "ID";
+            colProductID.Name = "colProductID";
+            colProductID.ReadOnly = true;
+            colProductID.Width = 60;
+            // 
+            // colName
+            // 
+            colName.DataPropertyName = "Name";
+            colName.HeaderText = "Name";
+            colName.Name = "colName";
+            colName.ReadOnly = true;
+            colName.Width = 210;
+            // 
+            // colProductNumber
+            // 
+            colProductNumber.DataPropertyName = "ProductNumber";
+            colProductNumber.HeaderText = "Product No.";
+            colProductNumber.Name = "colProductNumber";
+            colProductNumber.ReadOnly = true;
+            colProductNumber.Width = 130;
+            // 
+            // colCategory
+            // 
+            colCategory.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colCategory.DataPropertyName = "Category";
+            colCategory.HeaderText = "Category";
+            colCategory.Name = "colCategory";
+            colCategory.ReadOnly = true;
+            // 
+            // colPrice
+            // 
+            colPrice.DataPropertyName = "ListPrice";
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "C2";
+            colPrice.DefaultCellStyle = dataGridViewCellStyle2;
+            colPrice.HeaderText = "Price";
+            colPrice.Name = "colPrice";
+            colPrice.ReadOnly = true;
+            colPrice.Width = 90;
             // 
             // btnDelete
             // 
@@ -340,49 +383,6 @@
             btnBack.UseVisualStyleBackColor = false;
             btnBack.Click += btnBack_Click;
             // 
-            // colProductID
-            // 
-            colProductID.DataPropertyName = "ProductId";
-            colProductID.HeaderText = "ID";
-            colProductID.Name = "colProductID";
-            colProductID.ReadOnly = true;
-            colProductID.Width = 60;
-            // 
-            // colName
-            // 
-            colName.DataPropertyName = "Name";
-            colName.HeaderText = "Name";
-            colName.Name = "colName";
-            colName.ReadOnly = true;
-            colName.Width = 210;
-            // 
-            // colProductNumber
-            // 
-            colProductNumber.DataPropertyName = "ProductNumber";
-            colProductNumber.HeaderText = "Product No.";
-            colProductNumber.Name = "colProductNumber";
-            colProductNumber.ReadOnly = true;
-            colProductNumber.Width = 130;
-            // 
-            // colCategory
-            // 
-            colCategory.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            colCategory.DataPropertyName = "Category";
-            colCategory.HeaderText = "Category";
-            colCategory.Name = "colCategory";
-            colCategory.ReadOnly = true;
-            // 
-            // colPrice
-            // 
-            colPrice.DataPropertyName = "ListPrice";
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.Format = "C2";
-            colPrice.DefaultCellStyle = dataGridViewCellStyle2;
-            colPrice.HeaderText = "Price";
-            colPrice.Name = "colPrice";
-            colPrice.ReadOnly = true;
-            colPrice.Width = 90;
-            // 
             // frmProductMaintenance
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -400,6 +400,7 @@
             Controls.Add(txtSearch);
             Controls.Add(lblSearch);
             Name = "frmProductMaintenance";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Inventory";
             Load += frmProductMaintenance_Load;
             ((System.ComponentModel.ISupportInitialize)dgvInventory).EndInit();
