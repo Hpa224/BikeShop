@@ -28,20 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             btnSearch = new Button();
             txtSearch = new TextBox();
             lblSearch = new Label();
             cboType = new ComboBox();
             lblSeverity = new Label();
             dgvInventory = new DataGridView();
-            colCustomerID = new DataGridViewTextBoxColumn();
-            colName = new DataGridViewTextBoxColumn();
-            colPhone = new DataGridViewTextBoxColumn();
-            colEmail = new DataGridViewTextBoxColumn();
-            colPurchases = new DataGridViewTextBoxColumn();
             btnDelete = new Button();
             btnUpdate = new Button();
             btnAdd = new Button();
@@ -58,6 +53,11 @@
             lblType = new Label();
             lvlBikeDetails = new Label();
             btnBack = new Button();
+            colProductID = new DataGridViewTextBoxColumn();
+            colName = new DataGridViewTextBoxColumn();
+            colProductNumber = new DataGridViewTextBoxColumn();
+            colCategory = new DataGridViewTextBoxColumn();
+            colPrice = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dgvInventory).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -124,25 +124,25 @@
             dgvInventory.AllowUserToDeleteRows = false;
             dgvInventory.AllowUserToResizeRows = false;
             dgvInventory.BackgroundColor = Color.White;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(64, 64, 64);
-            dataGridViewCellStyle4.Font = new Font("Calibri", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(64, 64, 64);
-            dataGridViewCellStyle4.SelectionForeColor = Color.White;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgvInventory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle1.Font = new Font("Calibri", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle1.SelectionForeColor = Color.White;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvInventory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvInventory.ColumnHeadersHeight = 26;
             dgvInventory.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgvInventory.Columns.AddRange(new DataGridViewColumn[] { colCustomerID, colName, colPhone, colEmail, colPurchases });
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = Color.White;
-            dataGridViewCellStyle6.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle6.ForeColor = Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(189, 215, 238);
-            dataGridViewCellStyle6.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
-            dgvInventory.DefaultCellStyle = dataGridViewCellStyle6;
+            dgvInventory.Columns.AddRange(new DataGridViewColumn[] { colProductID, colName, colProductNumber, colCategory, colPrice });
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(189, 215, 238);
+            dataGridViewCellStyle3.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvInventory.DefaultCellStyle = dataGridViewCellStyle3;
             dgvInventory.EnableHeadersVisualStyles = false;
             dgvInventory.GridColor = Color.FromArgb(217, 217, 217);
             dgvInventory.Location = new Point(12, 113);
@@ -153,43 +153,6 @@
             dgvInventory.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvInventory.Size = new Size(469, 208);
             dgvInventory.TabIndex = 36;
-            // 
-            // colCustomerID
-            // 
-            colCustomerID.HeaderText = "ID";
-            colCustomerID.Name = "colCustomerID";
-            colCustomerID.ReadOnly = true;
-            colCustomerID.Width = 60;
-            // 
-            // colName
-            // 
-            colName.HeaderText = "Name";
-            colName.Name = "colName";
-            colName.ReadOnly = true;
-            colName.Width = 210;
-            // 
-            // colPhone
-            // 
-            colPhone.HeaderText = "Phone";
-            colPhone.Name = "colPhone";
-            colPhone.ReadOnly = true;
-            colPhone.Width = 130;
-            // 
-            // colEmail
-            // 
-            colEmail.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            colEmail.HeaderText = "Email";
-            colEmail.Name = "colEmail";
-            colEmail.ReadOnly = true;
-            // 
-            // colPurchases
-            // 
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleRight;
-            colPurchases.DefaultCellStyle = dataGridViewCellStyle5;
-            colPurchases.HeaderText = "Purchases";
-            colPurchases.Name = "colPurchases";
-            colPurchases.ReadOnly = true;
-            colPurchases.Width = 90;
             // 
             // btnDelete
             // 
@@ -377,6 +340,49 @@
             btnBack.UseVisualStyleBackColor = false;
             btnBack.Click += btnBack_Click;
             // 
+            // colProductID
+            // 
+            colProductID.DataPropertyName = "ProductId";
+            colProductID.HeaderText = "ID";
+            colProductID.Name = "colProductID";
+            colProductID.ReadOnly = true;
+            colProductID.Width = 60;
+            // 
+            // colName
+            // 
+            colName.DataPropertyName = "Name";
+            colName.HeaderText = "Name";
+            colName.Name = "colName";
+            colName.ReadOnly = true;
+            colName.Width = 210;
+            // 
+            // colProductNumber
+            // 
+            colProductNumber.DataPropertyName = "ProductNumber";
+            colProductNumber.HeaderText = "Product No.";
+            colProductNumber.Name = "colProductNumber";
+            colProductNumber.ReadOnly = true;
+            colProductNumber.Width = 130;
+            // 
+            // colCategory
+            // 
+            colCategory.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colCategory.DataPropertyName = "Category";
+            colCategory.HeaderText = "Category";
+            colCategory.Name = "colCategory";
+            colCategory.ReadOnly = true;
+            // 
+            // colPrice
+            // 
+            colPrice.DataPropertyName = "ListPrice";
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "C2";
+            colPrice.DefaultCellStyle = dataGridViewCellStyle2;
+            colPrice.HeaderText = "Price";
+            colPrice.Name = "colPrice";
+            colPrice.ReadOnly = true;
+            colPrice.Width = 90;
+            // 
             // frmProductMaintenance
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -411,11 +417,6 @@
         private ComboBox cboType;
         private Label lblSeverity;
         private DataGridView dgvInventory;
-        private DataGridViewTextBoxColumn colCustomerID;
-        private DataGridViewTextBoxColumn colName;
-        private DataGridViewTextBoxColumn colPhone;
-        private DataGridViewTextBoxColumn colEmail;
-        private DataGridViewTextBoxColumn colPurchases;
         private Button btnDelete;
         private Button btnUpdate;
         private Button btnAdd;
@@ -432,5 +433,10 @@
         private TextBox txtBrand;
         private TextBox txtPrice;
         private Button btnBack;
+        private DataGridViewTextBoxColumn colProductID;
+        private DataGridViewTextBoxColumn colName;
+        private DataGridViewTextBoxColumn colProductNumber;
+        private DataGridViewTextBoxColumn colCategory;
+        private DataGridViewTextBoxColumn colPrice;
     }
 }

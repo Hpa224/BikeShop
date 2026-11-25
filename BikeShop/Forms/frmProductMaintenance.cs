@@ -5,6 +5,8 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using BikeShop.Helpers;
+using System.Linq;
 
 namespace BikeShop.Forms
 {
@@ -36,6 +38,26 @@ namespace BikeShop.Forms
             btnDelete.Region = System.Drawing.Region.FromHrgn(
                 CreateRoundRectRgn(0, 0, btnDelete.Width, btnDelete.Height, 15, 15)
             );
+        }
+
+        private void LoadProducts()
+        {
+            using var db = DatabaseHelper.CreateContext();
+            var products = db.Products
+                .Select(p => new
+                {
+                    p.ProductId,
+                    p.ProductNumber,
+                    p.Name,
+                    p.ProductCategoryId,
+                    Category = p.ProductCategory != null
+                        ? p.ProductCategory.Name
+                        : "",
+                    p.ListPrice
+                })
+                .ToList();
+            dgvInventory.AutoGenerateColumns = false;
+            dgvInventory.DataSource = products;
         }
         private bool validateData()
         {
@@ -79,7 +101,7 @@ namespace BikeShop.Forms
 
         private void frmProductMaintenance_Load(object sender, EventArgs e)
         {
-
+            LoadProducts();
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
