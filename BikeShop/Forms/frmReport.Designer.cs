@@ -28,16 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             btnExportCSV = new Button();
             btnPrintReport = new Button();
             dtpEndDate = new DateTimePicker();
             dtpStartDate = new DateTimePicker();
             dgvSalesReport = new DataGridView();
-            ErrorLogID = new DataGridViewTextBoxColumn();
-            colErrorTime = new DataGridViewTextBoxColumn();
-            ErrorNumber = new DataGridViewTextBoxColumn();
-            ErrorSeverity = new DataGridViewTextBoxColumn();
-            colErrorMessage = new DataGridViewTextBoxColumn();
             btnBack = new Button();
             lblPreview = new Label();
             btnGenerate = new Button();
@@ -52,6 +49,12 @@
             panel2 = new Panel();
             label5 = new Label();
             lblItemsSold = new Label();
+            colSalesOrderNumber = new DataGridViewTextBoxColumn();
+            colOrderDate = new DataGridViewTextBoxColumn();
+            colProductNumber = new DataGridViewTextBoxColumn();
+            colProductName = new DataGridViewTextBoxColumn();
+            colOrderQty = new DataGridViewTextBoxColumn();
+            colLineTotal = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dgvSalesReport).BeginInit();
             pnlTotalSales.SuspendLayout();
             panel1.SuspendLayout();
@@ -112,7 +115,7 @@
             dgvSalesReport.AllowUserToDeleteRows = false;
             dgvSalesReport.AllowUserToResizeRows = false;
             dgvSalesReport.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvSalesReport.Columns.AddRange(new DataGridViewColumn[] { ErrorLogID, colErrorTime, ErrorNumber, ErrorSeverity, colErrorMessage });
+            dgvSalesReport.Columns.AddRange(new DataGridViewColumn[] { colSalesOrderNumber, colOrderDate, colProductNumber, colProductName, colOrderQty, colLineTotal });
             dgvSalesReport.Location = new Point(12, 219);
             dgvSalesReport.MultiSelect = false;
             dgvSalesReport.Name = "dgvSalesReport";
@@ -121,45 +124,6 @@
             dgvSalesReport.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvSalesReport.Size = new Size(770, 150);
             dgvSalesReport.TabIndex = 26;
-            // 
-            // ErrorLogID
-            // 
-            ErrorLogID.FillWeight = 65.18906F;
-            ErrorLogID.HeaderText = "Log ID";
-            ErrorLogID.Name = "ErrorLogID";
-            ErrorLogID.ReadOnly = true;
-            // 
-            // colErrorTime
-            // 
-            colErrorTime.FillWeight = 85.01532F;
-            colErrorTime.HeaderText = "Date / Time\n";
-            colErrorTime.Name = "colErrorTime";
-            colErrorTime.ReadOnly = true;
-            colErrorTime.Width = 130;
-            // 
-            // ErrorNumber
-            // 
-            ErrorNumber.FillWeight = 102.256683F;
-            ErrorNumber.HeaderText = "Error Number";
-            ErrorNumber.Name = "ErrorNumber";
-            ErrorNumber.ReadOnly = true;
-            ErrorNumber.Width = 157;
-            // 
-            // ErrorSeverity
-            // 
-            ErrorSeverity.FillWeight = 117.250137F;
-            ErrorSeverity.HeaderText = "Severity";
-            ErrorSeverity.Name = "ErrorSeverity";
-            ErrorSeverity.ReadOnly = true;
-            ErrorSeverity.Width = 180;
-            // 
-            // colErrorMessage
-            // 
-            colErrorMessage.FillWeight = 130.288788F;
-            colErrorMessage.HeaderText = "Message";
-            colErrorMessage.Name = "colErrorMessage";
-            colErrorMessage.ReadOnly = true;
-            colErrorMessage.Width = 200;
             // 
             // btnBack
             // 
@@ -321,6 +285,61 @@
             lblItemsSold.TabIndex = 0;
             lblItemsSold.Text = "Items Sold";
             // 
+            // colSalesOrderNumber
+            // 
+            colSalesOrderNumber.DataPropertyName = "SalesOrderNumber";
+            colSalesOrderNumber.FillWeight = 65.18906F;
+            colSalesOrderNumber.HeaderText = "Order #";
+            colSalesOrderNumber.Name = "colSalesOrderNumber";
+            colSalesOrderNumber.ReadOnly = true;
+            // 
+            // colOrderDate
+            // 
+            colOrderDate.DataPropertyName = "OrderDate";
+            dataGridViewCellStyle1.Format = "MM/dd/yyyy HH:mm";
+            colOrderDate.DefaultCellStyle = dataGridViewCellStyle1;
+            colOrderDate.FillWeight = 85.01532F;
+            colOrderDate.HeaderText = "Order Date";
+            colOrderDate.Name = "colOrderDate";
+            colOrderDate.ReadOnly = true;
+            colOrderDate.Width = 130;
+            // 
+            // colProductNumber
+            // 
+            colProductNumber.DataPropertyName = "ProductNumber";
+            colProductNumber.FillWeight = 102.256683F;
+            colProductNumber.HeaderText = "Product #";
+            colProductNumber.Name = "colProductNumber";
+            colProductNumber.ReadOnly = true;
+            colProductNumber.Width = 157;
+            // 
+            // colProductName
+            // 
+            colProductName.DataPropertyName = "ProductName";
+            colProductName.FillWeight = 117.250137F;
+            colProductName.HeaderText = "Product Name";
+            colProductName.Name = "colProductName";
+            colProductName.ReadOnly = true;
+            colProductName.Width = 180;
+            // 
+            // colOrderQty
+            // 
+            colOrderQty.DataPropertyName = "OrderQty";
+            colOrderQty.FillWeight = 130.288788F;
+            colOrderQty.HeaderText = "Quantity";
+            colOrderQty.Name = "colOrderQty";
+            colOrderQty.ReadOnly = true;
+            colOrderQty.Width = 200;
+            // 
+            // colLineTotal
+            // 
+            colLineTotal.DataPropertyName = "LineTotal";
+            dataGridViewCellStyle2.Format = "C2";
+            colLineTotal.DefaultCellStyle = dataGridViewCellStyle2;
+            colLineTotal.HeaderText = "Line Total";
+            colLineTotal.Name = "colLineTotal";
+            colLineTotal.ReadOnly = true;
+            // 
             // frmReport
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -362,11 +381,6 @@
         private DateTimePicker dtpEndDate;
         private DateTimePicker dtpStartDate;
         private DataGridView dgvSalesReport;
-        private DataGridViewTextBoxColumn ErrorLogID;
-        private DataGridViewTextBoxColumn colErrorTime;
-        private DataGridViewTextBoxColumn ErrorNumber;
-        private DataGridViewTextBoxColumn ErrorSeverity;
-        private DataGridViewTextBoxColumn colErrorMessage;
         private Button btnBack;
         private Label lblPreview;
         private Button btnGenerate;
@@ -381,5 +395,11 @@
         private Panel panel2;
         private Label label5;
         private Label lblItemsSold;
+        private DataGridViewTextBoxColumn colSalesOrderNumber;
+        private DataGridViewTextBoxColumn colOrderDate;
+        private DataGridViewTextBoxColumn colProductNumber;
+        private DataGridViewTextBoxColumn colProductName;
+        private DataGridViewTextBoxColumn colOrderQty;
+        private DataGridViewTextBoxColumn colLineTotal;
     }
 }
