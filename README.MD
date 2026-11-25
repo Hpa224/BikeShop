@@ -16,3 +16,4 @@ using var db = DatabaseHelper.CreateContext();
 var customers = db.Customers.ToList();
 dgvCustomers.DataSource = customers;
 ```
+Changes in the sql .mdf file cannot be reliably merged together like normal code.
