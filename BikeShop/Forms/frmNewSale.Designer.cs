@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             lblCustomer = new Label();
             cboCustomer = new ComboBox();
             lblOrderNumber = new Label();
@@ -43,39 +43,39 @@
             lblOrderDate = new Label();
             dtpOrderDate = new DateTimePicker();
             grpFindProduct = new GroupBox();
-            txtProductSearch = new TextBox();
-            btnSearch = new Button();
+            lblSearchHint = new Label();
+            btnAddToCart = new Button();
+            nudQuantity = new NumericUpDown();
+            lblQuantity = new Label();
             dgvProducts = new DataGridView();
             colProductNumber = new DataGridViewTextBoxColumn();
             colProductName = new DataGridViewTextBoxColumn();
             colPrice = new DataGridViewTextBoxColumn();
-            lblQuantity = new Label();
-            nudQuantity = new NumericUpDown();
-            btnAddToCart = new Button();
-            lblSearchHint = new Label();
+            btnSearch = new Button();
+            txtProductSearch = new TextBox();
             grpCart = new GroupBox();
+            txtTotal = new TextBox();
+            lblTotal = new Label();
+            txtTax = new TextBox();
+            lblTax = new Label();
+            txtSubtotal = new TextBox();
+            lblSubtotal = new Label();
+            lblCartHint = new Label();
+            btnRemove = new Button();
+            btnUpdateQty = new Button();
             dgvCart = new DataGridView();
             colCartProductNumber = new DataGridViewTextBoxColumn();
             colCartName = new DataGridViewTextBoxColumn();
             colCartQty = new DataGridViewTextBoxColumn();
             colCartUnitPrice = new DataGridViewTextBoxColumn();
             colCartLineTotal = new DataGridViewTextBoxColumn();
-            btnUpdateQty = new Button();
-            btnRemove = new Button();
-            lblCartHint = new Label();
-            lblSubtotal = new Label();
-            txtSubtotal = new TextBox();
-            lblTax = new Label();
-            txtTax = new TextBox();
-            lblTotal = new Label();
-            txtTotal = new TextBox();
             btnCompleteSale = new Button();
             btnCancel = new Button();
             btnBack = new Button();
             grpFindProduct.SuspendLayout();
-            grpCart.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvProducts).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudQuantity).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvProducts).BeginInit();
+            grpCart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCart).BeginInit();
             SuspendLayout();
             // 
@@ -85,6 +85,7 @@
             lblCustomer.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblCustomer.Location = new Point(12, 13);
             lblCustomer.Name = "lblCustomer";
+            lblCustomer.Size = new Size(72, 18);
             lblCustomer.TabIndex = 0;
             lblCustomer.Text = "Customer:";
             // 
@@ -104,6 +105,7 @@
             lblOrderNumber.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblOrderNumber.Location = new Point(368, 13);
             lblOrderNumber.Name = "lblOrderNumber";
+            lblOrderNumber.Size = new Size(58, 18);
             lblOrderNumber.TabIndex = 2;
             lblOrderNumber.Text = "Order #:";
             // 
@@ -125,6 +127,7 @@
             lblOrderDate.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblOrderDate.Location = new Point(578, 13);
             lblOrderDate.Name = "lblOrderDate";
+            lblOrderDate.Size = new Size(41, 18);
             lblOrderDate.TabIndex = 4;
             lblOrderDate.Text = "Date:";
             // 
@@ -140,8 +143,6 @@
             // grpFindProduct
             // 
             grpFindProduct.BackColor = Color.FromArgb(242, 242, 242);
-            grpFindProduct.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            grpFindProduct.ForeColor = Color.FromArgb(31, 78, 121);
             grpFindProduct.Controls.Add(lblSearchHint);
             grpFindProduct.Controls.Add(btnAddToCart);
             grpFindProduct.Controls.Add(nudQuantity);
@@ -149,36 +150,62 @@
             grpFindProduct.Controls.Add(dgvProducts);
             grpFindProduct.Controls.Add(btnSearch);
             grpFindProduct.Controls.Add(txtProductSearch);
+            grpFindProduct.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            grpFindProduct.ForeColor = Color.FromArgb(31, 78, 121);
             grpFindProduct.Location = new Point(12, 45);
             grpFindProduct.Name = "grpFindProduct";
             grpFindProduct.Size = new Size(345, 340);
+            grpFindProduct.TabIndex = 6;
             grpFindProduct.TabStop = false;
             grpFindProduct.Text = "Find Product";
-            grpFindProduct.TabIndex = 6;
             // 
-            // txtProductSearch
+            // lblSearchHint
             // 
-            txtProductSearch.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtProductSearch.Location = new Point(10, 28);
-            txtProductSearch.MaxLength = 50;
-            txtProductSearch.Name = "txtProductSearch";
-            txtProductSearch.Size = new Size(220, 22);
-            txtProductSearch.TabIndex = 7;
+            lblSearchHint.Font = new Font("Calibri", 8.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            lblSearchHint.ForeColor = Color.DimGray;
+            lblSearchHint.Location = new Point(10, 305);
+            lblSearchHint.Name = "lblSearchHint";
+            lblSearchHint.Size = new Size(325, 30);
+            lblSearchHint.TabIndex = 13;
+            lblSearchHint.Text = "Typing part of a product name (e.g. \"frame\") and clicking Search lists every matching product.";
             // 
-            // btnSearch
+            // btnAddToCart
             // 
-            btnSearch.BackColor = Color.FromArgb(31, 78, 121);
-            btnSearch.FlatAppearance.BorderSize = 0;
-            btnSearch.FlatStyle = FlatStyle.Flat;
-            btnSearch.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSearch.ForeColor = Color.White;
-            btnSearch.Location = new Point(240, 23);
-            btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(95, 32);
-            btnSearch.TabIndex = 8;
-            btnSearch.Text = "Search";
-            btnSearch.UseVisualStyleBackColor = false;
-            btnSearch.Click += btnSearch_Click;
+            btnAddToCart.BackColor = Color.FromArgb(46, 125, 60);
+            btnAddToCart.FlatAppearance.BorderSize = 0;
+            btnAddToCart.FlatStyle = FlatStyle.Flat;
+            btnAddToCart.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAddToCart.ForeColor = Color.White;
+            btnAddToCart.Location = new Point(165, 268);
+            btnAddToCart.Name = "btnAddToCart";
+            btnAddToCart.Size = new Size(170, 32);
+            btnAddToCart.TabIndex = 12;
+            btnAddToCart.Text = "Add to Cart";
+            btnAddToCart.UseVisualStyleBackColor = false;
+            btnAddToCart.Click += btnAddToCart_Click;
+            // 
+            // nudQuantity
+            // 
+            nudQuantity.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            nudQuantity.Location = new Point(90, 273);
+            nudQuantity.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
+            nudQuantity.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudQuantity.Name = "nudQuantity";
+            nudQuantity.Size = new Size(60, 22);
+            nudQuantity.TabIndex = 11;
+            nudQuantity.TextAlign = HorizontalAlignment.Right;
+            nudQuantity.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // lblQuantity
+            // 
+            lblQuantity.AutoSize = true;
+            lblQuantity.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblQuantity.ForeColor = Color.Black;
+            lblQuantity.Location = new Point(10, 274);
+            lblQuantity.Name = "lblQuantity";
+            lblQuantity.Size = new Size(66, 18);
+            lblQuantity.TabIndex = 10;
+            lblQuantity.Text = "Quantity:";
             // 
             // dgvProducts
             // 
@@ -196,14 +223,15 @@
             dgvProducts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvProducts.ColumnHeadersHeight = 26;
             dgvProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.White;
-            dataGridViewCellStyle2.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(189, 215, 238);
-            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgvProducts.DefaultCellStyle = dataGridViewCellStyle2;
+            dgvProducts.Columns.AddRange(new DataGridViewColumn[] { colProductNumber, colProductName, colPrice });
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(31, 78, 121);
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(189, 215, 238);
+            dataGridViewCellStyle3.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvProducts.DefaultCellStyle = dataGridViewCellStyle3;
             dgvProducts.EnableHeadersVisualStyles = false;
             dgvProducts.GridColor = Color.FromArgb(217, 217, 217);
             dgvProducts.Location = new Point(10, 60);
@@ -214,7 +242,6 @@
             dgvProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvProducts.Size = new Size(325, 200);
             dgvProducts.TabIndex = 9;
-            dgvProducts.Columns.AddRange(new DataGridViewColumn[] { colProductNumber, colProductName, colPrice });
             dgvProducts.CellDoubleClick += dgvProducts_CellDoubleClick;
             // 
             // colProductNumber
@@ -233,66 +260,41 @@
             // 
             // colPrice
             // 
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "N2";
-            colPrice.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "N2";
+            colPrice.DefaultCellStyle = dataGridViewCellStyle2;
             colPrice.HeaderText = "Price";
             colPrice.Name = "colPrice";
             colPrice.ReadOnly = true;
             colPrice.Width = 72;
             // 
-            // lblQuantity
+            // btnSearch
             // 
-            lblQuantity.AutoSize = true;
-            lblQuantity.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblQuantity.ForeColor = Color.Black;
-            lblQuantity.Location = new Point(10, 274);
-            lblQuantity.Name = "lblQuantity";
-            lblQuantity.TabIndex = 10;
-            lblQuantity.Text = "Quantity:";
+            btnSearch.BackColor = Color.FromArgb(31, 78, 121);
+            btnSearch.FlatAppearance.BorderSize = 0;
+            btnSearch.FlatStyle = FlatStyle.Flat;
+            btnSearch.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSearch.ForeColor = Color.White;
+            btnSearch.Location = new Point(240, 23);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(95, 32);
+            btnSearch.TabIndex = 8;
+            btnSearch.Text = "Search";
+            btnSearch.UseVisualStyleBackColor = false;
+            btnSearch.Click += btnSearch_Click;
             // 
-            // nudQuantity
+            // txtProductSearch
             // 
-            nudQuantity.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            nudQuantity.Location = new Point(90, 273);
-            nudQuantity.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
-            nudQuantity.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-            nudQuantity.Name = "nudQuantity";
-            nudQuantity.Size = new Size(60, 22);
-            nudQuantity.TabIndex = 11;
-            nudQuantity.TextAlign = HorizontalAlignment.Right;
-            nudQuantity.Value = new decimal(new int[] { 1, 0, 0, 0 });
-            // 
-            // btnAddToCart
-            // 
-            btnAddToCart.BackColor = Color.FromArgb(46, 125, 60);
-            btnAddToCart.FlatAppearance.BorderSize = 0;
-            btnAddToCart.FlatStyle = FlatStyle.Flat;
-            btnAddToCart.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnAddToCart.ForeColor = Color.White;
-            btnAddToCart.Location = new Point(165, 268);
-            btnAddToCart.Name = "btnAddToCart";
-            btnAddToCart.Size = new Size(170, 32);
-            btnAddToCart.TabIndex = 12;
-            btnAddToCart.Text = "Add to Cart";
-            btnAddToCart.UseVisualStyleBackColor = false;
-            btnAddToCart.Click += btnAddToCart_Click;
-            // 
-            // lblSearchHint
-            // 
-            lblSearchHint.Font = new Font("Calibri", 8.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            lblSearchHint.ForeColor = Color.DimGray;
-            lblSearchHint.Location = new Point(10, 305);
-            lblSearchHint.Name = "lblSearchHint";
-            lblSearchHint.Size = new Size(325, 30);
-            lblSearchHint.TabIndex = 13;
-            lblSearchHint.Text = "Typing part of a product name (e.g. \"frame\") and clicking Search lists every matching product.";
+            txtProductSearch.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtProductSearch.Location = new Point(10, 28);
+            txtProductSearch.MaxLength = 50;
+            txtProductSearch.Name = "txtProductSearch";
+            txtProductSearch.Size = new Size(220, 22);
+            txtProductSearch.TabIndex = 7;
             // 
             // grpCart
             // 
             grpCart.BackColor = Color.FromArgb(242, 242, 242);
-            grpCart.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            grpCart.ForeColor = Color.FromArgb(31, 78, 121);
             grpCart.Controls.Add(txtTotal);
             grpCart.Controls.Add(lblTotal);
             grpCart.Controls.Add(txtTax);
@@ -303,12 +305,126 @@
             grpCart.Controls.Add(btnRemove);
             grpCart.Controls.Add(btnUpdateQty);
             grpCart.Controls.Add(dgvCart);
+            grpCart.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            grpCart.ForeColor = Color.FromArgb(31, 78, 121);
             grpCart.Location = new Point(367, 45);
             grpCart.Name = "grpCart";
             grpCart.Size = new Size(421, 340);
+            grpCart.TabIndex = 14;
             grpCart.TabStop = false;
             grpCart.Text = "Cart";
-            grpCart.TabIndex = 14;
+            // 
+            // txtTotal
+            // 
+            txtTotal.BackColor = Color.White;
+            txtTotal.Font = new Font("Calibri", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtTotal.Location = new Point(311, 312);
+            txtTotal.MaxLength = 20;
+            txtTotal.Name = "txtTotal";
+            txtTotal.ReadOnly = true;
+            txtTotal.Size = new Size(100, 22);
+            txtTotal.TabIndex = 24;
+            txtTotal.TabStop = false;
+            txtTotal.TextAlign = HorizontalAlignment.Right;
+            // 
+            // lblTotal
+            // 
+            lblTotal.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTotal.ForeColor = Color.Black;
+            lblTotal.Location = new Point(185, 312);
+            lblTotal.Name = "lblTotal";
+            lblTotal.Size = new Size(120, 22);
+            lblTotal.TabIndex = 23;
+            lblTotal.Text = "Total:";
+            lblTotal.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // txtTax
+            // 
+            txtTax.BackColor = Color.White;
+            txtTax.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtTax.Location = new Point(311, 284);
+            txtTax.MaxLength = 20;
+            txtTax.Name = "txtTax";
+            txtTax.ReadOnly = true;
+            txtTax.Size = new Size(100, 22);
+            txtTax.TabIndex = 22;
+            txtTax.TabStop = false;
+            txtTax.TextAlign = HorizontalAlignment.Right;
+            // 
+            // lblTax
+            // 
+            lblTax.Font = new Font("Calibri", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTax.ForeColor = Color.Black;
+            lblTax.Location = new Point(185, 284);
+            lblTax.Name = "lblTax";
+            lblTax.Size = new Size(120, 22);
+            lblTax.TabIndex = 21;
+            lblTax.Text = "Tax (7%):";
+            lblTax.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // txtSubtotal
+            // 
+            txtSubtotal.BackColor = Color.White;
+            txtSubtotal.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtSubtotal.Location = new Point(311, 256);
+            txtSubtotal.MaxLength = 20;
+            txtSubtotal.Name = "txtSubtotal";
+            txtSubtotal.ReadOnly = true;
+            txtSubtotal.Size = new Size(100, 22);
+            txtSubtotal.TabIndex = 20;
+            txtSubtotal.TabStop = false;
+            txtSubtotal.TextAlign = HorizontalAlignment.Right;
+            // 
+            // lblSubtotal
+            // 
+            lblSubtotal.Font = new Font("Calibri", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblSubtotal.ForeColor = Color.Black;
+            lblSubtotal.Location = new Point(185, 256);
+            lblSubtotal.Name = "lblSubtotal";
+            lblSubtotal.Size = new Size(120, 22);
+            lblSubtotal.TabIndex = 19;
+            lblSubtotal.Text = "Subtotal:";
+            lblSubtotal.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // lblCartHint
+            // 
+            lblCartHint.Font = new Font("Calibri", 8.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            lblCartHint.ForeColor = Color.DimGray;
+            lblCartHint.Location = new Point(231, 218);
+            lblCartHint.Name = "lblCartHint";
+            lblCartHint.Size = new Size(180, 30);
+            lblCartHint.TabIndex = 18;
+            lblCartHint.Text = "Change a Qty in the cart, then click Update Qty.";
+            // 
+            // btnRemove
+            // 
+            btnRemove.BackColor = Color.FromArgb(192, 0, 0);
+            btnRemove.FlatAppearance.BorderSize = 0;
+            btnRemove.FlatStyle = FlatStyle.Flat;
+            btnRemove.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnRemove.ForeColor = Color.White;
+            btnRemove.Location = new Point(128, 216);
+            btnRemove.Name = "btnRemove";
+            btnRemove.Size = new Size(95, 32);
+            btnRemove.TabIndex = 17;
+            btnRemove.Text = "Remove";
+            btnRemove.UseVisualStyleBackColor = false;
+            btnRemove.Click += btnRemove_Click;
+            // 
+            // btnUpdateQty
+            // 
+            btnUpdateQty.BackColor = Color.FromArgb(31, 78, 121);
+            btnUpdateQty.FlatAppearance.BorderSize = 0;
+            btnUpdateQty.FlatStyle = FlatStyle.Flat;
+            btnUpdateQty.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnUpdateQty.ForeColor = Color.White;
+            btnUpdateQty.Location = new Point(10, 216);
+            btnUpdateQty.Name = "btnUpdateQty";
+            btnUpdateQty.Size = new Size(110, 32);
+            btnUpdateQty.TabIndex = 16;
+            btnUpdateQty.Text = "Update Qty";
+            btnUpdateQty.UseVisualStyleBackColor = false;
+            btnUpdateQty.Click += btnUpdateQty_Click;
             // 
             // dgvCart
             // 
@@ -326,25 +442,24 @@
             dgvCart.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dgvCart.ColumnHeadersHeight = 26;
             dgvCart.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.White;
-            dataGridViewCellStyle5.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle5.ForeColor = Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(189, 215, 238);
-            dataGridViewCellStyle5.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            dgvCart.DefaultCellStyle = dataGridViewCellStyle5;
+            dgvCart.Columns.AddRange(new DataGridViewColumn[] { colCartProductNumber, colCartName, colCartQty, colCartUnitPrice, colCartLineTotal });
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = Color.White;
+            dataGridViewCellStyle8.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle8.ForeColor = Color.FromArgb(31, 78, 121);
+            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(189, 215, 238);
+            dataGridViewCellStyle8.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
+            dgvCart.DefaultCellStyle = dataGridViewCellStyle8;
             dgvCart.EnableHeadersVisualStyles = false;
             dgvCart.GridColor = Color.FromArgb(217, 217, 217);
             dgvCart.Location = new Point(10, 28);
             dgvCart.MultiSelect = false;
             dgvCart.Name = "dgvCart";
-            dgvCart.ReadOnly = false;
             dgvCart.RowHeadersVisible = false;
             dgvCart.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvCart.Size = new Size(401, 180);
             dgvCart.TabIndex = 15;
-            dgvCart.Columns.AddRange(new DataGridViewColumn[] { colCartProductNumber, colCartName, colCartQty, colCartUnitPrice, colCartLineTotal });
             // 
             // colCartProductNumber
             // 
@@ -362,19 +477,17 @@
             // 
             // colCartQty
             // 
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.Format = "";
-            colCartQty.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleRight;
+            colCartQty.DefaultCellStyle = dataGridViewCellStyle5;
             colCartQty.HeaderText = "Qty";
             colCartQty.Name = "colCartQty";
-            colCartQty.ReadOnly = false;
             colCartQty.Width = 45;
             // 
             // colCartUnitPrice
             // 
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle7.Format = "N2";
-            colCartUnitPrice.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.Format = "N2";
+            colCartUnitPrice.DefaultCellStyle = dataGridViewCellStyle6;
             colCartUnitPrice.HeaderText = "Unit Price";
             colCartUnitPrice.Name = "colCartUnitPrice";
             colCartUnitPrice.ReadOnly = true;
@@ -382,125 +495,13 @@
             // 
             // colCartLineTotal
             // 
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle8.Format = "N2";
-            colCartLineTotal.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle7.Format = "N2";
+            colCartLineTotal.DefaultCellStyle = dataGridViewCellStyle7;
             colCartLineTotal.HeaderText = "Line Total";
             colCartLineTotal.Name = "colCartLineTotal";
             colCartLineTotal.ReadOnly = true;
             colCartLineTotal.Width = 80;
-            // 
-            // btnUpdateQty
-            // 
-            btnUpdateQty.BackColor = Color.FromArgb(31, 78, 121);
-            btnUpdateQty.FlatAppearance.BorderSize = 0;
-            btnUpdateQty.FlatStyle = FlatStyle.Flat;
-            btnUpdateQty.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnUpdateQty.ForeColor = Color.White;
-            btnUpdateQty.Location = new Point(10, 216);
-            btnUpdateQty.Name = "btnUpdateQty";
-            btnUpdateQty.Size = new Size(110, 32);
-            btnUpdateQty.TabIndex = 16;
-            btnUpdateQty.Text = "Update Qty";
-            btnUpdateQty.UseVisualStyleBackColor = false;
-            btnUpdateQty.Click += btnUpdateQty_Click;
-            // 
-            // btnRemove
-            // 
-            btnRemove.BackColor = Color.FromArgb(192, 0, 0);
-            btnRemove.FlatAppearance.BorderSize = 0;
-            btnRemove.FlatStyle = FlatStyle.Flat;
-            btnRemove.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnRemove.ForeColor = Color.White;
-            btnRemove.Location = new Point(128, 216);
-            btnRemove.Name = "btnRemove";
-            btnRemove.Size = new Size(95, 32);
-            btnRemove.TabIndex = 17;
-            btnRemove.Text = "Remove";
-            btnRemove.UseVisualStyleBackColor = false;
-            btnRemove.Click += btnRemove_Click;
-            // 
-            // lblCartHint
-            // 
-            lblCartHint.Font = new Font("Calibri", 8.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            lblCartHint.ForeColor = Color.DimGray;
-            lblCartHint.Location = new Point(231, 218);
-            lblCartHint.Name = "lblCartHint";
-            lblCartHint.Size = new Size(180, 30);
-            lblCartHint.TabIndex = 18;
-            lblCartHint.Text = "Change a Qty in the cart, then click Update Qty.";
-            // 
-            // lblSubtotal
-            // 
-            lblSubtotal.Font = new Font("Calibri", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblSubtotal.ForeColor = Color.Black;
-            lblSubtotal.Location = new Point(185, 256);
-            lblSubtotal.Name = "lblSubtotal";
-            lblSubtotal.Size = new Size(120, 22);
-            lblSubtotal.TabIndex = 19;
-            lblSubtotal.Text = "Subtotal:";
-            lblSubtotal.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // txtSubtotal
-            // 
-            txtSubtotal.BackColor = Color.White;
-            txtSubtotal.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtSubtotal.Location = new Point(311, 256);
-            txtSubtotal.MaxLength = 20;
-            txtSubtotal.Name = "txtSubtotal";
-            txtSubtotal.ReadOnly = true;
-            txtSubtotal.Size = new Size(100, 22);
-            txtSubtotal.TabIndex = 20;
-            txtSubtotal.TabStop = false;
-            txtSubtotal.TextAlign = HorizontalAlignment.Right;
-            // 
-            // lblTax
-            // 
-            lblTax.Font = new Font("Calibri", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblTax.ForeColor = Color.Black;
-            lblTax.Location = new Point(185, 284);
-            lblTax.Name = "lblTax";
-            lblTax.Size = new Size(120, 22);
-            lblTax.TabIndex = 21;
-            lblTax.Text = "Tax (7%):";
-            lblTax.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // txtTax
-            // 
-            txtTax.BackColor = Color.White;
-            txtTax.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtTax.Location = new Point(311, 284);
-            txtTax.MaxLength = 20;
-            txtTax.Name = "txtTax";
-            txtTax.ReadOnly = true;
-            txtTax.Size = new Size(100, 22);
-            txtTax.TabIndex = 22;
-            txtTax.TabStop = false;
-            txtTax.TextAlign = HorizontalAlignment.Right;
-            // 
-            // lblTotal
-            // 
-            lblTotal.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTotal.ForeColor = Color.Black;
-            lblTotal.Location = new Point(185, 312);
-            lblTotal.Name = "lblTotal";
-            lblTotal.Size = new Size(120, 22);
-            lblTotal.TabIndex = 23;
-            lblTotal.Text = "Total:";
-            lblTotal.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // txtTotal
-            // 
-            txtTotal.BackColor = Color.White;
-            txtTotal.Font = new Font("Calibri", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            txtTotal.Location = new Point(311, 312);
-            txtTotal.MaxLength = 20;
-            txtTotal.Name = "txtTotal";
-            txtTotal.ReadOnly = true;
-            txtTotal.Size = new Size(100, 22);
-            txtTotal.TabIndex = 24;
-            txtTotal.TabStop = false;
-            txtTotal.TextAlign = HorizontalAlignment.Right;
             // 
             // btnCompleteSale
             // 
@@ -549,6 +550,7 @@
             // 
             // frmNewSale
             // 
+            AcceptButton = btnSearch;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
@@ -564,19 +566,18 @@
             Controls.Add(lblOrderNumber);
             Controls.Add(cboCustomer);
             Controls.Add(lblCustomer);
-            AcceptButton = btnSearch;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "frmNewSale";
-            StartPosition = FormStartPosition.CenterScreen;
+            StartPosition = FormStartPosition.CenterParent;
             Text = "New Sale";
             Load += frmNewSale_Load;
-            ((System.ComponentModel.ISupportInitialize)dgvProducts).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nudQuantity).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dgvCart).EndInit();
             grpFindProduct.ResumeLayout(false);
             grpFindProduct.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)nudQuantity).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvProducts).EndInit();
             grpCart.ResumeLayout(false);
             grpCart.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvCart).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }

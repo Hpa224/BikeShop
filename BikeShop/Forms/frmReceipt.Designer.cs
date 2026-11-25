@@ -29,24 +29,25 @@
         private void InitializeComponent()
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReceipt));
             lblStoreName = new Label();
             lblReceiptTitle = new Label();
             grpBillTo = new GroupBox();
-            lblCustomerName = new Label();
             lblBillToAddress = new Label();
+            lblCustomerName = new Label();
             grpOrderInfo = new GroupBox();
-            lblOrderNumberCaption = new Label();
-            lblOrderNumber = new Label();
-            lblOrderDateCaption = new Label();
-            lblOrderDate = new Label();
-            lblDueDateCaption = new Label();
-            lblDueDate = new Label();
-            lblCustomerIDCaption = new Label();
             lblCustomerID = new Label();
+            lblCustomerIDCaption = new Label();
+            lblDueDate = new Label();
+            lblDueDateCaption = new Label();
+            lblOrderDate = new Label();
+            lblOrderDateCaption = new Label();
+            lblOrderNumber = new Label();
+            lblOrderNumberCaption = new Label();
             dgvOrderLines = new DataGridView();
             colProductNumber = new DataGridViewTextBoxColumn();
             colProductName = new DataGridViewTextBoxColumn();
@@ -78,6 +79,7 @@
             lblStoreName.ForeColor = Color.FromArgb(31, 78, 121);
             lblStoreName.Location = new Point(12, 8);
             lblStoreName.Name = "lblStoreName";
+            lblStoreName.Size = new Size(130, 33);
             lblStoreName.TabIndex = 0;
             lblStoreName.Text = "Bike Store";
             // 
@@ -87,32 +89,23 @@
             lblReceiptTitle.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblReceiptTitle.Location = new Point(15, 45);
             lblReceiptTitle.Name = "lblReceiptTitle";
+            lblReceiptTitle.Size = new Size(156, 19);
             lblReceiptTitle.TabIndex = 1;
             lblReceiptTitle.Text = "Sales Receipt / Invoice";
             // 
             // grpBillTo
             // 
             grpBillTo.BackColor = Color.FromArgb(242, 242, 242);
-            grpBillTo.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            grpBillTo.ForeColor = Color.FromArgb(31, 78, 121);
             grpBillTo.Controls.Add(lblBillToAddress);
             grpBillTo.Controls.Add(lblCustomerName);
+            grpBillTo.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            grpBillTo.ForeColor = Color.FromArgb(31, 78, 121);
             grpBillTo.Location = new Point(12, 72);
             grpBillTo.Name = "grpBillTo";
             grpBillTo.Size = new Size(380, 115);
+            grpBillTo.TabIndex = 2;
             grpBillTo.TabStop = false;
             grpBillTo.Text = "Bill To";
-            grpBillTo.TabIndex = 2;
-            // 
-            // lblCustomerName
-            // 
-            lblCustomerName.AutoSize = true;
-            lblCustomerName.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblCustomerName.ForeColor = Color.Black;
-            lblCustomerName.Location = new Point(12, 25);
-            lblCustomerName.Name = "lblCustomerName";
-            lblCustomerName.TabIndex = 3;
-            lblCustomerName.Text = "Customer Name";
             // 
             // lblBillToAddress
             // 
@@ -124,11 +117,20 @@
             lblBillToAddress.TabIndex = 4;
             lblBillToAddress.Text = "Address";
             // 
+            // lblCustomerName
+            // 
+            lblCustomerName.AutoSize = true;
+            lblCustomerName.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCustomerName.ForeColor = Color.Black;
+            lblCustomerName.Location = new Point(12, 25);
+            lblCustomerName.Name = "lblCustomerName";
+            lblCustomerName.Size = new Size(108, 18);
+            lblCustomerName.TabIndex = 3;
+            lblCustomerName.Text = "Customer Name";
+            // 
             // grpOrderInfo
             // 
             grpOrderInfo.BackColor = Color.FromArgb(242, 242, 242);
-            grpOrderInfo.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            grpOrderInfo.ForeColor = Color.FromArgb(31, 78, 121);
             grpOrderInfo.Controls.Add(lblCustomerID);
             grpOrderInfo.Controls.Add(lblCustomerIDCaption);
             grpOrderInfo.Controls.Add(lblDueDate);
@@ -137,82 +139,14 @@
             grpOrderInfo.Controls.Add(lblOrderDateCaption);
             grpOrderInfo.Controls.Add(lblOrderNumber);
             grpOrderInfo.Controls.Add(lblOrderNumberCaption);
+            grpOrderInfo.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            grpOrderInfo.ForeColor = Color.FromArgb(31, 78, 121);
             grpOrderInfo.Location = new Point(408, 72);
             grpOrderInfo.Name = "grpOrderInfo";
             grpOrderInfo.Size = new Size(380, 115);
+            grpOrderInfo.TabIndex = 5;
             grpOrderInfo.TabStop = false;
             grpOrderInfo.Text = "Order Information";
-            grpOrderInfo.TabIndex = 5;
-            // 
-            // lblOrderNumberCaption
-            // 
-            lblOrderNumberCaption.AutoSize = true;
-            lblOrderNumberCaption.Font = new Font("Calibri", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblOrderNumberCaption.ForeColor = Color.Black;
-            lblOrderNumberCaption.Location = new Point(12, 25);
-            lblOrderNumberCaption.Name = "lblOrderNumberCaption";
-            lblOrderNumberCaption.TabIndex = 6;
-            lblOrderNumberCaption.Text = "Order #:";
-            // 
-            // lblOrderNumber
-            // 
-            lblOrderNumber.AutoSize = true;
-            lblOrderNumber.Font = new Font("Calibri", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblOrderNumber.ForeColor = Color.Black;
-            lblOrderNumber.Location = new Point(125, 25);
-            lblOrderNumber.Name = "lblOrderNumber";
-            lblOrderNumber.TabIndex = 7;
-            lblOrderNumber.Text = "SO00000";
-            // 
-            // lblOrderDateCaption
-            // 
-            lblOrderDateCaption.AutoSize = true;
-            lblOrderDateCaption.Font = new Font("Calibri", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblOrderDateCaption.ForeColor = Color.Black;
-            lblOrderDateCaption.Location = new Point(12, 46);
-            lblOrderDateCaption.Name = "lblOrderDateCaption";
-            lblOrderDateCaption.TabIndex = 8;
-            lblOrderDateCaption.Text = "Order Date:";
-            // 
-            // lblOrderDate
-            // 
-            lblOrderDate.AutoSize = true;
-            lblOrderDate.Font = new Font("Calibri", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblOrderDate.ForeColor = Color.Black;
-            lblOrderDate.Location = new Point(125, 46);
-            lblOrderDate.Name = "lblOrderDate";
-            lblOrderDate.TabIndex = 9;
-            lblOrderDate.Text = "01/01/2026";
-            // 
-            // lblDueDateCaption
-            // 
-            lblDueDateCaption.AutoSize = true;
-            lblDueDateCaption.Font = new Font("Calibri", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblDueDateCaption.ForeColor = Color.Black;
-            lblDueDateCaption.Location = new Point(12, 67);
-            lblDueDateCaption.Name = "lblDueDateCaption";
-            lblDueDateCaption.TabIndex = 10;
-            lblDueDateCaption.Text = "Due Date:";
-            // 
-            // lblDueDate
-            // 
-            lblDueDate.AutoSize = true;
-            lblDueDate.Font = new Font("Calibri", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblDueDate.ForeColor = Color.Black;
-            lblDueDate.Location = new Point(125, 67);
-            lblDueDate.Name = "lblDueDate";
-            lblDueDate.TabIndex = 11;
-            lblDueDate.Text = "01/01/2026";
-            // 
-            // lblCustomerIDCaption
-            // 
-            lblCustomerIDCaption.AutoSize = true;
-            lblCustomerIDCaption.Font = new Font("Calibri", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblCustomerIDCaption.ForeColor = Color.Black;
-            lblCustomerIDCaption.Location = new Point(12, 88);
-            lblCustomerIDCaption.Name = "lblCustomerIDCaption";
-            lblCustomerIDCaption.TabIndex = 12;
-            lblCustomerIDCaption.Text = "Customer ID:";
             // 
             // lblCustomerID
             // 
@@ -221,8 +155,86 @@
             lblCustomerID.ForeColor = Color.Black;
             lblCustomerID.Location = new Point(125, 88);
             lblCustomerID.Name = "lblCustomerID";
+            lblCustomerID.Size = new Size(14, 15);
             lblCustomerID.TabIndex = 13;
             lblCustomerID.Text = "0";
+            // 
+            // lblCustomerIDCaption
+            // 
+            lblCustomerIDCaption.AutoSize = true;
+            lblCustomerIDCaption.Font = new Font("Calibri", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblCustomerIDCaption.ForeColor = Color.Black;
+            lblCustomerIDCaption.Location = new Point(12, 88);
+            lblCustomerIDCaption.Name = "lblCustomerIDCaption";
+            lblCustomerIDCaption.Size = new Size(77, 15);
+            lblCustomerIDCaption.TabIndex = 12;
+            lblCustomerIDCaption.Text = "Customer ID:";
+            // 
+            // lblDueDate
+            // 
+            lblDueDate.AutoSize = true;
+            lblDueDate.Font = new Font("Calibri", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblDueDate.ForeColor = Color.Black;
+            lblDueDate.Location = new Point(125, 67);
+            lblDueDate.Name = "lblDueDate";
+            lblDueDate.Size = new Size(73, 15);
+            lblDueDate.TabIndex = 11;
+            lblDueDate.Text = "01/01/2026";
+            // 
+            // lblDueDateCaption
+            // 
+            lblDueDateCaption.AutoSize = true;
+            lblDueDateCaption.Font = new Font("Calibri", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblDueDateCaption.ForeColor = Color.Black;
+            lblDueDateCaption.Location = new Point(12, 67);
+            lblDueDateCaption.Name = "lblDueDateCaption";
+            lblDueDateCaption.Size = new Size(59, 15);
+            lblDueDateCaption.TabIndex = 10;
+            lblDueDateCaption.Text = "Due Date:";
+            // 
+            // lblOrderDate
+            // 
+            lblOrderDate.AutoSize = true;
+            lblOrderDate.Font = new Font("Calibri", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblOrderDate.ForeColor = Color.Black;
+            lblOrderDate.Location = new Point(125, 46);
+            lblOrderDate.Name = "lblOrderDate";
+            lblOrderDate.Size = new Size(73, 15);
+            lblOrderDate.TabIndex = 9;
+            lblOrderDate.Text = "01/01/2026";
+            // 
+            // lblOrderDateCaption
+            // 
+            lblOrderDateCaption.AutoSize = true;
+            lblOrderDateCaption.Font = new Font("Calibri", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblOrderDateCaption.ForeColor = Color.Black;
+            lblOrderDateCaption.Location = new Point(12, 46);
+            lblOrderDateCaption.Name = "lblOrderDateCaption";
+            lblOrderDateCaption.Size = new Size(70, 15);
+            lblOrderDateCaption.TabIndex = 8;
+            lblOrderDateCaption.Text = "Order Date:";
+            // 
+            // lblOrderNumber
+            // 
+            lblOrderNumber.AutoSize = true;
+            lblOrderNumber.Font = new Font("Calibri", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblOrderNumber.ForeColor = Color.Black;
+            lblOrderNumber.Location = new Point(125, 25);
+            lblOrderNumber.Name = "lblOrderNumber";
+            lblOrderNumber.Size = new Size(57, 15);
+            lblOrderNumber.TabIndex = 7;
+            lblOrderNumber.Text = "SO00000";
+            // 
+            // lblOrderNumberCaption
+            // 
+            lblOrderNumberCaption.AutoSize = true;
+            lblOrderNumberCaption.Font = new Font("Calibri", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblOrderNumberCaption.ForeColor = Color.Black;
+            lblOrderNumberCaption.Location = new Point(12, 25);
+            lblOrderNumberCaption.Name = "lblOrderNumberCaption";
+            lblOrderNumberCaption.Size = new Size(51, 15);
+            lblOrderNumberCaption.TabIndex = 6;
+            lblOrderNumberCaption.Text = "Order #:";
             // 
             // dgvOrderLines
             // 
@@ -240,14 +252,15 @@
             dgvOrderLines.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvOrderLines.ColumnHeadersHeight = 26;
             dgvOrderLines.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.White;
-            dataGridViewCellStyle2.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(189, 215, 238);
-            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgvOrderLines.DefaultCellStyle = dataGridViewCellStyle2;
+            dgvOrderLines.Columns.AddRange(new DataGridViewColumn[] { colProductNumber, colProductName, colQty, colUnitPrice, colLineTotal });
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = Color.White;
+            dataGridViewCellStyle5.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(189, 215, 238);
+            dataGridViewCellStyle5.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+            dgvOrderLines.DefaultCellStyle = dataGridViewCellStyle5;
             dgvOrderLines.EnableHeadersVisualStyles = false;
             dgvOrderLines.GridColor = Color.FromArgb(217, 217, 217);
             dgvOrderLines.Location = new Point(12, 195);
@@ -258,7 +271,6 @@
             dgvOrderLines.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvOrderLines.Size = new Size(776, 125);
             dgvOrderLines.TabIndex = 14;
-            dgvOrderLines.Columns.AddRange(new DataGridViewColumn[] { colProductNumber, colProductName, colQty, colUnitPrice, colLineTotal });
             // 
             // colProductNumber
             // 
@@ -276,9 +288,8 @@
             // 
             // colQty
             // 
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "";
-            colQty.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleRight;
+            colQty.DefaultCellStyle = dataGridViewCellStyle2;
             colQty.HeaderText = "Qty";
             colQty.Name = "colQty";
             colQty.ReadOnly = true;
@@ -286,9 +297,9 @@
             // 
             // colUnitPrice
             // 
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Format = "N2";
-            colUnitPrice.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "N2";
+            colUnitPrice.DefaultCellStyle = dataGridViewCellStyle3;
             colUnitPrice.HeaderText = "Unit Price";
             colUnitPrice.Name = "colUnitPrice";
             colUnitPrice.ReadOnly = true;
@@ -296,9 +307,9 @@
             // 
             // colLineTotal
             // 
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "N2";
-            colLineTotal.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "N2";
+            colLineTotal.DefaultCellStyle = dataGridViewCellStyle4;
             colLineTotal.HeaderText = "Line Total";
             colLineTotal.Name = "colLineTotal";
             colLineTotal.ReadOnly = true;
@@ -310,6 +321,7 @@
             lblThankYou.Font = new Font("Calibri", 11.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
             lblThankYou.Location = new Point(12, 330);
             lblThankYou.Name = "lblThankYou";
+            lblThankYou.Size = new Size(205, 18);
             lblThankYou.TabIndex = 15;
             lblThankYou.Text = "Thank you for shopping with us!";
             // 
@@ -425,8 +437,12 @@
             // 
             // printPreviewDialog
             // 
+            printPreviewDialog.AutoScrollMargin = new Size(0, 0);
+            printPreviewDialog.AutoScrollMinSize = new Size(0, 0);
             printPreviewDialog.ClientSize = new Size(800, 600);
             printPreviewDialog.Document = printDocument;
+            printPreviewDialog.Enabled = true;
+            printPreviewDialog.Icon = (Icon)resources.GetObject("printPreviewDialog.Icon");
             printPreviewDialog.Name = "printPreviewDialog";
             printPreviewDialog.Visible = false;
             // 
@@ -459,14 +475,14 @@
             Controls.Add(lblStoreName);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "frmReceipt";
-            StartPosition = FormStartPosition.CenterScreen;
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Sales Receipt";
             Load += frmReceipt_Load;
-            ((System.ComponentModel.ISupportInitialize)dgvOrderLines).EndInit();
             grpBillTo.ResumeLayout(false);
             grpBillTo.PerformLayout();
             grpOrderInfo.ResumeLayout(false);
             grpOrderInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvOrderLines).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
