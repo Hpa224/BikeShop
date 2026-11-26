@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReceipt));
             lblStoreName = new Label();
             lblReceiptTitle = new Label();
@@ -40,10 +40,6 @@
             lblBillToAddress = new Label();
             lblCustomerName = new Label();
             grpOrderInfo = new GroupBox();
-            lblCustomerID = new Label();
-            lblCustomerIDCaption = new Label();
-            lblDueDate = new Label();
-            lblDueDateCaption = new Label();
             lblOrderDate = new Label();
             lblOrderDateCaption = new Label();
             lblOrderNumber = new Label();
@@ -61,8 +57,6 @@
             lblTaxValue = new Label();
             lblTotal = new Label();
             lblTotalValue = new Label();
-            btnPrint = new Button();
-            btnSave = new Button();
             btnClose = new Button();
             printDocument = new System.Drawing.Printing.PrintDocument();
             printPreviewDialog = new PrintPreviewDialog();
@@ -131,10 +125,6 @@
             // grpOrderInfo
             // 
             grpOrderInfo.BackColor = Color.FromArgb(242, 242, 242);
-            grpOrderInfo.Controls.Add(lblCustomerID);
-            grpOrderInfo.Controls.Add(lblCustomerIDCaption);
-            grpOrderInfo.Controls.Add(lblDueDate);
-            grpOrderInfo.Controls.Add(lblDueDateCaption);
             grpOrderInfo.Controls.Add(lblOrderDate);
             grpOrderInfo.Controls.Add(lblOrderDateCaption);
             grpOrderInfo.Controls.Add(lblOrderNumber);
@@ -148,56 +138,12 @@
             grpOrderInfo.TabStop = false;
             grpOrderInfo.Text = "Order Information";
             // 
-            // lblCustomerID
-            // 
-            lblCustomerID.AutoSize = true;
-            lblCustomerID.Font = new Font("Calibri", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblCustomerID.ForeColor = Color.Black;
-            lblCustomerID.Location = new Point(125, 88);
-            lblCustomerID.Name = "lblCustomerID";
-            lblCustomerID.Size = new Size(14, 15);
-            lblCustomerID.TabIndex = 13;
-            lblCustomerID.Text = "0";
-            // 
-            // lblCustomerIDCaption
-            // 
-            lblCustomerIDCaption.AutoSize = true;
-            lblCustomerIDCaption.Font = new Font("Calibri", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblCustomerIDCaption.ForeColor = Color.Black;
-            lblCustomerIDCaption.Location = new Point(12, 88);
-            lblCustomerIDCaption.Name = "lblCustomerIDCaption";
-            lblCustomerIDCaption.Size = new Size(77, 15);
-            lblCustomerIDCaption.TabIndex = 12;
-            lblCustomerIDCaption.Text = "Customer ID:";
-            // 
-            // lblDueDate
-            // 
-            lblDueDate.AutoSize = true;
-            lblDueDate.Font = new Font("Calibri", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblDueDate.ForeColor = Color.Black;
-            lblDueDate.Location = new Point(125, 67);
-            lblDueDate.Name = "lblDueDate";
-            lblDueDate.Size = new Size(73, 15);
-            lblDueDate.TabIndex = 11;
-            lblDueDate.Text = "01/01/2026";
-            // 
-            // lblDueDateCaption
-            // 
-            lblDueDateCaption.AutoSize = true;
-            lblDueDateCaption.Font = new Font("Calibri", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblDueDateCaption.ForeColor = Color.Black;
-            lblDueDateCaption.Location = new Point(12, 67);
-            lblDueDateCaption.Name = "lblDueDateCaption";
-            lblDueDateCaption.Size = new Size(59, 15);
-            lblDueDateCaption.TabIndex = 10;
-            lblDueDateCaption.Text = "Due Date:";
-            // 
             // lblOrderDate
             // 
             lblOrderDate.AutoSize = true;
             lblOrderDate.Font = new Font("Calibri", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblOrderDate.ForeColor = Color.Black;
-            lblOrderDate.Location = new Point(125, 46);
+            lblOrderDate.Location = new Point(125, 47);
             lblOrderDate.Name = "lblOrderDate";
             lblOrderDate.Size = new Size(73, 15);
             lblOrderDate.TabIndex = 9;
@@ -208,7 +154,7 @@
             lblOrderDateCaption.AutoSize = true;
             lblOrderDateCaption.Font = new Font("Calibri", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblOrderDateCaption.ForeColor = Color.Black;
-            lblOrderDateCaption.Location = new Point(12, 46);
+            lblOrderDateCaption.Location = new Point(12, 47);
             lblOrderDateCaption.Name = "lblOrderDateCaption";
             lblOrderDateCaption.Size = new Size(70, 15);
             lblOrderDateCaption.TabIndex = 8;
@@ -242,25 +188,25 @@
             dgvOrderLines.AllowUserToDeleteRows = false;
             dgvOrderLines.AllowUserToResizeRows = false;
             dgvOrderLines.BackgroundColor = Color.White;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(64, 64, 64);
-            dataGridViewCellStyle1.Font = new Font("Calibri", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(64, 64, 64);
-            dataGridViewCellStyle1.SelectionForeColor = Color.White;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvOrderLines.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle6.Font = new Font("Calibri", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle6.ForeColor = Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle6.SelectionForeColor = Color.White;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dgvOrderLines.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dgvOrderLines.ColumnHeadersHeight = 26;
             dgvOrderLines.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgvOrderLines.Columns.AddRange(new DataGridViewColumn[] { colProductNumber, colProductName, colQty, colUnitPrice, colLineTotal });
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.White;
-            dataGridViewCellStyle5.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle5.ForeColor = Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(189, 215, 238);
-            dataGridViewCellStyle5.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            dgvOrderLines.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = Color.White;
+            dataGridViewCellStyle10.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle10.ForeColor = Color.Black;
+            dataGridViewCellStyle10.SelectionBackColor = Color.FromArgb(189, 215, 238);
+            dataGridViewCellStyle10.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.False;
+            dgvOrderLines.DefaultCellStyle = dataGridViewCellStyle10;
             dgvOrderLines.EnableHeadersVisualStyles = false;
             dgvOrderLines.GridColor = Color.FromArgb(217, 217, 217);
             dgvOrderLines.Location = new Point(12, 195);
@@ -288,8 +234,8 @@
             // 
             // colQty
             // 
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleRight;
-            colQty.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleRight;
+            colQty.DefaultCellStyle = dataGridViewCellStyle7;
             colQty.HeaderText = "Qty";
             colQty.Name = "colQty";
             colQty.ReadOnly = true;
@@ -297,9 +243,9 @@
             // 
             // colUnitPrice
             // 
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "N2";
-            colUnitPrice.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle8.Format = "N2";
+            colUnitPrice.DefaultCellStyle = dataGridViewCellStyle8;
             colUnitPrice.HeaderText = "Unit Price";
             colUnitPrice.Name = "colUnitPrice";
             colUnitPrice.ReadOnly = true;
@@ -307,9 +253,9 @@
             // 
             // colLineTotal
             // 
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Format = "N2";
-            colLineTotal.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle9.Format = "N2";
+            colLineTotal.DefaultCellStyle = dataGridViewCellStyle9;
             colLineTotal.HeaderText = "Line Total";
             colLineTotal.Name = "colLineTotal";
             colLineTotal.ReadOnly = true;
@@ -385,36 +331,6 @@
             lblTotalValue.Text = "$0.00";
             lblTotalValue.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // btnPrint
-            // 
-            btnPrint.BackColor = Color.FromArgb(31, 78, 121);
-            btnPrint.FlatAppearance.BorderSize = 0;
-            btnPrint.FlatStyle = FlatStyle.Flat;
-            btnPrint.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnPrint.ForeColor = Color.White;
-            btnPrint.Location = new Point(12, 393);
-            btnPrint.Name = "btnPrint";
-            btnPrint.Size = new Size(145, 45);
-            btnPrint.TabIndex = 22;
-            btnPrint.Text = "Print";
-            btnPrint.UseVisualStyleBackColor = false;
-            btnPrint.Click += btnPrint_Click;
-            // 
-            // btnSave
-            // 
-            btnSave.BackColor = Color.FromArgb(46, 125, 60);
-            btnSave.FlatAppearance.BorderSize = 0;
-            btnSave.FlatStyle = FlatStyle.Flat;
-            btnSave.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSave.ForeColor = Color.White;
-            btnSave.Location = new Point(167, 393);
-            btnSave.Name = "btnSave";
-            btnSave.Size = new Size(145, 45);
-            btnSave.TabIndex = 23;
-            btnSave.Text = "Save";
-            btnSave.UseVisualStyleBackColor = false;
-            btnSave.Click += btnSave_Click;
-            // 
             // btnClose
             // 
             btnClose.BackColor = Color.FromArgb(127, 127, 127);
@@ -433,7 +349,6 @@
             // printDocument
             // 
             printDocument.DocumentName = "Sales Receipt";
-            printDocument.PrintPage += printDocument_PrintPage;
             // 
             // printPreviewDialog
             // 
@@ -459,8 +374,6 @@
             BackColor = Color.White;
             ClientSize = new Size(800, 450);
             Controls.Add(btnClose);
-            Controls.Add(btnSave);
-            Controls.Add(btnPrint);
             Controls.Add(lblTotalValue);
             Controls.Add(lblTotal);
             Controls.Add(lblTaxValue);
@@ -499,10 +412,6 @@
         private Label lblOrderNumber;
         private Label lblOrderDateCaption;
         private Label lblOrderDate;
-        private Label lblDueDateCaption;
-        private Label lblDueDate;
-        private Label lblCustomerIDCaption;
-        private Label lblCustomerID;
         private DataGridView dgvOrderLines;
         private DataGridViewTextBoxColumn colProductNumber;
         private DataGridViewTextBoxColumn colProductName;
@@ -516,8 +425,6 @@
         private Label lblTaxValue;
         private Label lblTotal;
         private Label lblTotalValue;
-        private Button btnPrint;
-        private Button btnSave;
         private Button btnClose;
         private System.Drawing.Printing.PrintDocument printDocument;
         private PrintPreviewDialog printPreviewDialog;

@@ -108,7 +108,7 @@
             // 
             // btnExit
             // 
-            btnExit.BackColor = Color.FromArgb(127, 127, 127);
+            btnExit.BackColor = Color.FromArgb(192, 0, 0);
             btnExit.FlatAppearance.BorderSize = 0;
             btnExit.FlatStyle = FlatStyle.Flat;
             btnExit.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
