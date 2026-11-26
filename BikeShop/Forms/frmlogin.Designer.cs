@@ -126,6 +126,7 @@
             Controls.Add(lblUserName);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(4, 3, 4, 3);
+            MaximizeBox = false;
             Name = "frmlogin";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Log in Page";
