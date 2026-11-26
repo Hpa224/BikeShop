@@ -26,7 +26,7 @@ namespace BikeShop
             }
 
             //Application.Run(new frmMainMenu());
-            //Application.Run(new Error());
+            //Application.Run(new frmError());
             //Application.Run(new frmErrorDetails());
             //Application.Run(new frmReport());
             //Application.Run(new frmCustomerMaintenance());
