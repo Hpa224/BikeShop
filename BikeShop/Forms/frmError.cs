@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BikeShop.Helpers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,6 +11,7 @@ namespace BikeShop.Forms
 {
     public partial class frmError : Form
     {
+        private int? selectedErrorId = null;
         [System.Runtime.InteropServices.DllImport("gdi32.dll")]
         private static extern IntPtr CreateRoundRectRgn(
             int nLeftRect,
@@ -91,8 +93,14 @@ namespace BikeShop.Forms
                 return;
             }
 
-            frmErrorDetails errorDetails = new frmErrorDetails();
-            errorDetails.ShowDialog();
+            using var db = DatabaseHelper.CreateContext();
+            var error = db.ErrorLogs.Find(selectedErrorId.Value);
+
+            if (error != null)
+            {
+                using var form = new frmErrorDetails(error);
+                form.ShowDialog(this);
+            }
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -108,6 +116,16 @@ namespace BikeShop.Forms
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void dgvErrorLogs_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) {
+                return;
+            }
+
+            selectedErrorId = Convert.ToInt32(
+            dgvErrorLogs.Rows[e.RowIndex].Cells["colErrorLogID"].Value);
         }
     }
 }

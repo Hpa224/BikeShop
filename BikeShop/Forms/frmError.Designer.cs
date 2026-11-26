@@ -208,6 +208,7 @@
             dgvErrorLogs.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvErrorLogs.Size = new Size(770, 150);
             dgvErrorLogs.TabIndex = 11;
+            dgvErrorLogs.CellClick += dgvErrorLogs_CellClick;
             dgvErrorLogs.CellContentClick += dgvErrorLogs_CellContentClick;
             // 
             // dtpStartDate
