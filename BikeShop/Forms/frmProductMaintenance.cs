@@ -46,6 +46,14 @@ namespace BikeShop.Forms
             btnClear.Region = System.Drawing.Region.FromHrgn(
                 CreateRoundRectRgn(0, 0, btnClear.Width, btnClear.Height, 15, 15)
             );
+
+            btnSearch.Region = System.Drawing.Region.FromHrgn(
+                CreateRoundRectRgn(0, 0, btnSearch.Width, btnSearch.Height, 15, 15)
+            );
+
+            btnBack.Region = System.Drawing.Region.FromHrgn(
+                CreateRoundRectRgn(0, 0, btnBack.Width, btnBack.Height, 15, 15)
+            );
         }
         private void LoadCategories()
         {
