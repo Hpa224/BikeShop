@@ -31,30 +31,29 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             btnExportCSV = new Button();
-            btnPrintReport = new Button();
             dtpEndDate = new DateTimePicker();
             dtpStartDate = new DateTimePicker();
             dgvSalesReport = new DataGridView();
-            btnBack = new Button();
-            lblPreview = new Label();
-            btnGenerate = new Button();
-            label1 = new Label();
-            lblDate = new Label();
-            pnlTotalSales = new Panel();
-            label2 = new Label();
-            lblTotalSales = new Label();
-            panel1 = new Panel();
-            label3 = new Label();
-            lblOrders = new Label();
-            panel2 = new Panel();
-            label5 = new Label();
-            lblItemsSold = new Label();
             colSalesOrderNumber = new DataGridViewTextBoxColumn();
             colOrderDate = new DataGridViewTextBoxColumn();
             colProductNumber = new DataGridViewTextBoxColumn();
             colProductName = new DataGridViewTextBoxColumn();
             colOrderQty = new DataGridViewTextBoxColumn();
             colLineTotal = new DataGridViewTextBoxColumn();
+            btnBack = new Button();
+            lblPreview = new Label();
+            btnGenerate = new Button();
+            label1 = new Label();
+            lblDate = new Label();
+            pnlTotalSales = new Panel();
+            lblTotalSalesAmount = new Label();
+            lblTotalSales = new Label();
+            panel1 = new Panel();
+            lblOrdersAmount = new Label();
+            lblOrders = new Label();
+            panel2 = new Panel();
+            lblItemsSoldAmount = new Label();
+            lblItemsSold = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvSalesReport).BeginInit();
             pnlTotalSales.SuspendLayout();
             panel1.SuspendLayout();
@@ -68,28 +67,13 @@
             btnExportCSV.FlatStyle = FlatStyle.Flat;
             btnExportCSV.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnExportCSV.ForeColor = Color.White;
-            btnExportCSV.Location = new Point(183, 389);
+            btnExportCSV.Location = new Point(12, 408);
             btnExportCSV.Name = "btnExportCSV";
             btnExportCSV.Size = new Size(120, 30);
             btnExportCSV.TabIndex = 31;
             btnExportCSV.Text = "Export CSV";
             btnExportCSV.UseVisualStyleBackColor = false;
             btnExportCSV.Click += btnExportCSV_Click;
-            // 
-            // btnPrintReport
-            // 
-            btnPrintReport.BackColor = Color.FromArgb(31, 78, 121);
-            btnPrintReport.FlatAppearance.BorderSize = 0;
-            btnPrintReport.FlatStyle = FlatStyle.Flat;
-            btnPrintReport.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnPrintReport.ForeColor = Color.White;
-            btnPrintReport.Location = new Point(12, 389);
-            btnPrintReport.Name = "btnPrintReport";
-            btnPrintReport.Size = new Size(120, 30);
-            btnPrintReport.TabIndex = 29;
-            btnPrintReport.Text = "Print Report";
-            btnPrintReport.UseVisualStyleBackColor = false;
-            btnPrintReport.Click += btnPrintReport_Click;
             // 
             // dtpEndDate
             // 
@@ -108,6 +92,7 @@
             dtpStartDate.Name = "dtpStartDate";
             dtpStartDate.Size = new Size(116, 31);
             dtpStartDate.TabIndex = 27;
+            dtpStartDate.Value = new DateTime(2000, 1, 1, 0, 0, 0, 0);
             // 
             // dgvSalesReport
             // 
@@ -116,14 +101,70 @@
             dgvSalesReport.AllowUserToResizeRows = false;
             dgvSalesReport.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvSalesReport.Columns.AddRange(new DataGridViewColumn[] { colSalesOrderNumber, colOrderDate, colProductNumber, colProductName, colOrderQty, colLineTotal });
-            dgvSalesReport.Location = new Point(12, 219);
+            dgvSalesReport.Location = new Point(12, 230);
             dgvSalesReport.MultiSelect = false;
             dgvSalesReport.Name = "dgvSalesReport";
             dgvSalesReport.ReadOnly = true;
             dgvSalesReport.RowHeadersVisible = false;
             dgvSalesReport.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvSalesReport.Size = new Size(770, 150);
+            dgvSalesReport.Size = new Size(776, 150);
             dgvSalesReport.TabIndex = 26;
+            dgvSalesReport.CellContentClick += dgvSalesReport_CellContentClick;
+            // 
+            // colSalesOrderNumber
+            // 
+            colSalesOrderNumber.DataPropertyName = "SalesOrderNumber";
+            colSalesOrderNumber.FillWeight = 65.18906F;
+            colSalesOrderNumber.HeaderText = "Order #";
+            colSalesOrderNumber.Name = "colSalesOrderNumber";
+            colSalesOrderNumber.ReadOnly = true;
+            // 
+            // colOrderDate
+            // 
+            colOrderDate.DataPropertyName = "OrderDate";
+            dataGridViewCellStyle1.Format = "MM/dd/yyyy HH:mm";
+            colOrderDate.DefaultCellStyle = dataGridViewCellStyle1;
+            colOrderDate.FillWeight = 85.01532F;
+            colOrderDate.HeaderText = "Order Date";
+            colOrderDate.Name = "colOrderDate";
+            colOrderDate.ReadOnly = true;
+            colOrderDate.Width = 130;
+            // 
+            // colProductNumber
+            // 
+            colProductNumber.DataPropertyName = "ProductNumber";
+            colProductNumber.FillWeight = 102.256683F;
+            colProductNumber.HeaderText = "Product #";
+            colProductNumber.Name = "colProductNumber";
+            colProductNumber.ReadOnly = true;
+            colProductNumber.Width = 157;
+            // 
+            // colProductName
+            // 
+            colProductName.DataPropertyName = "Name";
+            colProductName.FillWeight = 117.250137F;
+            colProductName.HeaderText = "Product Name";
+            colProductName.Name = "colProductName";
+            colProductName.ReadOnly = true;
+            colProductName.Width = 180;
+            // 
+            // colOrderQty
+            // 
+            colOrderQty.DataPropertyName = "OrderQty";
+            colOrderQty.FillWeight = 130.288788F;
+            colOrderQty.HeaderText = "Quantity";
+            colOrderQty.Name = "colOrderQty";
+            colOrderQty.ReadOnly = true;
+            colOrderQty.Width = 200;
+            // 
+            // colLineTotal
+            // 
+            colLineTotal.DataPropertyName = "LineTotal";
+            dataGridViewCellStyle2.Format = "C2";
+            colLineTotal.DefaultCellStyle = dataGridViewCellStyle2;
+            colLineTotal.HeaderText = "Line Total";
+            colLineTotal.Name = "colLineTotal";
+            colLineTotal.ReadOnly = true;
             // 
             // btnBack
             // 
@@ -132,7 +173,7 @@
             btnBack.FlatStyle = FlatStyle.Flat;
             btnBack.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnBack.ForeColor = Color.White;
-            btnBack.Location = new Point(703, 389);
+            btnBack.Location = new Point(703, 408);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(85, 30);
             btnBack.TabIndex = 30;
@@ -145,7 +186,7 @@
             lblPreview.AutoSize = true;
             lblPreview.Font = new Font("Calibri", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblPreview.ForeColor = Color.FromArgb(31, 78, 121);
-            lblPreview.Location = new Point(12, 190);
+            lblPreview.Location = new Point(12, 201);
             lblPreview.Name = "lblPreview";
             lblPreview.Size = new Size(196, 26);
             lblPreview.TabIndex = 25;
@@ -190,23 +231,23 @@
             // 
             pnlTotalSales.BackColor = SystemColors.ButtonFace;
             pnlTotalSales.BorderStyle = BorderStyle.FixedSingle;
-            pnlTotalSales.Controls.Add(label2);
+            pnlTotalSales.Controls.Add(lblTotalSalesAmount);
             pnlTotalSales.Controls.Add(lblTotalSales);
             pnlTotalSales.Location = new Point(12, 97);
             pnlTotalSales.Name = "pnlTotalSales";
             pnlTotalSales.Size = new Size(200, 90);
             pnlTotalSales.TabIndex = 32;
             // 
-            // label2
+            // lblTotalSalesAmount
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Calibri", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.FromArgb(31, 78, 121);
-            label2.Location = new Point(13, 49);
-            label2.Name = "label2";
-            label2.Size = new Size(67, 29);
-            label2.TabIndex = 1;
-            label2.Text = "$0.00";
+            lblTotalSalesAmount.AutoSize = true;
+            lblTotalSalesAmount.Font = new Font("Calibri", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTotalSalesAmount.ForeColor = Color.FromArgb(31, 78, 121);
+            lblTotalSalesAmount.Location = new Point(13, 49);
+            lblTotalSalesAmount.Name = "lblTotalSalesAmount";
+            lblTotalSalesAmount.Size = new Size(67, 29);
+            lblTotalSalesAmount.TabIndex = 1;
+            lblTotalSalesAmount.Text = "$0.00";
             // 
             // lblTotalSales
             // 
@@ -223,23 +264,23 @@
             // 
             panel1.BackColor = SystemColors.ButtonFace;
             panel1.BorderStyle = BorderStyle.FixedSingle;
-            panel1.Controls.Add(label3);
+            panel1.Controls.Add(lblOrdersAmount);
             panel1.Controls.Add(lblOrders);
             panel1.Location = new Point(305, 97);
             panel1.Name = "panel1";
             panel1.Size = new Size(200, 90);
             panel1.TabIndex = 33;
             // 
-            // label3
+            // lblOrdersAmount
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Calibri", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.FromArgb(31, 78, 121);
-            label3.Location = new Point(13, 49);
-            label3.Name = "label3";
-            label3.Size = new Size(25, 29);
-            label3.TabIndex = 1;
-            label3.Text = "0";
+            lblOrdersAmount.AutoSize = true;
+            lblOrdersAmount.Font = new Font("Calibri", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblOrdersAmount.ForeColor = Color.FromArgb(31, 78, 121);
+            lblOrdersAmount.Location = new Point(13, 49);
+            lblOrdersAmount.Name = "lblOrdersAmount";
+            lblOrdersAmount.Size = new Size(25, 29);
+            lblOrdersAmount.TabIndex = 1;
+            lblOrdersAmount.Text = "0";
             // 
             // lblOrders
             // 
@@ -256,23 +297,23 @@
             // 
             panel2.BackColor = SystemColors.ButtonFace;
             panel2.BorderStyle = BorderStyle.FixedSingle;
-            panel2.Controls.Add(label5);
+            panel2.Controls.Add(lblItemsSoldAmount);
             panel2.Controls.Add(lblItemsSold);
             panel2.Location = new Point(582, 97);
             panel2.Name = "panel2";
             panel2.Size = new Size(200, 90);
             panel2.TabIndex = 34;
             // 
-            // label5
+            // lblItemsSoldAmount
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Calibri", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.FromArgb(31, 78, 121);
-            label5.Location = new Point(13, 49);
-            label5.Name = "label5";
-            label5.Size = new Size(25, 29);
-            label5.TabIndex = 1;
-            label5.Text = "0";
+            lblItemsSoldAmount.AutoSize = true;
+            lblItemsSoldAmount.Font = new Font("Calibri", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblItemsSoldAmount.ForeColor = Color.FromArgb(31, 78, 121);
+            lblItemsSoldAmount.Location = new Point(13, 49);
+            lblItemsSoldAmount.Name = "lblItemsSoldAmount";
+            lblItemsSoldAmount.Size = new Size(25, 29);
+            lblItemsSoldAmount.TabIndex = 1;
+            lblItemsSoldAmount.Text = "0";
             // 
             // lblItemsSold
             // 
@@ -285,61 +326,6 @@
             lblItemsSold.TabIndex = 0;
             lblItemsSold.Text = "Items Sold";
             // 
-            // colSalesOrderNumber
-            // 
-            colSalesOrderNumber.DataPropertyName = "SalesOrderNumber";
-            colSalesOrderNumber.FillWeight = 65.18906F;
-            colSalesOrderNumber.HeaderText = "Order #";
-            colSalesOrderNumber.Name = "colSalesOrderNumber";
-            colSalesOrderNumber.ReadOnly = true;
-            // 
-            // colOrderDate
-            // 
-            colOrderDate.DataPropertyName = "OrderDate";
-            dataGridViewCellStyle1.Format = "MM/dd/yyyy HH:mm";
-            colOrderDate.DefaultCellStyle = dataGridViewCellStyle1;
-            colOrderDate.FillWeight = 85.01532F;
-            colOrderDate.HeaderText = "Order Date";
-            colOrderDate.Name = "colOrderDate";
-            colOrderDate.ReadOnly = true;
-            colOrderDate.Width = 130;
-            // 
-            // colProductNumber
-            // 
-            colProductNumber.DataPropertyName = "ProductNumber";
-            colProductNumber.FillWeight = 102.256683F;
-            colProductNumber.HeaderText = "Product #";
-            colProductNumber.Name = "colProductNumber";
-            colProductNumber.ReadOnly = true;
-            colProductNumber.Width = 157;
-            // 
-            // colProductName
-            // 
-            colProductName.DataPropertyName = "ProductName";
-            colProductName.FillWeight = 117.250137F;
-            colProductName.HeaderText = "Product Name";
-            colProductName.Name = "colProductName";
-            colProductName.ReadOnly = true;
-            colProductName.Width = 180;
-            // 
-            // colOrderQty
-            // 
-            colOrderQty.DataPropertyName = "OrderQty";
-            colOrderQty.FillWeight = 130.288788F;
-            colOrderQty.HeaderText = "Quantity";
-            colOrderQty.Name = "colOrderQty";
-            colOrderQty.ReadOnly = true;
-            colOrderQty.Width = 200;
-            // 
-            // colLineTotal
-            // 
-            colLineTotal.DataPropertyName = "LineTotal";
-            dataGridViewCellStyle2.Format = "C2";
-            colLineTotal.DefaultCellStyle = dataGridViewCellStyle2;
-            colLineTotal.HeaderText = "Line Total";
-            colLineTotal.Name = "colLineTotal";
-            colLineTotal.ReadOnly = true;
-            // 
             // frmReport
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -349,7 +335,6 @@
             Controls.Add(panel1);
             Controls.Add(pnlTotalSales);
             Controls.Add(btnExportCSV);
-            Controls.Add(btnPrintReport);
             Controls.Add(dtpEndDate);
             Controls.Add(dtpStartDate);
             Controls.Add(dgvSalesReport);
@@ -359,6 +344,7 @@
             Controls.Add(label1);
             Controls.Add(lblDate);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "frmReport";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Report";
@@ -377,7 +363,6 @@
         #endregion
 
         private Button btnExportCSV;
-        private Button btnPrintReport;
         private DateTimePicker dtpEndDate;
         private DateTimePicker dtpStartDate;
         private DataGridView dgvSalesReport;
@@ -388,12 +373,12 @@
         private Label lblDate;
         private Panel pnlTotalSales;
         private Label lblTotalSales;
-        private Label label2;
+        private Label lblTotalSalesAmount;
         private Panel panel1;
-        private Label label3;
+        private Label lblOrdersAmount;
         private Label lblOrders;
         private Panel panel2;
-        private Label label5;
+        private Label lblItemsSoldAmount;
         private Label lblItemsSold;
         private DataGridViewTextBoxColumn colSalesOrderNumber;
         private DataGridViewTextBoxColumn colOrderDate;

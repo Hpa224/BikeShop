@@ -34,7 +34,7 @@
             btnSearch = new Button();
             txtSearch = new TextBox();
             lblSearch = new Label();
-            cboType = new ComboBox();
+            cboCategory = new ComboBox();
             lblSeverity = new Label();
             dgvInventory = new DataGridView();
             colProductID = new DataGridViewTextBoxColumn();
@@ -45,21 +45,26 @@
             btnDelete = new Button();
             btnUpdate = new Button();
             btnAdd = new Button();
-            panel1 = new Panel();
-            cboType2 = new ComboBox();
-            txtQuantity = new TextBox();
-            txtPrice = new TextBox();
-            txtModel = new TextBox();
-            txtBrand = new TextBox();
-            label4 = new Label();
-            label3 = new Label();
-            label2 = new Label();
-            label1 = new Label();
-            lblType = new Label();
-            lvlBikeDetails = new Label();
+            pnlDetails = new Panel();
+            txtSize = new TextBox();
+            lblSize = new Label();
+            txtColor = new TextBox();
+            lblColor = new Label();
+            cboCategory2 = new ComboBox();
+            txtListPrice = new TextBox();
+            txtStandardCost = new TextBox();
+            txtProductNumber = new TextBox();
+            txtProductName = new TextBox();
+            lblListPrice = new Label();
+            lblStandardCost = new Label();
+            lblCategory = new Label();
+            lblProductNumber = new Label();
+            lblProductName = new Label();
+            lblBikeDetails = new Label();
             btnBack = new Button();
+            btnClear = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvInventory).BeginInit();
-            panel1.SuspendLayout();
+            pnlDetails.SuspendLayout();
             SuspendLayout();
             // 
             // btnSearch
@@ -69,7 +74,7 @@
             btnSearch.FlatStyle = FlatStyle.Flat;
             btnSearch.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSearch.ForeColor = Color.White;
-            btnSearch.Location = new Point(538, 43);
+            btnSearch.Location = new Point(538, 48);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(85, 30);
             btnSearch.TabIndex = 5;
@@ -83,46 +88,47 @@
             txtSearch.Location = new Point(345, 47);
             txtSearch.MaxLength = 100;
             txtSearch.Name = "txtSearch";
+            txtSearch.PlaceholderText = "Search product name...";
             txtSearch.Size = new Size(187, 31);
             txtSearch.TabIndex = 4;
-            txtSearch.Text = "Brand or model...";
             txtSearch.TextChanged += txtSearch_TextChanged;
             // 
             // lblSearch
             // 
             lblSearch.AutoSize = true;
             lblSearch.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblSearch.Location = new Point(271, 50);
+            lblSearch.Location = new Point(271, 52);
             lblSearch.Name = "lblSearch";
             lblSearch.Size = new Size(68, 23);
             lblSearch.TabIndex = 3;
             lblSearch.Text = "Search:";
             // 
-            // cboType
+            // cboCategory
             // 
-            cboType.DropDownStyle = ComboBoxStyle.DropDownList;
-            cboType.Font = new Font("Calibri", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cboType.FormattingEnabled = true;
-            cboType.Location = new Point(70, 47);
-            cboType.Name = "cboType";
-            cboType.Size = new Size(155, 31);
-            cboType.TabIndex = 11;
+            cboCategory.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboCategory.Font = new Font("Calibri", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cboCategory.FormattingEnabled = true;
+            cboCategory.Location = new Point(105, 49);
+            cboCategory.Name = "cboCategory";
+            cboCategory.Size = new Size(155, 31);
+            cboCategory.TabIndex = 0;
             // 
             // lblSeverity
             // 
             lblSeverity.AutoSize = true;
             lblSeverity.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblSeverity.Location = new Point(12, 50);
+            lblSeverity.Location = new Point(12, 52);
             lblSeverity.Name = "lblSeverity";
-            lblSeverity.Size = new Size(52, 23);
+            lblSeverity.Size = new Size(86, 23);
             lblSeverity.TabIndex = 10;
-            lblSeverity.Text = "Type:";
+            lblSeverity.Text = "Category:";
             // 
             // dgvInventory
             // 
             dgvInventory.AllowUserToAddRows = false;
             dgvInventory.AllowUserToDeleteRows = false;
             dgvInventory.AllowUserToResizeRows = false;
+            dgvInventory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvInventory.BackgroundColor = Color.White;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = Color.FromArgb(64, 64, 64);
@@ -151,16 +157,18 @@
             dgvInventory.ReadOnly = true;
             dgvInventory.RowHeadersVisible = false;
             dgvInventory.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvInventory.Size = new Size(469, 208);
+            dgvInventory.Size = new Size(469, 294);
             dgvInventory.TabIndex = 36;
+            dgvInventory.CellClick += dgvInventory_CellClick;
+            dgvInventory.CellContentClick += dgvInventory_CellContentClick;
             // 
             // colProductID
             // 
             colProductID.DataPropertyName = "ProductId";
+            colProductID.FillWeight = 50F;
             colProductID.HeaderText = "ID";
             colProductID.Name = "colProductID";
             colProductID.ReadOnly = true;
-            colProductID.Width = 60;
             // 
             // colName
             // 
@@ -168,7 +176,6 @@
             colName.HeaderText = "Name";
             colName.Name = "colName";
             colName.ReadOnly = true;
-            colName.Width = 210;
             // 
             // colProductNumber
             // 
@@ -176,7 +183,6 @@
             colProductNumber.HeaderText = "Product No.";
             colProductNumber.Name = "colProductNumber";
             colProductNumber.ReadOnly = true;
-            colProductNumber.Width = 130;
             // 
             // colCategory
             // 
@@ -195,7 +201,6 @@
             colPrice.HeaderText = "Price";
             colPrice.Name = "colPrice";
             colPrice.ReadOnly = true;
-            colPrice.Width = 90;
             // 
             // btnDelete
             // 
@@ -204,7 +209,7 @@
             btnDelete.FlatStyle = FlatStyle.Flat;
             btnDelete.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnDelete.ForeColor = Color.White;
-            btnDelete.Location = new Point(213, 406);
+            btnDelete.Location = new Point(201, 413);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(90, 32);
             btnDelete.TabIndex = 39;
@@ -219,7 +224,7 @@
             btnUpdate.FlatStyle = FlatStyle.Flat;
             btnUpdate.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnUpdate.ForeColor = Color.White;
-            btnUpdate.Location = new Point(113, 406);
+            btnUpdate.Location = new Point(105, 413);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(90, 32);
             btnUpdate.TabIndex = 38;
@@ -234,7 +239,7 @@
             btnAdd.FlatStyle = FlatStyle.Flat;
             btnAdd.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAdd.ForeColor = Color.White;
-            btnAdd.Location = new Point(13, 406);
+            btnAdd.Location = new Point(9, 413);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(90, 32);
             btnAdd.TabIndex = 37;
@@ -242,131 +247,174 @@
             btnAdd.UseVisualStyleBackColor = false;
             btnAdd.Click += btnAdd_Click;
             // 
-            // panel1
+            // pnlDetails
             // 
-            panel1.Controls.Add(cboType2);
-            panel1.Controls.Add(txtQuantity);
-            panel1.Controls.Add(txtPrice);
-            panel1.Controls.Add(txtModel);
-            panel1.Controls.Add(txtBrand);
-            panel1.Controls.Add(label4);
-            panel1.Controls.Add(label3);
-            panel1.Controls.Add(label2);
-            panel1.Controls.Add(label1);
-            panel1.Controls.Add(lblType);
-            panel1.Controls.Add(lvlBikeDetails);
-            panel1.Location = new Point(513, 113);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(275, 294);
-            panel1.TabIndex = 40;
+            pnlDetails.Controls.Add(txtSize);
+            pnlDetails.Controls.Add(lblSize);
+            pnlDetails.Controls.Add(txtColor);
+            pnlDetails.Controls.Add(lblColor);
+            pnlDetails.Controls.Add(cboCategory2);
+            pnlDetails.Controls.Add(txtListPrice);
+            pnlDetails.Controls.Add(txtStandardCost);
+            pnlDetails.Controls.Add(txtProductNumber);
+            pnlDetails.Controls.Add(txtProductName);
+            pnlDetails.Controls.Add(lblListPrice);
+            pnlDetails.Controls.Add(lblStandardCost);
+            pnlDetails.Controls.Add(lblCategory);
+            pnlDetails.Controls.Add(lblProductNumber);
+            pnlDetails.Controls.Add(lblProductName);
+            pnlDetails.Location = new Point(487, 113);
+            pnlDetails.Name = "pnlDetails";
+            pnlDetails.Size = new Size(310, 294);
+            pnlDetails.TabIndex = 40;
             // 
-            // cboType2
+            // txtSize
             // 
-            cboType2.DropDownStyle = ComboBoxStyle.DropDownList;
-            cboType2.Font = new Font("Calibri", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cboType2.FormattingEnabled = true;
-            cboType2.Location = new Point(118, 129);
-            cboType2.Name = "cboType2";
-            cboType2.Size = new Size(147, 31);
-            cboType2.TabIndex = 41;
+            txtSize.Font = new Font("Calibri", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtSize.Location = new Point(155, 244);
+            txtSize.MaxLength = 5;
+            txtSize.Name = "txtSize";
+            txtSize.Size = new Size(146, 31);
+            txtSize.TabIndex = 53;
             // 
-            // txtQuantity
+            // lblSize
             // 
-            txtQuantity.Font = new Font("Calibri", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtQuantity.Location = new Point(118, 200);
-            txtQuantity.MaxLength = 5;
-            txtQuantity.Name = "txtQuantity";
-            txtQuantity.Size = new Size(147, 31);
-            txtQuantity.TabIndex = 49;
+            lblSize.AutoSize = true;
+            lblSize.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblSize.Location = new Point(102, 252);
+            lblSize.Name = "lblSize";
+            lblSize.Size = new Size(47, 23);
+            lblSize.TabIndex = 52;
+            lblSize.Text = "Size:";
             // 
-            // txtPrice
+            // txtColor
             // 
-            txtPrice.Font = new Font("Calibri", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtPrice.Location = new Point(118, 166);
-            txtPrice.MaxLength = 10;
-            txtPrice.Name = "txtPrice";
-            txtPrice.Size = new Size(147, 31);
-            txtPrice.TabIndex = 48;
+            txtColor.Font = new Font("Calibri", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtColor.Location = new Point(155, 207);
+            txtColor.MaxLength = 15;
+            txtColor.Name = "txtColor";
+            txtColor.Size = new Size(146, 31);
+            txtColor.TabIndex = 51;
             // 
-            // txtModel
+            // lblColor
             // 
-            txtModel.Font = new Font("Calibri", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtModel.Location = new Point(118, 92);
-            txtModel.MaxLength = 100;
-            txtModel.Name = "txtModel";
-            txtModel.Size = new Size(147, 31);
-            txtModel.TabIndex = 47;
+            lblColor.AutoSize = true;
+            lblColor.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblColor.Location = new Point(92, 215);
+            lblColor.Name = "lblColor";
+            lblColor.Size = new Size(57, 23);
+            lblColor.TabIndex = 50;
+            lblColor.Text = "Color:";
             // 
-            // txtBrand
+            // cboCategory2
             // 
-            txtBrand.Font = new Font("Calibri", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtBrand.Location = new Point(118, 52);
-            txtBrand.MaxLength = 100;
-            txtBrand.Name = "txtBrand";
-            txtBrand.Size = new Size(147, 31);
-            txtBrand.TabIndex = 41;
+            cboCategory2.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboCategory2.Font = new Font("Calibri", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cboCategory2.FormattingEnabled = true;
+            cboCategory2.Location = new Point(155, 99);
+            cboCategory2.Name = "cboCategory2";
+            cboCategory2.Size = new Size(146, 31);
+            cboCategory2.TabIndex = 41;
             // 
-            // label4
+            // txtListPrice
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(28, 203);
-            label4.Name = "label4";
-            label4.Size = new Size(84, 23);
-            label4.TabIndex = 46;
-            label4.Text = "Quantity:";
+            txtListPrice.Font = new Font("Calibri", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtListPrice.Location = new Point(155, 170);
+            txtListPrice.MaxLength = 15;
+            txtListPrice.Name = "txtListPrice";
+            txtListPrice.Size = new Size(146, 31);
+            txtListPrice.TabIndex = 49;
+            txtListPrice.TextChanged += txtListPrice_TextChanged;
             // 
-            // label3
+            // txtStandardCost
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(28, 169);
-            label3.Name = "label3";
-            label3.Size = new Size(55, 23);
-            label3.TabIndex = 45;
-            label3.Text = "Price:";
-            label3.Click += label3_Click;
+            txtStandardCost.Font = new Font("Calibri", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtStandardCost.Location = new Point(155, 136);
+            txtStandardCost.MaxLength = 10;
+            txtStandardCost.Name = "txtStandardCost";
+            txtStandardCost.Size = new Size(146, 31);
+            txtStandardCost.TabIndex = 48;
             // 
-            // label2
+            // txtProductNumber
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(28, 132);
-            label2.Name = "label2";
-            label2.Size = new Size(52, 23);
-            label2.TabIndex = 44;
-            label2.Text = "Type:";
+            txtProductNumber.Font = new Font("Calibri", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtProductNumber.Location = new Point(155, 62);
+            txtProductNumber.MaxLength = 25;
+            txtProductNumber.Name = "txtProductNumber";
+            txtProductNumber.Size = new Size(146, 31);
+            txtProductNumber.TabIndex = 47;
             // 
-            // label1
+            // txtProductName
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(28, 92);
-            label1.Name = "label1";
-            label1.Size = new Size(67, 23);
-            label1.TabIndex = 43;
-            label1.Text = "Model:";
+            txtProductName.Font = new Font("Calibri", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtProductName.Location = new Point(155, 17);
+            txtProductName.MaxLength = 50;
+            txtProductName.Name = "txtProductName";
+            txtProductName.Size = new Size(146, 31);
+            txtProductName.TabIndex = 41;
             // 
-            // lblType
+            // lblListPrice
             // 
-            lblType.AutoSize = true;
-            lblType.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblType.Location = new Point(28, 55);
-            lblType.Name = "lblType";
-            lblType.Size = new Size(62, 23);
-            lblType.TabIndex = 42;
-            lblType.Text = "Brand:";
+            lblListPrice.AutoSize = true;
+            lblListPrice.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblListPrice.Location = new Point(62, 178);
+            lblListPrice.Name = "lblListPrice";
+            lblListPrice.Size = new Size(87, 23);
+            lblListPrice.TabIndex = 46;
+            lblListPrice.Text = "List Price:";
             // 
-            // lvlBikeDetails
+            // lblStandardCost
             // 
-            lvlBikeDetails.AutoSize = true;
-            lvlBikeDetails.Font = new Font("Calibri", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lvlBikeDetails.ForeColor = Color.FromArgb(31, 78, 121);
-            lvlBikeDetails.Location = new Point(25, 10);
-            lvlBikeDetails.Name = "lvlBikeDetails";
-            lvlBikeDetails.Size = new Size(113, 26);
-            lvlBikeDetails.TabIndex = 41;
-            lvlBikeDetails.Text = "Bike Details";
+            lblStandardCost.AutoSize = true;
+            lblStandardCost.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblStandardCost.Location = new Point(24, 144);
+            lblStandardCost.Name = "lblStandardCost";
+            lblStandardCost.Size = new Size(125, 23);
+            lblStandardCost.TabIndex = 45;
+            lblStandardCost.Text = "Standard Cost:";
+            lblStandardCost.Click += label3_Click;
+            // 
+            // lblCategory
+            // 
+            lblCategory.AutoSize = true;
+            lblCategory.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCategory.Location = new Point(63, 107);
+            lblCategory.Name = "lblCategory";
+            lblCategory.Size = new Size(86, 23);
+            lblCategory.TabIndex = 44;
+            lblCategory.Text = "Category:";
+            // 
+            // lblProductNumber
+            // 
+            lblProductNumber.AutoSize = true;
+            lblProductNumber.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblProductNumber.Location = new Point(6, 70);
+            lblProductNumber.Name = "lblProductNumber";
+            lblProductNumber.Size = new Size(146, 23);
+            lblProductNumber.TabIndex = 43;
+            lblProductNumber.Text = "Product Number:";
+            // 
+            // lblProductName
+            // 
+            lblProductName.AutoSize = true;
+            lblProductName.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblProductName.Location = new Point(24, 25);
+            lblProductName.Name = "lblProductName";
+            lblProductName.Size = new Size(128, 23);
+            lblProductName.TabIndex = 42;
+            lblProductName.Text = "Product Name:";
+            // 
+            // lblBikeDetails
+            // 
+            lblBikeDetails.AutoSize = true;
+            lblBikeDetails.Font = new Font("Calibri", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblBikeDetails.ForeColor = Color.FromArgb(31, 78, 121);
+            lblBikeDetails.Location = new Point(654, 84);
+            lblBikeDetails.Name = "lblBikeDetails";
+            lblBikeDetails.Size = new Size(143, 26);
+            lblBikeDetails.TabIndex = 41;
+            lblBikeDetails.Text = "Product Details";
+            lblBikeDetails.Click += lblBikeDetails_Click;
             // 
             // btnBack
             // 
@@ -375,7 +423,7 @@
             btnBack.FlatStyle = FlatStyle.Flat;
             btnBack.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnBack.ForeColor = Color.White;
-            btnBack.Location = new Point(703, 413);
+            btnBack.Location = new Point(712, 413);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(85, 30);
             btnBack.TabIndex = 41;
@@ -383,29 +431,47 @@
             btnBack.UseVisualStyleBackColor = false;
             btnBack.Click += btnBack_Click;
             // 
+            // btnClear
+            // 
+            btnClear.BackColor = Color.Gray;
+            btnClear.FlatAppearance.BorderSize = 0;
+            btnClear.FlatStyle = FlatStyle.Flat;
+            btnClear.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnClear.ForeColor = Color.White;
+            btnClear.Location = new Point(487, 413);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new Size(85, 30);
+            btnClear.TabIndex = 42;
+            btnClear.Text = "Clear";
+            btnClear.UseVisualStyleBackColor = false;
+            btnClear.Click += btnClear_Click;
+            // 
             // frmProductMaintenance
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnClear);
             Controls.Add(btnBack);
-            Controls.Add(panel1);
+            Controls.Add(pnlDetails);
             Controls.Add(btnDelete);
             Controls.Add(btnUpdate);
             Controls.Add(btnAdd);
             Controls.Add(dgvInventory);
-            Controls.Add(cboType);
+            Controls.Add(cboCategory);
             Controls.Add(lblSeverity);
             Controls.Add(btnSearch);
             Controls.Add(txtSearch);
             Controls.Add(lblSearch);
+            Controls.Add(lblBikeDetails);
+            MaximizeBox = false;
             Name = "frmProductMaintenance";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "Inventory";
+            Text = "Product Maintenance";
             Load += frmProductMaintenance_Load;
             ((System.ComponentModel.ISupportInitialize)dgvInventory).EndInit();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            pnlDetails.ResumeLayout(false);
+            pnlDetails.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -415,25 +481,30 @@
         private Button btnSearch;
         private TextBox txtSearch;
         private Label lblSearch;
-        private ComboBox cboType;
+        private ComboBox cboCategory;
         private Label lblSeverity;
         private DataGridView dgvInventory;
         private Button btnDelete;
         private Button btnUpdate;
         private Button btnAdd;
-        private Panel panel1;
-        private Label label4;
-        private Label label3;
-        private Label label2;
-        private Label label1;
-        private Label lblType;
-        private Label lvlBikeDetails;
-        private ComboBox cboType2;
-        private TextBox txtQuantity;
-        private TextBox txtModel;
-        private TextBox txtBrand;
-        private TextBox txtPrice;
+        private Panel pnlDetails;
+        private Label lblListPrice;
+        private Label lblStandardCost;
+        private Label lblCategory;
+        private Label lblProductNumber;
+        private Label lblProductName;
+        private Label lblBikeDetails;
+        private ComboBox cboCategory2;
+        private TextBox txtListPrice;
+        private TextBox txtProductNumber;
+        private TextBox txtProductName;
+        private TextBox txtStandardCost;
         private Button btnBack;
+        private TextBox txtColor;
+        private Label lblColor;
+        private TextBox txtSize;
+        private Label lblSize;
+        private Button btnClear;
         private DataGridViewTextBoxColumn colProductID;
         private DataGridViewTextBoxColumn colName;
         private DataGridViewTextBoxColumn colProductNumber;
