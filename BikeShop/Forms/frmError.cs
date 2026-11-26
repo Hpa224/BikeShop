@@ -38,8 +38,13 @@ namespace BikeShop.Forms
             btnDetails.Region = System.Drawing.Region.FromHrgn(
                 CreateRoundRectRgn(0, 0, btnDetails.Width, btnDetails.Height, 15, 15)
             );
+
             btnRefresh.Region = System.Drawing.Region.FromHrgn(
                 CreateRoundRectRgn(0, 0, btnRefresh.Width, btnRefresh.Height, 15, 15)
+            );
+
+            btnBack.Region = System.Drawing.Region.FromHrgn(
+                CreateRoundRectRgn(0, 0, btnBack.Width, btnBack.Height, 15, 15)
             );
         }
 
