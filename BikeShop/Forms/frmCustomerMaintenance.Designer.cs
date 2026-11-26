@@ -592,6 +592,7 @@
             Controls.Add(txtFirstName);
             Controls.Add(lblFirstName);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "frmCustomerMaintenance";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Customers";

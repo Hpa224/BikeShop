@@ -567,6 +567,7 @@
             Controls.Add(cboCustomer);
             Controls.Add(lblCustomer);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "frmNewSale";
             StartPosition = FormStartPosition.CenterParent;
             Text = "New Sale";

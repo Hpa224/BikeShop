@@ -474,6 +474,7 @@
             Controls.Add(lblReceiptTitle);
             Controls.Add(lblStoreName);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "frmReceipt";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Sales Receipt";

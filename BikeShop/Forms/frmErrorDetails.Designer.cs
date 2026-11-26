@@ -273,6 +273,7 @@
             Controls.Add(lblErrorState);
             Controls.Add(lblLine);
             Controls.Add(lblLogId);
+            MaximizeBox = false;
             Name = "frmErrorDetails";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Error Details";

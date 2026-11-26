@@ -295,6 +295,7 @@
             Controls.Add(txtSearch);
             Controls.Add(lblSearch);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "frmError";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Error";

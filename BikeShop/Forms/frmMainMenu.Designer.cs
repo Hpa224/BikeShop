@@ -134,6 +134,7 @@
             Controls.Add(btnCustomers);
             Controls.Add(btnInventory);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "frmMainMenu";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Main Menu";
