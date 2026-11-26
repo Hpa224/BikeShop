@@ -28,24 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lblNamePassword = new Label();
+            lblUserName = new Label();
             lblPassword = new Label();
-            txtNamePassword = new TextBox();
+            txtUserName = new TextBox();
             txtPassword = new TextBox();
             btnLogin = new Button();
             btnBack = new Button();
             SuspendLayout();
             // 
-            // lblNamePassword
+            // lblUserName
             // 
-            lblNamePassword.AutoSize = true;
-            lblNamePassword.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblNamePassword.Location = new Point(292, 65);
-            lblNamePassword.Margin = new Padding(4, 0, 4, 0);
-            lblNamePassword.Name = "lblNamePassword";
-            lblNamePassword.Size = new Size(216, 23);
-            lblNamePassword.TabIndex = 0;
-            lblNamePassword.Text = "Email address / Username";
+            lblUserName.AutoSize = true;
+            lblUserName.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblUserName.Location = new Point(355, 65);
+            lblUserName.Margin = new Padding(4, 0, 4, 0);
+            lblUserName.Name = "lblUserName";
+            lblUserName.Size = new Size(91, 23);
+            lblUserName.TabIndex = 0;
+            lblUserName.Text = "Username";
             // 
             // lblPassword
             // 
@@ -59,15 +59,15 @@
             lblPassword.Text = "Password";
             lblPassword.Click += lblPassword_Click;
             // 
-            // txtNamePassword
+            // txtUserName
             // 
-            txtNamePassword.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtNamePassword.Location = new Point(261, 91);
-            txtNamePassword.Margin = new Padding(4, 3, 4, 3);
-            txtNamePassword.MaxLength = 50;
-            txtNamePassword.Name = "txtNamePassword";
-            txtNamePassword.Size = new Size(278, 22);
-            txtNamePassword.TabIndex = 2;
+            txtUserName.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtUserName.Location = new Point(261, 91);
+            txtUserName.Margin = new Padding(4, 3, 4, 3);
+            txtUserName.MaxLength = 50;
+            txtUserName.Name = "txtUserName";
+            txtUserName.Size = new Size(278, 22);
+            txtUserName.TabIndex = 2;
             // 
             // txtPassword
             // 
@@ -78,6 +78,7 @@
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(278, 22);
             txtPassword.TabIndex = 3;
+            txtPassword.UseSystemPasswordChar = true;
             // 
             // btnLogin
             // 
@@ -113,15 +114,16 @@
             // 
             // frmlogin
             // 
+            AcceptButton = btnLogin;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(btnBack);
             Controls.Add(btnLogin);
             Controls.Add(txtPassword);
-            Controls.Add(txtNamePassword);
+            Controls.Add(txtUserName);
             Controls.Add(lblPassword);
-            Controls.Add(lblNamePassword);
+            Controls.Add(lblUserName);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(4, 3, 4, 3);
             Name = "frmlogin";
@@ -134,9 +136,9 @@
 
         #endregion
 
-        private Label lblNamePassword;
+        private Label lblUserName;
         private Label lblPassword;
-        private TextBox txtNamePassword;
+        private TextBox txtUserName;
         private TextBox txtPassword;
         private Button btnLogin;
         private Button btnBack;

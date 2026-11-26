@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BikeShop.Helpers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -46,9 +47,10 @@ namespace BikeShop.Forms
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(this, "Login button selected.");
+            string username = txtUserName.Text.Trim();
+            string password = txtPassword.Text;
 
-            if (string.IsNullOrWhiteSpace(txtNamePassword.Text))
+            if (string.IsNullOrWhiteSpace(txtUserName.Text))
             {
                 MessageBox.Show(this, "Please enter your username.");
                 return;
@@ -59,6 +61,20 @@ namespace BikeShop.Forms
                 MessageBox.Show(this, "Please enter your password.");
                 return;
             }
+
+            using var db = DatabaseHelper.CreateContext();
+            var user = db.Users.FirstOrDefault(u => u.Username == username);
+
+            if (user == null || !PasswordHelper.VerifyPassword(
+                password, user.PasswordHash, user.PasswordSalt))
+            {
+                MessageBox.Show(this, "Invalid username or password.");
+                return;
+            }
+
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+
         }
 
         private void btnBack_Click(object sender, EventArgs e)

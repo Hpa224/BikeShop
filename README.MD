@@ -16,4 +16,11 @@ using var db = DatabaseHelper.CreateContext();
 var customers = db.Customers.ToList();
 dgvCustomers.DataSource = customers;
 ```
-Changes in the sql .mdf file cannot be reliably merged together like normal code.
+- Changes in the sql .mdf file cannot be reliably merged together like normal code.
+- Log in functionality has been added.
+- A user table had to be added to the database to support this functionality.
+- Comment out these lines of code to bypass the log in window if testing for other windows.
+- ![Class code](BikeShop/Images/new_initializer.png)
+- Default username is "admin" and default password is "bikeshop".
+- If new user table isnt in the mdf file, please run the queries in the scripts folder 
+to create a user table and the default user.
