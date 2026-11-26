@@ -41,8 +41,31 @@ public partial class BikeStoreContext : DbContext
 
     public virtual DbSet<VProductModelCatalogDescription> VProductModelCatalogDescriptions { get; set; }
 
+    public virtual DbSet<User> Users { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<User>(entity =>
+        {
+            entity.ToTable("Users", "dbo");
+
+            entity.HasKey(e => e.UserId);
+
+            entity.HasIndex(e => e.Username).IsUnique();
+
+            entity.Property(e => e.UserId)
+                .HasColumnName("UserID");
+
+            entity.Property(e => e.Username)
+                .HasMaxLength(50);
+
+            entity.Property(e => e.PasswordHash)
+                .HasMaxLength(256);
+
+            entity.Property(e => e.PasswordSalt)
+                .HasMaxLength(128);
+        });
+
         modelBuilder.Entity<Address>(entity =>
         {
             entity.HasKey(e => e.AddressId).HasName("PK_Address_AddressID");
