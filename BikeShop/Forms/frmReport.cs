@@ -43,29 +43,37 @@ namespace BikeShop.Forms
 
         private void LoadSales(DateTime startDate, DateTime endDate)
         {
-            using var db = DatabaseHelper.CreateContext();
-            var sales = db.SalesOrderDetails
-                .Where(s => s.SalesOrder.OrderDate >= startDate && 
-                    s.SalesOrder.OrderDate < endDate    )
-                .Select(s => new
-                {
-                    s.SalesOrder.SalesOrderNumber,
-                    s.SalesOrder.OrderDate,
-                    s.Product.ProductNumber,
-                    s.Product.Name,
-                    s.OrderQty,
-                    s.LineTotal
-                })
-                .OrderBy(s => s.OrderDate)
-                .ToList();
+            try
+            {
+                using var db = DatabaseHelper.CreateContext();
+                var sales = db.SalesOrderDetails
+                    .Where(s => s.SalesOrder.OrderDate >= startDate &&
+                        s.SalesOrder.OrderDate < endDate)
+                    .Select(s => new
+                    {
+                        s.SalesOrder.SalesOrderNumber,
+                        s.SalesOrder.OrderDate,
+                        s.Product.ProductNumber,
+                        s.Product.Name,
+                        s.OrderQty,
+                        s.LineTotal
+                    })
+                    .OrderBy(s => s.OrderDate)
+                    .ToList();
 
-            dgvSalesReport.AutoGenerateColumns = false;
-            dgvSalesReport.DataSource = sales;
-            lblOrdersAmount.Text = sales.Select(s => s.SalesOrderNumber).Distinct().Count().ToString();
-            lblTotalSalesAmount.Text = sales.Sum(s => s.LineTotal).ToString("C2");
-            lblItemsSoldAmount.Text = sales.Sum(s => s.OrderQty).ToString();
-            dgvSalesReport.ClearSelection();
-            dgvSalesReport.CurrentCell = null;
+                dgvSalesReport.AutoGenerateColumns = false;
+                dgvSalesReport.DataSource = sales;
+                lblOrdersAmount.Text = sales.Select(s => s.SalesOrderNumber).Distinct().Count().ToString();
+                lblTotalSalesAmount.Text = sales.Sum(s => s.LineTotal).ToString("C2");
+                lblItemsSoldAmount.Text = sales.Sum(s => s.OrderQty).ToString();
+                dgvSalesReport.ClearSelection();
+                dgvSalesReport.CurrentCell = null;
+            }
+            catch (Exception ex)
+            {
+                ErrorLogger.Log(ex);
+                MessageBox.Show(ex.GetBaseException().Message);
+            }
         }
 
         private string EscapeCSV(string value)
@@ -115,44 +123,53 @@ namespace BikeShop.Forms
                 return;
             }
 
-            using var dialog = new SaveFileDialog();
-            dialog.Filter = "CSV Files (*.csv)|*.csv";
-            dialog.FileName = "SalesReport.csv";
-
-            if (dialog.ShowDialog() != DialogResult.OK)
+            try
             {
-                return;
-            }
+                using var dialog = new SaveFileDialog();
+                dialog.Filter = "CSV Files (*.csv)|*.csv";
+                dialog.FileName = "SalesReport.csv";
 
-            StringBuilder csv = new StringBuilder();
-
-            foreach (DataGridViewColumn column in dgvSalesReport.Columns)
-            {
-                csv.Append(EscapeCSV(column.HeaderText));
-                csv.Append(",");
-            }
-
-            csv.Length--;
-            csv.AppendLine();
-
-            foreach (DataGridViewRow row in dgvSalesReport.Rows)
-            {
-                if (row.IsNewRow)
+                if (dialog.ShowDialog() != DialogResult.OK)
                 {
-                    continue;
+                    return;
                 }
 
-                foreach (DataGridViewCell cell in row.Cells)
+                StringBuilder csv = new StringBuilder();
+
+                foreach (DataGridViewColumn column in dgvSalesReport.Columns)
                 {
-                    csv.Append(EscapeCSV(cell.Value?.ToString() ?? ""));
+                    csv.Append(EscapeCSV(column.HeaderText));
                     csv.Append(",");
                 }
 
                 csv.Length--;
                 csv.AppendLine();
+
+                foreach (DataGridViewRow row in dgvSalesReport.Rows)
+                {
+                    if (row.IsNewRow)
+                    {
+                        continue;
+                    }
+
+                    foreach (DataGridViewCell cell in row.Cells)
+                    {
+                        csv.Append(EscapeCSV(cell.Value?.ToString() ?? ""));
+                        csv.Append(",");
+                    }
+
+                    csv.Length--;
+                    csv.AppendLine();
+                }
+
+                File.WriteAllText(dialog.FileName, csv.ToString());
+            }
+            catch (Exception ex)
+            {
+                ErrorLogger.Log(ex);
+                MessageBox.Show(ex.GetBaseException().Message);
             }
 
-            File.WriteAllText(dialog.FileName, csv.ToString());
             MessageBox.Show("Report exported.");
         }
 

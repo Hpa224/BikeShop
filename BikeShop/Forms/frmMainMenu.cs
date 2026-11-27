@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using BikeShop.Helpers;
 
 namespace BikeShop.Forms
 {
@@ -37,32 +38,72 @@ namespace BikeShop.Forms
 
         private void button4_Click(object sender, EventArgs e)
         {
-            using var form = new frmError();
-            form.ShowDialog(this);
+            try
+            {
+                using var form = new frmError();
+                form.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                ErrorLogger.Log(ex);
+                MessageBox.Show(ex.GetBaseException().Message);
+            }
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            using var form = new frmReport();
-            form.ShowDialog(this);
+            try
+            {
+                using var form = new frmReport();
+                form.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                ErrorLogger.Log(ex);
+                MessageBox.Show(ex.GetBaseException().Message);
+            }
         }
 
         private void btnInventory_Click(object sender, EventArgs e)
         {
-            using var form = new frmProductMaintenance();
-            form.ShowDialog(this);
+            try
+            {
+                using var form = new frmProductMaintenance();
+                form.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                ErrorLogger.Log(ex);
+                MessageBox.Show(ex.GetBaseException().Message);
+            }
         }
 
         private void btnCustomers_Click(object sender, EventArgs e)
         {
-            using var form = new frmCustomerMaintenance();
-            form.ShowDialog(this);
+            try
+            {
+                using var form = new frmCustomerMaintenance();
+                form.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                ErrorLogger.Log(ex);
+                MessageBox.Show(ex.GetBaseException().Message);
+            }
         }
 
         private void btnNewSale_Click(object sender, EventArgs e)
         {
-            using var form = new frmNewSale();
-            form.ShowDialog(this);
+            try
+            {
+                using var form = new frmNewSale();
+                form.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                ErrorLogger.Log(ex);
+                MessageBox.Show(ex.GetBaseException().Message);
+            }
         }
 
         private void btnExit_Click(object sender, EventArgs e)
