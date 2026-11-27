@@ -26,7 +26,7 @@ dgvCustomers.DataSource = customers;
 - Default username is "admin" and default password is "bikeshop".
 - If new user table isnt in the mdf file, connect to the database mdf file and run the queries in the scripts folder 
 to create a user table and the default user.
-An error logger helper was added. All important operations especially ones that interact with the databse should be wrapped in
+- An error logger helper was added. All important operations especially ones that interact with the databse should be wrapped in
 a try catch block.
 - Example of a try catch using the new helper
 ```csharp
