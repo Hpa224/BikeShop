@@ -26,3 +26,33 @@ dgvCustomers.DataSource = customers;
 - Default username is "admin" and default password is "bikeshop".
 - If new user table isnt in the mdf file, connect to the database mdf file and run the queries in the scripts folder 
 to create a user table and the default user.
+An error logger helper was added. All important operations especially ones that interact with the databse should be wrapped in
+a try catch block.
+- Example of a try catch using the new helper
+```csharp
+            try
+            {
+                using var db = DatabaseHelper.CreateContext();
+                var product = new BikeShop.Entities.Product
+
+                {
+                    Name = txtProductName.Text.Trim(),
+                    ProductNumber = txtProductNumber.Text.Trim(),
+                    ProductCategoryId = (int)cboCategory2.SelectedValue,
+                    StandardCost = decimal.Parse(txtStandardCost.Text),
+                    ListPrice = decimal.Parse(txtListPrice.Text),
+                    Color = string.IsNullOrWhiteSpace(txtColor.Text) ? null : txtColor.Text.Trim(),
+                    Size = string.IsNullOrWhiteSpace(txtSize.Text) ? null : txtSize.Text.Trim(),
+                    SellStartDate = DateTime.Now
+                };
+
+                db.Products.Add(product);
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                ErrorLogger.Log(ex);
+                MessageBox.Show(ex.GetBaseException().Message);
+                return;
+            }
+```
