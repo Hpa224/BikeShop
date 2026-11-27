@@ -190,22 +190,32 @@ namespace BikeShop.Forms
             {
                 return;
             }
-            using var db = DatabaseHelper.CreateContext();
-            var product = new BikeShop.Entities.Product
 
+            try
             {
-                Name = txtProductName.Text.Trim(),
-                ProductNumber = txtProductNumber.Text.Trim(),
-                ProductCategoryId = (int)cboCategory2.SelectedValue,
-                StandardCost = decimal.Parse(txtStandardCost.Text),
-                ListPrice = decimal.Parse(txtListPrice.Text),
-                Color = string.IsNullOrWhiteSpace(txtColor.Text) ? null : txtColor.Text.Trim(),
-                Size = string.IsNullOrWhiteSpace(txtSize.Text) ? null : txtSize.Text.Trim(),
-                SellStartDate = DateTime.Now
-            };
+                using var db = DatabaseHelper.CreateContext();
+                var product = new BikeShop.Entities.Product
 
-            db.Products.Add(product);
-            db.SaveChanges();
+                {
+                    Name = txtProductName.Text.Trim(),
+                    ProductNumber = txtProductNumber.Text.Trim(),
+                    ProductCategoryId = (int)cboCategory2.SelectedValue,
+                    StandardCost = decimal.Parse(txtStandardCost.Text),
+                    ListPrice = decimal.Parse(txtListPrice.Text),
+                    Color = string.IsNullOrWhiteSpace(txtColor.Text) ? null : txtColor.Text.Trim(),
+                    Size = string.IsNullOrWhiteSpace(txtSize.Text) ? null : txtSize.Text.Trim(),
+                    SellStartDate = DateTime.Now
+                };
+
+                db.Products.Add(product);
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                ErrorLogger.Log(ex);
+                MessageBox.Show(ex.GetBaseException().Message);
+                return;
+            }
             MessageBox.Show("Product added successfully.");
             LoadProducts();
             ClearDetails();
