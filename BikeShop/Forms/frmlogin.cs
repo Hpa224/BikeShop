@@ -61,17 +61,24 @@ namespace BikeShop.Forms
                 MessageBox.Show(this, "Please enter your password.");
                 return;
             }
-
-            using var db = DatabaseHelper.CreateContext();
-            var user = db.Users.FirstOrDefault(u => u.Username == username);
-
-            if (user == null || !PasswordHelper.VerifyPassword(
-                password, user.PasswordHash, user.PasswordSalt))
+            try
             {
-                MessageBox.Show(this, "Invalid username or password.");
+                using var db = DatabaseHelper.CreateContext();
+                var user = db.Users.FirstOrDefault(u => u.Username == username);
+
+                if (user == null || !PasswordHelper.VerifyPassword(
+                    password, user.PasswordHash, user.PasswordSalt))
+                {
+                    MessageBox.Show(this, "Invalid username or password.");
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLogger.Log(ex);
+                MessageBox.Show(ex.GetBaseException().Message);
                 return;
             }
-
             this.DialogResult = DialogResult.OK;
             this.Close();
 

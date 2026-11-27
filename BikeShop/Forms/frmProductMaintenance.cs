@@ -57,62 +57,79 @@ namespace BikeShop.Forms
         }
         private void LoadCategories()
         {
-            using var db = DatabaseHelper.CreateContext();
-
-            var categories = db.ProductCategories
-                .OrderBy(c => c.Name)
-                .ToList();
-
-            var filterCategories = categories.ToList();
-
-            filterCategories.Insert(0, new BikeShop.Entities.ProductCategory
+            try
             {
-                ProductCategoryId = 0,
-                Name = "All Categories"
-            });
+                using var db = DatabaseHelper.CreateContext();
 
-            cboCategory.DisplayMember = "Name";
-            cboCategory.ValueMember = "ProductCategoryId";
-            cboCategory.DataSource = filterCategories;
-            cboCategory.SelectedIndex = -1;
-            cboCategory2.DisplayMember = "Name";
-            cboCategory2.ValueMember = "ProductCategoryId";
-            cboCategory2.DataSource = categories.ToList();
-            cboCategory2.SelectedIndex = -1;
+                var categories = db.ProductCategories
+                    .OrderBy(c => c.Name)
+                    .ToList();
+
+                var filterCategories = categories.ToList();
+
+                filterCategories.Insert(0, new BikeShop.Entities.ProductCategory
+                {
+                    ProductCategoryId = 0,
+                    Name = "All Categories"
+                });
+
+                cboCategory.DisplayMember = "Name";
+                cboCategory.ValueMember = "ProductCategoryId";
+                cboCategory.DataSource = filterCategories;
+                cboCategory.SelectedIndex = -1;
+                cboCategory2.DisplayMember = "Name";
+                cboCategory2.ValueMember = "ProductCategoryId";
+                cboCategory2.DataSource = categories.ToList();
+                cboCategory2.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                ErrorLogger.Log(ex);
+                MessageBox.Show(ex.GetBaseException().Message);
+            }
         }
 
         private void LoadProducts()
         {
-            using var db = DatabaseHelper.CreateContext();
-            var query = db.Products.AsQueryable();
-
-            if (!string.IsNullOrWhiteSpace(txtSearch.Text))
+            try
             {
-                query = query.Where(p => p.Name.Contains(txtSearch.Text.Trim()));
-            }
 
-            if (cboCategory.SelectedValue is int categoryId && categoryId != 0)
-            {
-                query = query.Where(p => p.ProductCategoryId == categoryId);
-            }
+                using var db = DatabaseHelper.CreateContext();
+                var query = db.Products.AsQueryable();
 
-            var products = query
-                .Select(p => new
+                if (!string.IsNullOrWhiteSpace(txtSearch.Text))
                 {
-                    p.ProductId,
-                    p.ProductNumber,
-                    p.Name,
-                    p.ProductCategoryId,
-                    Category = p.ProductCategory != null
-                        ? p.ProductCategory.Name
-                        : "",
-                    p.ListPrice
-                })
-                .ToList();
-            dgvInventory.AutoGenerateColumns = false;
-            dgvInventory.DataSource = products;
-            dgvInventory.ClearSelection();
-            dgvInventory.CurrentCell = null;
+                    query = query.Where(p => p.Name.Contains(txtSearch.Text.Trim()));
+                }
+
+                if (cboCategory.SelectedValue is int categoryId && categoryId != 0)
+                {
+                    query = query.Where(p => p.ProductCategoryId == categoryId);
+                }
+
+                var products = query
+                    .Select(p => new
+                    {
+                        p.ProductId,
+                        p.ProductNumber,
+                        p.Name,
+                        p.ProductCategoryId,
+                        Category = p.ProductCategory != null
+                            ? p.ProductCategory.Name
+                            : "",
+                        p.ListPrice
+                    })
+                    .ToList();
+                dgvInventory.AutoGenerateColumns = false;
+                dgvInventory.DataSource = products;
+                dgvInventory.ClearSelection();
+                dgvInventory.CurrentCell = null;
+            }
+            catch (Exception ex)
+            {
+                ErrorLogger.Log(ex);
+                MessageBox.Show(ex.GetBaseException().Message);
+            }
         }
 
         private bool validateData()
@@ -238,25 +255,33 @@ namespace BikeShop.Forms
             {
                 return;
             }
-
-            using var db = DatabaseHelper.CreateContext();
-            var product = db.Products.Find(selectedProductId.Value);
-
-            if (product == null)
+            try
             {
-                MessageBox.Show("Product not found.");
+                using var db = DatabaseHelper.CreateContext();
+                var product = db.Products.Find(selectedProductId.Value);
+
+                if (product == null)
+                {
+                    MessageBox.Show("Product not found.");
+                    return;
+                }
+
+                product.Name = txtProductName.Text.Trim();
+                product.ProductNumber = txtProductNumber.Text.Trim();
+                product.ProductCategoryId = (int)cboCategory2.SelectedValue;
+                product.StandardCost = decimal.Parse(txtStandardCost.Text);
+                product.ListPrice = decimal.Parse(txtListPrice.Text);
+                product.Color = string.IsNullOrWhiteSpace(txtColor.Text) ? null : txtColor.Text.Trim();
+                product.Size = string.IsNullOrWhiteSpace(txtSize.Text) ? null : txtSize.Text.Trim();
+                product.ModifiedDate = DateTime.Now;
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                ErrorLogger.Log(ex);
+                MessageBox.Show(ex.GetBaseException().Message);
                 return;
             }
-
-            product.Name = txtProductName.Text.Trim();
-            product.ProductNumber = txtProductNumber.Text.Trim();
-            product.ProductCategoryId = (int)cboCategory2.SelectedValue;
-            product.StandardCost = decimal.Parse(txtStandardCost.Text);
-            product.ListPrice = decimal.Parse(txtListPrice.Text);
-            product.Color = string.IsNullOrWhiteSpace(txtColor.Text) ? null : txtColor.Text.Trim();
-            product.Size = string.IsNullOrWhiteSpace(txtSize.Text) ? null : txtSize.Text.Trim();
-            product.ModifiedDate = DateTime.Now;
-            db.SaveChanges();
             MessageBox.Show("Product updated successfully.");
             LoadProducts();
             ClearDetails();
@@ -271,34 +296,43 @@ namespace BikeShop.Forms
                 return;
             }
 
-            using var db = DatabaseHelper.CreateContext();
-            var product = db.Products.Find(selectedProductId.Value);
-
-            if (product == null)
+            try
             {
-                MessageBox.Show("Product not found.");
+                using var db = DatabaseHelper.CreateContext();
+                var product = db.Products.Find(selectedProductId.Value);
+
+                if (product == null)
+                {
+                    MessageBox.Show("Product not found.");
+                    return;
+                }
+
+                if (db.SalesOrderDetails.Any(s => s.ProductId == product.ProductId))
+                {
+                    MessageBox.Show("Cannot delete a product associated with existing sales.");
+                    return;
+                }
+
+                DialogResult result = MessageBox.Show(
+                    $"Are you sure you want to delete {product.Name}?",
+                    "Confirm Deletion",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (result != DialogResult.Yes)
+                {
+                    return;
+                }
+
+                db.Products.Remove(product);
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                ErrorLogger.Log(ex);
+                MessageBox.Show(ex.GetBaseException().Message);
                 return;
             }
-
-            if (db.SalesOrderDetails.Any(s => s.ProductId == product.ProductId))
-            {
-                MessageBox.Show("Cannot delete a product associated with existing sales.");
-                return;
-            }
-
-            DialogResult result = MessageBox.Show(
-                $"Are you sure you want to delete {product.Name}?",
-                "Confirm Deletion",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning);
-
-            if (result != DialogResult.Yes)
-            {
-                return;
-            }
-
-            db.Products.Remove(product);
-            db.SaveChanges();
             MessageBox.Show("Product deleted successfully.");
             LoadProducts();
             ClearDetails();
@@ -324,32 +358,39 @@ namespace BikeShop.Forms
             if (e.RowIndex < 0)
                 return;
 
-            int productId = Convert.ToInt32(dgvInventory.Rows[e.RowIndex].Cells["colProductID"].Value);
-            using var db = DatabaseHelper.CreateContext();
-            var product = db.Products.Find(productId);
+            try
+            {
+                int productId = Convert.ToInt32(dgvInventory.Rows[e.RowIndex].Cells["colProductID"].Value);
+                using var db = DatabaseHelper.CreateContext();
+                var product = db.Products.Find(productId);
 
-            if (product == null)
-            {
-                return;
-            }
-            selectedProductId = product.ProductId;
-            txtProductName.Text = product.Name;
-            txtProductNumber.Text = product.ProductNumber;
-            txtStandardCost.Text = product.StandardCost.ToString("F2");
-            txtListPrice.Text = product.ListPrice.ToString("F2");
-            txtColor.Text = product.Color ?? "";
-            txtSize.Text = product.Size ?? "";
+                if (product == null)
+                {
+                    return;
+                }
+                selectedProductId = product.ProductId;
+                txtProductName.Text = product.Name;
+                txtProductNumber.Text = product.ProductNumber;
+                txtStandardCost.Text = product.StandardCost.ToString("F2");
+                txtListPrice.Text = product.ListPrice.ToString("F2");
+                txtColor.Text = product.Color ?? "";
+                txtSize.Text = product.Size ?? "";
 
-            if (product.ProductCategoryId.HasValue)
-            {
-                cboCategory2.SelectedValue = product.ProductCategoryId.Value;
+                if (product.ProductCategoryId.HasValue)
+                {
+                    cboCategory2.SelectedValue = product.ProductCategoryId.Value;
+                }
+                else
+                {
+                    cboCategory2.SelectedIndex = -1;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                cboCategory2.SelectedIndex = -1;
+                ErrorLogger.Log(ex);
+                MessageBox.Show(ex.GetBaseException().Message);
             }
         }
-
         private void btnClear_Click(object sender, EventArgs e)
         {
             ClearDetails();
