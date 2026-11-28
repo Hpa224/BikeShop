@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="BikeShop/BikeShop.csproj" />
+  <Project Path="BikeShopTests/BikeShopTests.csproj" Id="963041c1-eb69-417a-ba54-75c3a934f5a5" />
 </Solution>
