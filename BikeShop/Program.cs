@@ -17,13 +17,13 @@ namespace BikeShop
  
             ApplicationConfiguration.Initialize();
 
-            //using (var login = new frmlogin())
-            //{
-            //    if (login.ShowDialog() == DialogResult.OK)
-            //    {
-            //        Application.Run(new frmMainMenu());
-            //    }
-            //}
+            using (var login = new frmlogin())
+            {
+                if (login.ShowDialog() == DialogResult.OK)
+                {
+                    Application.Run(new frmMainMenu());
+                }
+            }
 
             //Application.Run(new frmMainMenu());
             //Application.Run(new frmError());
