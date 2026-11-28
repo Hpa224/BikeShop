@@ -7,7 +7,7 @@ namespace BikeShopTests
     public sealed class Test1
     {
         [TestMethod]
-        public void TestMethod1()
+        public void PasswordTest()
         {
             string password = "Test123!";
             var result = PasswordHelper.HashPassword(password);
